@@ -1474,7 +1474,8 @@ footer {
   gap: 70px;
   align-items: center;
 }
-.mme-credit-logo { height: 300px; width: auto; margin: 0 auto; display: block; }
+.mme-credit-logo { display: block; margin: 0 auto; }
+.mme-credit-logo img { height: 300px; width: auto; display: block; }
 .mme-credit-eyebrow {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 700;
@@ -1575,7 +1576,7 @@ footer {
   .hero-eyebrow { padding-right: 150px; }
   .mme-credit { padding: 70px 22px; }
   .mme-credit-inner { grid-template-columns: 1fr; gap: 34px; text-align: center; }
-  .mme-credit-logo { height: 210px; width: auto; }
+  .mme-credit-logo img { height: auto; width: min(260px, 68vw); margin: 0 auto; }
   .mme-credit-lead { margin-left: auto; margin-right: auto; }
   .mme-credit-stats { justify-content: center; gap: 32px; }
   .benefit-pills { gap: 10px; }
@@ -1771,7 +1772,10 @@ footer {
 <!-- ============ CREDIBILIDADE MME VACATION CLUB ============ -->
 <section class="mme-credit" id="mme">
   <div class="mme-credit-inner">
-    <img class="mme-credit-logo" src="assets/logos/mme-vertical.png" alt="MME Vacation Club">
+    <picture class="mme-credit-logo">
+      <source media="(max-width: 900px)" srcset="assets/logos/mme-horizontal.png">
+      <img src="assets/logos/mme-vertical.png" alt="MME Vacation Club">
+    </picture>
     <div class="mme-credit-body">
       <p class="mme-credit-eyebrow">Uma realização MME Vacation Club</p>
       <h2 class="mme-credit-title">Mais de 40 anos<br>construindo o litoral de Alagoas.</h2>
