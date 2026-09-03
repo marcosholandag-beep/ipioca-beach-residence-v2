@@ -169,8 +169,8 @@ em.poetic-light {
 }
 .hero-figura {
   position: absolute;
-  right: 0; bottom: 0;
-  width: min(48vw, 700px);
+  right: clamp(70px, 7vw, 150px); bottom: 0;
+  width: min(53vw, 770px);
   height: 82%;
   z-index: 2;
   pointer-events: none;
@@ -1539,12 +1539,11 @@ footer {
 .footer-mme-chip {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
   background: var(--mme-creme);
-  padding: 9px 14px;
+  padding: 10px 16px;
   border-radius: 12px;
 }
-.footer-mme-chip img { height: 30px; width: auto; }
+.footer-mme-chip img { height: 42px; width: auto; display: block; }
 .footer-mme-chip strong {
   font-family: 'Barlow Condensed', sans-serif;
   font-weight: 800;
@@ -1558,7 +1557,16 @@ footer {
 @media (max-width: 900px) {
   .hero-nav { padding: 18px 22px; }
   .hero-nav-links { display: none; }
-  .hero-figura { display: none; }   /* no mobile o recorte briga com o texto do hero */
+  /* mobile: o modelo e peca principal da primeira dobra */
+  .hero-figura {
+    right: -4vw; bottom: 0;
+    width: 66vw; height: 46%;
+    background-position: right bottom;
+  }
+  .hero-sub { max-width: 74%; }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+  .hero-actions .btn { width: auto; max-width: 76%; }
+  .hero-price { padding-left: 0; }
   .hero-nav-brand { gap: 12px; }
   .hero-nav-brand img { height: 52px; }
   .hero-nav-sep { height: 30px; }
@@ -2123,8 +2131,7 @@ footer {
       <div class="footer-mme">
         <span>Uma realização</span>
         <div class="footer-mme-chip">
-          <img src="assets/logos/mme-symbol.png" alt="">
-          <strong>MME Vacation Club</strong>
+          <img src="assets/logos/mme-horizontal.png" alt="MME Vacation Club">
         </div>
       </div>
     </div>
