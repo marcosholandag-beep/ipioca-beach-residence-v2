@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Key Visual — Ipioca Beach Residence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Open+Sans:wght@400;600;700&family=Playfair+Display:ital,wght@1,400;1,500;0,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --laranja: #EA8036;
+  --laranja-hover: #D66B22;
+  --cinza-bege-logo: #B8B0A0;
+  --cinza-texto: #666666;
+  --cinza-suave: #8A8478;
+  --bege: #F1F0EB;
+  --bege-claro: #F7F5EF;
+  --preto: #111111;
+  --preto-suave: #1F2321;
+  --turquesa: #2FB5B0;
+  --azul-fundo: #0D5A6E;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Open Sans', -apple-system, sans-serif;
+  background: var(--bege-claro);
+  color: var(--preto);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: url('assets/fotos/hero-fachada.jpg') center/cover no-repeat;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+}
+.hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(13,90,110,.45) 0%, rgba(0,0,0,.10) 35%, rgba(0,0,0,.72) 100%);
+  z-index: 1;
+}
+.hero-nav {
+  position: relative; z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 56px;
+}
+.hero-nav-brand img { height: 70px; width: auto; }
+.hero-nav-links {
+  display: flex; gap: 40px;
+  list-style: none;
+}
+.hero-nav-links a {
+  color: #FFF;
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 8px 4px;
+  position: relative;
+  transition: opacity .2s;
+}
+.hero-nav-links a:hover { opacity: 0.7; }
+.hero-cta-top {
+  background: var(--laranja);
+  color: #FFF;
+  border: none;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: background .2s;
+}
+.hero-cta-top:hover { background: var(--laranja-hover); }
+
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 40px 80px 100px;
+  color: #FFF;
+  max-width: 1080px;
+  margin-top: auto;
+}
+.hero-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 20px;
+  display: flex; gap: 12px; align-items: center;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ""; height: 1px; background: rgba(255,255,255,0.4);
+  flex: 0 0 40px;
+}
+.hero-eyebrow::after { flex: 1; max-width: 200px; }
+.hero-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: clamp(48px, 6.5vw, 96px);
+  line-height: 0.98;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  text-shadow: 0 4px 40px rgba(0,0,0,0.25);
+  letter-spacing: -0.005em;
+}
+.hero-title .poetic {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: none;
+  color: var(--laranja);
+  letter-spacing: 0;
+  font-size: 0.88em;
+  padding-right: 8px;
+}
+.hero-sub {
+  font-size: 19px;
+  font-weight: 400;
+  max-width: 620px;
+  margin-bottom: 44px;
+  opacity: 0.94;
+  line-height: 1.55;
+}
+.hero-sub em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  color: #FFF;
+}
+.hero-actions {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  background: var(--laranja);
+  color: #FFF;
+  border: none;
+  padding: 22px 44px;
+  border-radius: 999px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all .25s;
+  box-shadow: 0 12px 40px rgba(234,128,54,0.35);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.btn-primary:hover { background: var(--laranja-hover); transform: translateY(-2px); box-shadow: 0 16px 50px rgba(234,128,54,0.45); }
+.btn-primary::after { content: "→"; font-size: 20px; }
+.hero-price {
+  color: #FFF;
+  padding-left: 28px;
+  border-left: 1px solid rgba(255,255,255,0.3);
+}
+.hero-price small {
+  display: block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  opacity: 0.75;
+}
+.hero-price strong {
+  display: block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1;
+  margin: 6px 0;
+  letter-spacing: -0.01em;
+}
+.hero-price span { font-size: 12px; opacity: 0.7; letter-spacing: 0.05em; }
+
+.selo-mobiliado {
+  position: absolute;
+  top: 130px;
+  right: 60px;
+  z-index: 3;
+  width: 118px;
+  height: 118px;
+  background: var(--laranja);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 1;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  transform: rotate(-8deg);
+  border: 3px solid #FFF;
+}
+.selo-mobiliado::before {
+  content: "🛋";
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+/* ============ FAIXA DE ATRIBUTOS ============ */
+.strip-wrap {
+  padding: 0 56px;
+  margin-top: -50px;
+  position: relative;
+  z-index: 4;
+}
+.strip {
+  background: var(--preto);
+  color: #FFF;
+  border-radius: 24px;
+  padding: 32px 44px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+.strip-item {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  border-right: 1px solid rgba(255,255,255,0.12);
+  padding-right: 24px;
+}
+.strip-item:last-child { border-right: none; padding-right: 0; }
+.strip-item-icon {
+  width: 44px; height: 44px;
+  color: var(--laranja);
+  flex-shrink: 0;
+}
+.strip-item-icon svg { width: 100%; height: 100%; }
+.strip-item-txt {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+}
+.strip-item-txt small {
+  display: block;
+  font-weight: 400;
+  text-transform: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.55);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+/* ============ CAPÍTULO "IPIOCA" — NARRATIVA (inspiração Bossa) ============ */
+.chapter {
+  padding: 160px 56px;
+}
+.chapter-narrow {
+  max-width: 820px;
+  margin: 0 auto;
+  text-align: center;
+}
+.chapter-coords {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  color: var(--cinza-suave);
+  margin-bottom: 28px;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.chapter-coords span { display: inline-flex; align-items: center; gap: 14px; }
+.chapter-coords span::after {
+  content: "·"; opacity: 0.5;
+}
+.chapter-coords span:last-child::after { display: none; }
+.chapter-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: clamp(56px, 7vw, 108px);
+  line-height: 0.95;
+  text-transform: uppercase;
+  color: var(--preto);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+.chapter-title .poetic {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: none;
+  color: var(--laranja);
+  letter-spacing: 0;
+  font-size: 0.85em;
+}
+.chapter-lead {
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--cinza-texto);
+  max-width: 680px;
+  margin: 0 auto;
+}
+.chapter-lead em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--preto);
+}
+.chapter-media {
+  margin: 80px auto 0;
+  max-width: 1200px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.12);
+  aspect-ratio: 16 / 9;
+  background: url('assets/fotos/bg-home.jpg') center/cover no-repeat;
+}
+.chapter-caption {
+  max-width: 820px;
+  margin: 40px auto 0;
+  font-size: 15px;
+  text-align: center;
+  color: var(--cinza-suave);
+  font-style: italic;
+}
+
+/* ============ CAPÍTULO "O EMPREENDIMENTO" ============ */
+.section-dark {
+  background: var(--preto-suave);
+  color: #FFF;
+  padding: 160px 56px;
+}
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  color: var(--laranja);
+  margin-bottom: 20px;
+}
+.section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: clamp(40px, 4.5vw, 68px);
+  line-height: 1;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+  max-width: 780px;
+}
+.section-title .poetic {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  text-transform: none;
+  color: var(--laranja);
+  font-size: 0.9em;
+}
+
+.feature-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 100px;
+}
+.feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.feature.reverse { direction: rtl; }
+.feature.reverse > * { direction: ltr; }
+.feature-txt-block { display: flex; flex-direction: column; gap: 20px; }
+.feature-icon {
+  width: 56px; height: 56px;
+  color: var(--laranja);
+}
+.feature-icon svg { width: 100%; height: 100%; }
+.feature-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.feature-txt {
+  font-size: 17px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.75);
+  max-width: 480px;
+}
+.feature-txt em {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #FFF;
+  font-weight: 500;
+}
+.feature-media {
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+}
+.feature-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ============ DIRECTORY / SISTEMA COMPACTO (opcional pra painel de guia) ============ */
+.system {
+  margin: 0 56px 60px;
+  background: #FFF;
+  border-radius: 24px;
+  padding: 48px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+}
+.system h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 34px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+.system-sub {
+  color: var(--cinza-texto);
+  margin-bottom: 32px;
+  max-width: 640px;
+  font-size: 15px;
+}
+.palette {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin-bottom: 40px;
+}
+.swatch {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.swatch-color { height: 90px; }
+.swatch-info { padding: 12px; font-size: 12px; }
+.swatch-info b {
+  display: block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.swatch-info code {
+  color: var(--cinza-texto);
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 11px;
+}
+.typo {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.typo-item {
+  border-left: 3px solid var(--laranja);
+  padding-left: 20px;
+}
+.typo-item small {
+  color: var(--cinza-texto);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 11px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 12px;
+}
+.logos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.logo-tile {
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.logo-tile img { max-width: 130px; max-height: 130px; height:auto; }
+.logo-tile.dark { background: #111; }
+.logo-tile.orange { background: var(--laranja); }
+.logo-tile.beige { background: var(--bege); }
+.logo-tile-label {
+  font-size: 11px;
+  color: var(--cinza-texto);
+  text-align: center;
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.logo-cell { display: flex; flex-direction: column; }
+
+.doc-header {
+  padding: 40px 56px 24px;
+}
+.doc-header h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 32px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+.doc-header p { color: var(--cinza-texto); font-size: 15px; }
+.doc-badge {
+  display: inline-block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--laranja);
+  border: 1px solid var(--laranja);
+  border-radius: 999px;
+  padding: 6px 14px;
+  margin-bottom: 12px;
+}
+
+/* ============ RESPONSIVIDADE ============ */
+@media (max-width: 900px) {
+  .hero { min-height: 100vh; }
+  .hero-nav { padding: 20px 24px; }
+  .hero-nav-links { display: none; }
+  .hero-nav-brand img { height: 52px; }
+  .hero-content { padding: 20px 24px 60px; }
+  .strip-wrap { padding: 0 20px; margin-top: -30px; }
+  .strip { grid-template-columns: 1fr 1fr; padding: 24px; gap: 20px; }
+  .strip-item { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; }
+  .strip-item:nth-last-child(-n+2) { border-bottom: none; padding-bottom: 0; }
+  .chapter, .section-dark { padding: 90px 20px; }
+  .chapter-media { margin-top: 50px; aspect-ratio: 4/3; }
+  .feature-list { gap: 60px; }
+  .feature { grid-template-columns: 1fr; gap: 32px; }
+  .feature.reverse { direction: ltr; }
+  .selo-mobiliado { width: 84px; height: 84px; font-size: 12px; top: 90px; right: 20px; }
+  .selo-mobiliado::before { font-size: 18px; }
+  .system { margin: 40px 20px; padding: 32px 24px; }
+  .palette { grid-template-columns: repeat(2, 1fr); }
+  .typo { grid-template-columns: 1fr; }
+  .logos-grid { grid-template-columns: repeat(2, 1fr); }
+  .doc-header { padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Cabeçalho do mock -->
+<div class="doc-header">
+  <span class="doc-badge">Mockup · Direção visual v2</span>
+  <h1>Key Visual — Hero + capítulos narrativos</h1>
+  <p>Hero (Ipioca) + faixa densa + capítulo "IPIOCA" (ritmo Bossa) + "O empreendimento" com ícones lineares. Sistema visual no fim.</p>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <nav class="hero-nav">
+    <div class="hero-nav-brand"><img src="assets/logos/logo-branco.png" alt="Ipioca Beach Residence"></div>
+    <ul class="hero-nav-links">
+      <li><a href="#ipioca">Ipioca</a></li>
+      <li><a href="#empreendimento">Empreendimento</a></li>
+      <li><a href="#funciona">Como funciona</a></li>
+      <li><a href="#faq">Dúvidas</a></li>
+    </ul>
+    <button class="hero-cta-top">Receber condições</button>
+  </nav>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Praia de Ipioca · Maceió · Alagoas</p>
+    <h1 class="hero-title">
+      Sua casa de férias<br>
+      <span class="poetic">no</span> Caribe brasileiro,<br>
+      todo ano <span class="poetic">no seu nome.</span>
+    </h1>
+    <p class="hero-sub">
+      Multipropriedade no <em>Ipioca Beach Residence</em> — apartamento mobiliado, à beira-mar, com estrutura de resort completa. Vitalício, hereditário e conectado à rede <em>RCI</em> em 100 países.
+    </p>
+    <div class="hero-actions">
+      <button class="btn-primary">Quero conhecer as condições</button>
+      <div class="hero-price">
+        <small>A partir de</small>
+        <strong>66x R$ 620</strong>
+        <span>+ entrada reduzida</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="selo-mobiliado">JÁ<br>MOBI<br>LIADO</div>
+</section>
+
+<!-- ============ FAIXA DENSA ============ -->
+<div class="strip-wrap">
+  <section class="strip">
+    <div class="strip-item">
+      <div class="strip-item-icon">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 34c4-2 8-2 12 0s8 2 12 0 8-2 12 0 4 0 4 0"/>
+          <path d="M4 40c4-2 8-2 12 0s8 2 12 0 8-2 12 0"/>
+          <path d="M24 22c-4-6-10-8-14-6 2 6 6 10 12 12"/>
+          <path d="M24 22c4-6 10-8 14-6-2 6-6 10-12 12"/>
+          <circle cx="24" cy="10" r="3"/>
+        </svg>
+      </div>
+      <div class="strip-item-txt">Frente-mar<small>Praia de Ipioca · Maceió/AL</small></div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-item-icon">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 34h36v6H6z"/>
+          <path d="M10 34v-8a6 6 0 016-6h16a6 6 0 016 6v8"/>
+          <path d="M14 24v-4a3 3 0 013-3h14a3 3 0 013 3v4"/>
+        </svg>
+      </div>
+      <div class="strip-item-txt">Já mobiliado<small>Chega, abre a porta, aproveita</small></div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-item-icon">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="18"/>
+          <path d="M6 24h36"/>
+          <path d="M24 6c5 6 5 30 0 36"/>
+          <path d="M24 6c-5 6-5 30 0 36"/>
+        </svg>
+      </div>
+      <div class="strip-item-txt">Rede RCI<small>4.000+ resorts · 100 países</small></div>
+    </div>
+    <div class="strip-item">
+      <div class="strip-item-icon">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 8h22l6 6v26H10z"/>
+          <path d="M32 8v6h6"/>
+          <path d="M16 22h16M16 28h16M16 34h10"/>
+        </svg>
+      </div>
+      <div class="strip-item-txt">Vitalício<small>Registrado no seu nome · hereditário</small></div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ CAPÍTULO "IPIOCA" ============ -->
+<section class="chapter" id="ipioca">
+  <div class="chapter-narrow">
+    <p class="chapter-coords">
+      <span>Praia de Ipioca</span>
+      <span>Maceió</span>
+      <span>Alagoas</span>
+      <span>09° 26′ S · 35° 32′ O</span>
+    </p>
+    <h2 class="chapter-title">
+      <span class="poetic">Onde</span> Maceió<br>
+      ainda tem <span class="poetic">silêncio</span>
+    </h2>
+    <p class="chapter-lead">
+      A 30 minutos do aeroporto, Ipioca é o pedaço do litoral norte que <em>ainda amanhece devagar</em>. Coqueiral denso, mar em tons de turquesa, piscinas naturais na maré baixa. É aqui — não no centro de Maceió — que a sua casa de férias espera.
+    </p>
+  </div>
+  <div class="chapter-media"></div>
+  <p class="chapter-caption">Vista aérea do Ipioca Beach Residence · Litoral Norte de Alagoas</p>
+</section>
+
+<!-- ============ CAPÍTULO "O EMPREENDIMENTO" ============ -->
+<section class="section-dark" id="empreendimento">
+  <div class="section-inner">
+    <p class="section-eyebrow">O empreendimento</p>
+    <h2 class="section-title">
+      Um <span class="poetic">resort</span><br>
+      que também é <span class="poetic">seu.</span>
+    </h2>
+
+    <div class="feature-list">
+      <div class="feature">
+        <div class="feature-txt-block">
+          <div class="feature-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 40c8-4 12-4 20 0s12 4 20 0 12 0 12 0"/>
+              <path d="M6 48c8-4 12-4 20 0s12 4 20 0 12 0 12 0"/>
+              <path d="M12 40V22c0-6 4-10 10-10s10 4 10 10"/>
+              <path d="M32 40V22c0-6 4-10 10-10s10 4 10 10"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Piscina que espelha o mar</h3>
+          <p class="feature-txt">Extensa, ao ar livre, com bar molhado e ala infantil. Uma faixa de água que <em>continua a horizontal</em> da praia — para quem quer o mar sem sair do resort.</p>
+        </div>
+        <div class="feature-media"><img src="assets/fotos/sobre.jpg" alt="Piscina do resort"></div>
+      </div>
+
+      <div class="feature reverse">
+        <div class="feature-txt-block">
+          <div class="feature-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 12v40"/>
+              <path d="M12 12c0 6 3 10 8 10s8-4 8-10"/>
+              <path d="M44 12v18"/>
+              <path d="M52 12v18a4 4 0 01-4 4h-4a4 4 0 01-4-4V12"/>
+              <path d="M44 30v22"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Restaurante · bar · gastronomia</h3>
+          <p class="feature-txt">Café da manhã, almoço e jantar assinados. Você não precisa nem <em>pensar</em> em cozinhar — a menos que queira, na sua cozinha equipada.</p>
+        </div>
+        <div class="feature-media"><img src="assets/fotos/about.png" alt="Restaurante"></div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-txt-block">
+          <div class="feature-icon">
+            <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 52h48"/>
+              <path d="M14 52V26l18-14 18 14v26"/>
+              <path d="M26 52V36h12v16"/>
+              <circle cx="34" cy="42" r="1.5"/>
+            </svg>
+          </div>
+          <h3 class="feature-title">Apartamento mobiliado</h3>
+          <p class="feature-txt">Sala, cozinha, quartos, banheiros — <em>tudo entregue pronto</em>. Você chega com a mala, arruma o guarda-roupa, senta na varanda com uma água de coco e é como se estivesse ali há anos.</p>
+        </div>
+        <div class="feature-media"><img src="assets/fotos/hero-fachada.jpg" alt="Fachada"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SISTEMA VISUAL ============ -->
+<section class="system">
+  <h2>Sistema visual proposto</h2>
+  <p class="system-sub">
+    Paleta e tipografia oficiais + Playfair Display para acentos poéticos italianizados (uso decorativo apenas — palavras-chave dentro do body).
+  </p>
+
+  <p style="text-transform:uppercase; letter-spacing:0.2em; font-family:Barlow Condensed; font-weight:700; font-size:13px; color:var(--cinza-texto); margin-bottom:16px;">Paleta</p>
+  <div class="palette">
+    <div class="swatch"><div class="swatch-color" style="background:#EA8036"></div><div class="swatch-info"><b>Laranja Ipioca</b><code>#EA8036</code></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#FFFFFF; border-bottom:1px solid #eee;"></div><div class="swatch-info"><b>Branco</b><code>#FFFFFF</code></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#F7F5EF"></div><div class="swatch-info"><b>Bege claro</b><code>#F7F5EF</code></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#666666"></div><div class="swatch-info"><b>Cinza texto</b><code>#666666</code></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#1F2321"></div><div class="swatch-info"><b>Preto suave</b><code>#1F2321</code></div></div>
+    <div class="swatch"><div class="swatch-color" style="background:#0D5A6E"></div><div class="swatch-info"><b>Azul overlay</b><code>#0D5A6E</code></div></div>
+  </div>
+
+  <p style="text-transform:uppercase; letter-spacing:0.2em; font-family:Barlow Condensed; font-weight:700; font-size:13px; color:var(--cinza-texto); margin-bottom:16px;">Tipografia</p>
+  <div class="typo">
+    <div class="typo-item">
+      <small>Títulos · Barlow Condensed 800</small>
+      <div style="font-family:'Barlow Condensed'; font-weight:800; font-size:44px; line-height:0.95; text-transform:uppercase;">Sua casa <br>de férias</div>
+    </div>
+    <div class="typo-item">
+      <small>Acento · Playfair Display italic 500</small>
+      <div style="font-family:'Playfair Display'; font-weight:500; font-style:italic; font-size:44px; line-height:1; color:var(--laranja);">no seu nome</div>
+    </div>
+    <div class="typo-item">
+      <small>Body · Open Sans 400/700</small>
+      <div style="font-size:15px; line-height:1.7;">
+        Multipropriedade é <b>fração de imóvel</b> no seu nome, com semanas de uso definidas todos os anos. Vitalício e hereditário.
+      </div>
+    </div>
+  </div>
+
+  <p style="text-transform:uppercase; letter-spacing:0.2em; font-family:Barlow Condensed; font-weight:700; font-size:13px; color:var(--cinza-texto); margin-bottom:16px;">Logos oficiais</p>
+  <div class="logos-grid">
+    <div class="logo-cell">
+      <div class="logo-tile beige"><img src="assets/logos/logo-colorido.png" alt="Colorido"></div>
+      <div class="logo-tile-label">Colorido · fundos claros</div>
+    </div>
+    <div class="logo-cell">
+      <div class="logo-tile orange"><img src="assets/logos/logo-branco-em-laranja.png" alt="Branco em laranja"></div>
+      <div class="logo-tile-label">Branco · fundo laranja</div>
+    </div>
+    <div class="logo-cell">
+      <div class="logo-tile dark"><img src="assets/logos/logo-branco.png" alt="Branco"></div>
+      <div class="logo-tile-label">Branco · fundos escuros</div>
+    </div>
+    <div class="logo-cell">
+      <div class="logo-tile beige"><img src="assets/logos/logo-simbolo-laranja.png" alt="Símbolo"></div>
+      <div class="logo-tile-label">Símbolo · favicon/watermark</div>
+    </div>
+  </div>
+
+</section>
+
+<p style="text-align:center; color:var(--cinza-texto); font-size:13px; padding: 40px 20px 60px;">
+  Mockup estático · próxima etapa: copy completa (todas as seções) + LP final publicada no GitHub Pages
+</p>
+
+</body>
+</html>
