@@ -237,7 +237,12 @@ em.poetic-light {
   text-shadow: 0 4px 40px rgba(0,0,0,0.25);
   letter-spacing: -0.005em;
 }
-.hero-title .poetic { color: var(--acento); font-size: 0.94em; padding-right: 4px; }
+.hero-title .poetic {
+  color: var(--mme-creme);
+  font-size: 0.94em;
+  padding-right: 4px;
+  text-shadow: 0 2px 16px rgba(15,18,32,0.45);
+}
 .hero-sub {
   font-size: 18px;
   font-weight: 400;
@@ -1560,13 +1565,14 @@ footer {
   .hero-nav-links { display: none; }
   /* mobile: o modelo e peca principal da primeira dobra */
   .hero-figura {
-    right: -4vw; bottom: 0;
-    width: 66vw; height: 46%;
+    right: -3vw; bottom: 0;
+    width: 96vw; height: 70%;
     background-position: right bottom;
   }
-  .hero-sub { max-width: 74%; }
-  .hero-actions { flex-direction: column; align-items: flex-start; }
-  .hero-actions .btn { width: auto; max-width: 76%; }
+  .hero-sub { max-width: 48%; font-size: 14px; line-height: 1.5; }
+  .hero-actions { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .hero-actions .btn { width: auto; max-width: 52%; padding: 14px 18px; font-size: 12px; }
+  .hero-price { padding-left: 0; }
   .hero-price { padding-left: 0; }
   .hero-nav-brand { gap: 12px; }
   .hero-nav-brand img { height: 52px; }
@@ -1602,9 +1608,13 @@ footer {
   .btn { padding: 16px 28px; font-size: 14px; }
 }
 @media (max-width: 560px) {
-  /* espaco curto demais: a assinatura MME sai do header (segue no rodape) */
-  .hero-nav-sep, .hero-nav-brand img.hero-nav-mme { display: none; }
-  .hero-nav-brand img { height: 44px; }
+  .hero-nav { padding: 16px 16px; }
+  .hero-nav-brand { gap: 9px; }
+  .hero-nav-brand img { height: 40px; }
+  .hero-nav-sep { height: 24px; }
+  .hero-nav-brand img.hero-nav-mme { height: 26px; }
+  .hero-nav .btn-primary { padding: 10px 14px !important; font-size: 11px; letter-spacing: 0.06em; }
+  .hero-nav .btn-primary::after { display: none; }
   .footer-grid { grid-template-columns: 1fr; }
   .hero-title { font-size: 42px; }
   .chapter-title { font-size: 44px; }
