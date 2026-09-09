@@ -124,10 +124,12 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 10px;
   border-radius: var(--r-pill);
+  /* mesmo tratamento tipografico do eyebrow: Inter 600, caixa alta, tracking largo */
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 15px;
-  letter-spacing: -0.01em;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
   padding: 15px 28px;
   border: none;
   cursor: pointer;
@@ -144,8 +146,8 @@ img { max-width: 100%; display: block; }
   transform: translateY(-2px);
   box-shadow: 0 14px 34px rgba(33,163,192,0.38);
 }
-.btn-nav { padding: 12px 22px; font-size: 14px; }
-.btn-lg { padding: 18px 34px; font-size: 16px; }
+.btn-nav { padding: 13px 22px; font-size: 11.5px; letter-spacing: 0.13em; }
+.btn-lg { padding: 18px 32px; font-size: 13.5px; }
 .btn .arrow { transition: transform .22s ease; }
 .btn:hover .arrow { transform: translateX(3px); }
 
@@ -376,6 +378,70 @@ img { max-width: 100%; display: block; }
 .chip-tri img { height: 54px; width: auto; }
 
 /* ============================================================
+   BARRA FLUTUANTE (acompanha a página)
+   ============================================================ */
+.sticky-bar {
+  position: fixed;
+  left: 50%;
+  bottom: clamp(12px, 1.8vw, 22px);
+  z-index: 60;
+  width: min(1080px, calc(100% - 2 * var(--pad-page)));
+  transform: translateX(-50%) translateY(150%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .55s cubic-bezier(.2,.7,.2,1), opacity .4s ease;
+}
+.sticky-bar.is-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.sticky-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  background: rgba(23,27,45,0.88);
+  border: 1px solid rgba(234,128,54,0.30);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border-radius: var(--r-pill);
+  padding: 11px 11px 11px 26px;
+  /* brilho quente como na referencia */
+  box-shadow: 0 22px 60px rgba(8,12,24,0.55), 0 0 70px rgba(234,128,54,0.16);
+}
+.sticky-left { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.sticky-left small {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(251,248,244,0.60);
+  white-space: nowrap;
+}
+.sticky-badge {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 21px;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--night);
+  background: var(--laranja);
+  border-radius: var(--r-pill);
+  padding: 11px 18px;
+  white-space: nowrap;
+}
+.sticky-sub {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(251,248,244,0.82);
+  white-space: nowrap;
+}
+
+/* espaco so pra demonstrar o scroll neste preview */
+.demo-spacer { height: 120vh; }
+
+/* ============================================================
    MARQUEE (linha animada entre seções)
    ============================================================ */
 .marquee {
@@ -513,14 +579,22 @@ img { max-width: 100%; display: block; }
   .hero-sub { max-width: 68%; font-size: 14.5px; }
   /* modelo menor pra nao colidir com CTA e preco */
   .hero-figura { width: 74%; height: 45%; right: -12%; }
-  .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; max-width: 74%; }
-  .btn-lg { padding: 15px 24px; font-size: 14.5px; }
+  .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; max-width: 100%; }
+  /* caixa alta + tracking exigem corpo menor no mobile */
+  .btn-lg { padding: 14px 20px; font-size: 11px; letter-spacing: 0.10em; }
+  .btn-nav { padding: 11px 14px; font-size: 9.5px; letter-spacing: 0.08em; }
   /* pill opaco pra ler limpo sobre o modelo */
   .price-pill { background: rgba(23,27,45,0.93); padding-right: 20px; }
   .price-pill strong { font-size: 20px; padding: 11px 16px; }
   .price-pill span { font-size: 13px; }
   .marquee-item { font-size: 12px; padding: 0 20px; letter-spacing: 0.10em; }
   .marquee-item img { height: 32px; }
+  /* barra flutuante compacta no mobile */
+  .sticky-inner { padding: 9px 9px 9px 16px; gap: 12px; }
+  .sticky-left small, .sticky-sub { display: none; }
+  .sticky-badge { font-size: 17px; padding: 10px 14px; }
+  .sticky-inner .btn { padding: 12px 18px; font-size: 13px; }
+  .sticky-inner .btn .arrow { display: none; }
   .hero-chips { flex-direction: row; align-items: center; gap: 8px; top: 16px; right: 16px; }
   .chip { font-size: 11.5px; padding: 8px 14px 8px 11px; letter-spacing: -0.01em; }
   .chip .dot { width: 7px; height: 7px; }
@@ -662,6 +736,36 @@ img { max-width: 100%; display: block; }
     <div class="strip-txt"><strong>Vitalício</strong><small>Registrado no seu nome · hereditário</small></div>
   </div>
 </section>
+
+<div class="demo-spacer" aria-hidden="true"></div>
+
+<!-- ============ BARRA FLUTUANTE (acompanha a pagina) ============ -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-inner">
+    <div class="sticky-left">
+      <small>A partir de</small>
+      <span class="sticky-badge">66x R$ 620</span>
+      <span class="sticky-sub">+ entrada reduzida</span>
+    </div>
+    <a href="#form" class="btn btn-cyan">Quero conhecer as condições <span class="arrow">→</span></a>
+  </div>
+</div>
+
+<script>
+(function () {
+  var bar = document.getElementById('stickyBar');
+  var heroCta = document.querySelector('.hero-actions');
+  if (!bar || !heroCta) return;
+
+  // a barra aparece quando o CTA do hero sai da tela por cima
+  function update() {
+    bar.classList.toggle('is-visible', heroCta.getBoundingClientRect().bottom < 0);
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
 
 </body>
 </html>
