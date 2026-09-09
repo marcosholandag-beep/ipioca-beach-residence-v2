@@ -238,8 +238,8 @@ img { max-width: 100%; display: block; }
   stroke-linecap: round;
 }
 
-/* modelo */
-.hero-figura {
+/* modelo — palco 3D (tilt segue o mouse) */
+.hero-3d {
   position: absolute;
   right: clamp(-40px, 1vw, 40px);
   bottom: 0;
@@ -247,11 +247,25 @@ img { max-width: 100%; display: block; }
   width: min(52%, 720px);
   z-index: 3;
   pointer-events: none;
+  perspective: 1300px;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform .5s cubic-bezier(.2,.7,.2,1);
+  will-change: transform;
+}
+.hero-figura {
+  position: absolute;
+  inset: 0;
+  transform-origin: bottom center;
   background: url('assets/fotos/apresentador.png') right bottom/contain no-repeat;
   background-image: image-set(url('assets/fotos/apresentador.webp') 1x);
   /* polimento sutil + sombra mais definida para descolar da foto */
   filter: contrast(1.04) saturate(1.06) drop-shadow(-24px 16px 50px rgba(12,16,30,0.5));
-  animation: fadeIn 1.2s ease .25s both;
+  animation: fadeIn 1.2s ease .25s both, float3d 6s ease-in-out 1.2s infinite;
+}
+@keyframes float3d {
+  0%, 100% { transform: translateY(0) rotateZ(0deg) scale(1); }
+  50%      { transform: translateY(-10px) rotateZ(-0.5deg) scale(1.006); }
 }
 /* halo quente atras do Faro (por-do-sol da marca) */
 .hero-glow {
@@ -265,6 +279,7 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
   background: radial-gradient(circle, rgba(245,176,74,0.42) 0%, rgba(234,128,54,0.16) 40%, rgba(234,128,54,0) 70%);
   animation: fadeIn 1.6s ease .35s both;
+  transition: transform .5s cubic-bezier(.2,.7,.2,1);
 }
 /* selo Tripadvisor flutuante */
 .hero-trust {
@@ -742,7 +757,9 @@ img { max-width: 100%; display: block; }
   </svg>
 
   <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-figura" role="img" aria-label="Apresentador do Ipioca Beach Residence"></div>
+  <div class="hero-3d">
+    <div class="hero-figura" role="img" aria-label="Apresentador do Ipioca Beach Residence"></div>
+  </div>
 
   <div class="hero-trust">
     <img src="assets/logos/tripadvisor-travelers-choice-2025.png" alt="Tripadvisor Travelers' Choice Awards 2025">
@@ -857,6 +874,36 @@ img { max-width: 100%; display: block; }
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update);
   update();
+})();
+
+/* tilt 3D do modelo seguindo o mouse + parallax do halo */
+(function () {
+  var hero = document.querySelector('.hero');
+  var stage = document.querySelector('.hero-3d');
+  var glow = document.querySelector('.hero-glow');
+  if (!hero || !stage) return;
+  if (!window.matchMedia('(hover: hover)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var raf = null, nx = 0, ny = 0;
+  function apply() {
+    raf = null;
+    stage.style.setProperty('--ry', (nx * 11).toFixed(2) + 'deg');
+    stage.style.setProperty('--rx', (-ny * 6).toFixed(2) + 'deg');
+    if (glow) glow.style.transform = 'translate(' + (-nx * 34).toFixed(1) + 'px,' + (-ny * 22).toFixed(1) + 'px)';
+  }
+  hero.addEventListener('pointermove', function (e) {
+    var r = hero.getBoundingClientRect();
+    nx = (e.clientX - r.left) / r.width - 0.5;
+    ny = (e.clientY - r.top) / r.height - 0.5;
+    if (!raf) raf = requestAnimationFrame(apply);
+  });
+  hero.addEventListener('pointerleave', function () {
+    nx = 0; ny = 0;
+    stage.style.setProperty('--ry', '0deg');
+    stage.style.setProperty('--rx', '0deg');
+    if (glow) glow.style.transform = 'translate(0,0)';
+  });
 })();
 </script>
 
