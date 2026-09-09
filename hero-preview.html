@@ -180,6 +180,17 @@ img { max-width: 100%; display: block; }
   transform: translateY(-2px);
   box-shadow: 0 14px 34px rgba(33,163,192,0.38);
 }
+/* CTA quente — dourado por-do-sol -> laranja Ipioca (complementar ao azul) */
+.btn-sol {
+  background: linear-gradient(135deg, #F5B04A 0%, #EA8036 100%);
+  color: var(--night);
+  box-shadow: 0 8px 24px rgba(234,128,54,0.32);
+}
+.btn-sol:hover {
+  background: linear-gradient(135deg, #F0A536 0%, #DD7422 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(234,128,54,0.42);
+}
 .btn-nav { padding: 13px 22px; font-size: 11.5px; letter-spacing: 0.13em; }
 .btn-lg { padding: 18px 32px; font-size: 13.5px; }
 .btn .arrow { transition: transform .22s ease; }
@@ -299,8 +310,25 @@ img { max-width: 100%; display: block; }
   line-height: 1.6;
   color: rgba(251,248,244,0.82);
   max-width: 500px;
-  margin-bottom: 36px;
+  margin-bottom: 22px;
   animation: up .7s cubic-bezier(.2,.7,.2,1) .56s both;
+}
+/* chamada de apelo antes do CTA */
+.hero-appeal {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.15rem, 1.9vw, 1.6rem);
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--creme);
+  max-width: 520px;
+  margin-bottom: 32px;
+  animation: up .7s cubic-bezier(.2,.7,.2,1) .62s both;
+}
+.hero-appeal .hl {
+  background: linear-gradient(100deg, #F5B04A 0%, #EA8036 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
 }
 .hero-sub b { color: var(--creme); font-weight: 600; }
 .hero-sub em { font-style: italic; color: var(--aqua-claro); }
@@ -611,6 +639,7 @@ img { max-width: 100%; display: block; }
   .eyebrow::before { width: 24px; }
   .hero h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
   .hero-sub { max-width: 68%; font-size: 14.5px; }
+  .hero-appeal { max-width: 78%; font-size: 1.2rem; margin-bottom: 26px; }
   /* modelo menor pra nao colidir com CTA e preco */
   .hero-figura { width: 74%; height: 45%; right: -12%; }
   .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; max-width: 100%; }
@@ -689,45 +718,12 @@ img { max-width: 100%; display: block; }
     <p class="hero-sub">
       Apartamento mobiliado, pé na areia, na praia de Ipioca, em <b>Maceió, Alagoas</b>. Registrado em cartório no seu nome, com acesso à rede <em>RCI</em> para usar em mais de 100 países.
     </p>
+    <p class="hero-appeal">SEU APÊ pé na areia <span class="hl">pra vida toda!</span></p>
     <div class="hero-actions">
-      <a href="#form" class="btn btn-cyan btn-lg">Quero conhecer as condições <span class="arrow">→</span></a>
+      <a href="#form" class="btn btn-sol btn-lg">Quero conhecer as condições <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
-
-<!-- ============ LINHA ANIMADA (MARQUEE) ============ -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <div class="marquee-group">
-      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
-      <span class="marquee-sep">✦</span>
-      <span class="marquee-item"><img src="assets/logos/tripadvisor-travelers-choice-2025.png" alt=""></span>
-      <span class="marquee-sep">✦</span>
-      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
-      <span class="marquee-sep">✦</span>
-      <span class="marquee-item"><img src="assets/logos/tripadvisor-travelers-choice-2025.png" alt=""></span>
-      <span class="marquee-sep">✦</span>
-      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
-      <span class="marquee-sep">✦</span>
-      <span class="marquee-item"><img src="assets/logos/tripadvisor-travelers-choice-2025.png" alt=""></span>
-      <span class="marquee-sep">✦</span>
-    </div>
-    <div class="marquee-group">
-      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
-      <span class="marquee-sep">✦</span>
-      <span class="marquee-item"><img src="assets/logos/tripadvisor-travelers-choice-2025.png" alt=""></span>
-      <span class="marquee-sep">✦</span>
-      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
-      <span class="marquee-sep">✦</span>
-      <span class="marquee-item"><img src="assets/logos/tripadvisor-travelers-choice-2025.png" alt=""></span>
-      <span class="marquee-sep">✦</span>
-      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
-      <span class="marquee-sep">✦</span>
-      <span class="marquee-item"><img src="assets/logos/tripadvisor-travelers-choice-2025.png" alt=""></span>
-      <span class="marquee-sep">✦</span>
-    </div>
-  </div>
-</div>
 
 <!-- ============ FAIXA DE ATRIBUTOS ============ -->
 <section class="strip">
@@ -771,6 +767,32 @@ img { max-width: 100%; display: block; }
     <div class="strip-txt"><strong>Vitalício</strong><small>Registrado no seu nome · hereditário</small></div>
   </div>
 </section>
+
+<!-- ============ LINHA ANIMADA (MARQUEE) ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+    </div>
+    <div class="marquee-group">
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+    </div>
+  </div>
+</div>
 
 <div class="demo-spacer" aria-hidden="true"></div>
 
