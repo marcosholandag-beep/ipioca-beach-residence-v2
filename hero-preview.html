@@ -249,9 +249,40 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
   background: url('assets/fotos/apresentador.png') right bottom/contain no-repeat;
   background-image: image-set(url('assets/fotos/apresentador.webp') 1x);
-  filter: drop-shadow(-22px 12px 46px rgba(12,16,30,0.45));
+  /* polimento sutil + sombra mais definida para descolar da foto */
+  filter: contrast(1.04) saturate(1.06) drop-shadow(-24px 16px 50px rgba(12,16,30,0.5));
   animation: fadeIn 1.2s ease .25s both;
 }
+/* halo quente atras do Faro (por-do-sol da marca) */
+.hero-glow {
+  position: absolute;
+  right: 6%;
+  bottom: 4%;
+  width: min(44vw, 600px);
+  height: min(44vw, 600px);
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(245,176,74,0.42) 0%, rgba(234,128,54,0.16) 40%, rgba(234,128,54,0) 70%);
+  animation: fadeIn 1.6s ease .35s both;
+}
+/* selo Tripadvisor flutuante */
+.hero-trust {
+  position: absolute;
+  top: clamp(92px, 13vh, 132px);
+  right: clamp(24px, 3vw, 50px);
+  z-index: 5;
+  width: 94px; height: 94px;
+  background: #FFF;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  padding: 11px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 16px 40px rgba(12,20,32,0.34);
+  animation: chipIn .6s cubic-bezier(.2,.7,.2,1) .85s both, bob 6.5s ease-in-out 1.7s infinite;
+}
+.hero-trust img { width: 100%; height: 100%; object-fit: contain; display: block; }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 
 .hero-inner {
   position: relative;
@@ -638,6 +669,8 @@ img { max-width: 100%; display: block; }
   .eyebrow::before { width: 24px; }
   .hero h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
   .hero-sub { max-width: 68%; font-size: 14.5px; }
+  .hero-trust { width: 66px; height: 66px; padding: 8px; top: 18px; right: 16px; }
+  .hero-glow { width: 90vw; height: 90vw; right: -18%; bottom: -6%; }
   /* modelo menor pra nao colidir com CTA e preco */
   .hero-figura { width: 74%; height: 45%; right: -12%; }
   .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; max-width: 100%; }
@@ -708,7 +741,12 @@ img { max-width: 100%; display: block; }
     <path d="M120 430 C 260 320, 380 520, 540 400 S 780 250, 950 360" opacity=".45"/>
   </svg>
 
+  <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-figura" role="img" aria-label="Apresentador do Ipioca Beach Residence"></div>
+
+  <div class="hero-trust">
+    <img src="assets/logos/tripadvisor-travelers-choice-2025.png" alt="Tripadvisor Travelers' Choice Awards 2025">
+  </div>
 
   <div class="hero-inner">
     <p class="eyebrow">Praia de Ipioca · Maceió · Alagoas</p>
