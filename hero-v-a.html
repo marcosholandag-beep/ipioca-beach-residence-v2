@@ -1935,6 +1935,100 @@ img { max-width: 100%; display: block; }
 
 
 </style>
+
+<style id="ux-polish">
+/* ============================================================
+   UX POLISH — tickers solidos, barra flutuante mobile, hero mobile,
+   CTAs novos e reveal on scroll
+   ============================================================ */
+
+/* --- tickers: sem mascara nas laterais (nao esmaece pro fundo); fade feito com a propria cor da banda --- */
+.marquee { -webkit-mask-image: none; mask-image: none; position: relative; }
+.marquee::before, .marquee::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 8%; z-index: 1; pointer-events: none;
+}
+.marquee::before { left: 0;  background: linear-gradient(90deg,  #FBF8F4 0%, rgba(251,248,244,0) 100%); }
+.marquee::after  { right: 0; background: linear-gradient(270deg, #FBF8F4 0%, rgba(251,248,244,0) 100%); }
+.marquee.marquee--dark::before { background: linear-gradient(90deg,  #20243C 0%, rgba(32,36,60,0) 100%); }
+.marquee.marquee--dark::after  { background: linear-gradient(270deg, #20243C 0%, rgba(32,36,60,0) 100%); }
+.marquee-track { will-change: transform; }
+
+/* --- barra flutuante: some quando o formulario ou o rodape estao na tela --- */
+.sticky-bar.is-visible.is-hidden { transform: translateX(-50%) translateY(150%); opacity: 0; pointer-events: none; }
+.sticky-inner .btn .cta-short { display: none; }
+
+/* --- botoes: micro-interacao de clique --- */
+.btn:active, .lp .btn:active, .lp .btn-wpp:active { transform: translateY(0) scale(.98); }
+
+/* --- CTAs inseridos --- */
+.lp .mme-cta     { margin-top: 38px; }
+.lp .feature-cta { margin-top: clamp(48px, 6vw, 80px); text-align: center; }
+
+/* --- reveal on scroll (so com JS; sem JS tudo fica visivel) --- */
+.js .rv { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .75s cubic-bezier(.2,.7,.2,1); transition-delay: var(--rv-delay, 0ms); will-change: opacity, transform; }
+.js .rv.is-in { opacity: 1; transform: none; will-change: auto; }
+/* elementos que ja tem transform/animacao propria nao entram no reveal */
+
+/* --- cards: leve elevacao no hover (usa 'translate' pra nao brigar com o transform do reveal) --- */
+.lp .step, .lp .rci-card, .lp .compare-col, .lp .strip-item, .lp .owners-stat {
+  transition: translate .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, opacity .7s ease, transform .75s cubic-bezier(.2,.7,.2,1);
+}
+.lp .step:hover, .lp .rci-card:hover, .lp .compare-col:hover { translate: 0 -4px; box-shadow: 0 22px 50px rgba(32,36,60,0.14); }
+.lp .feature-media { overflow: hidden; }
+.lp .feature-media img, .lp .chapter-media img { transition: transform 1.1s cubic-bezier(.2,.7,.2,1); }
+.lp .feature-media:hover img, .lp .chapter-media:hover img { transform: scale(1.04); }
+.lp .faq-q { transition: color .2s ease, padding-left .25s ease; }
+.lp .faq-item.open .faq-q, .lp .faq-q:hover { color: var(--cyan, #21A3C0); }
+
+/* --- ancoras: respiro no topo ao navegar pelo menu --- */
+section[id] { scroll-margin-top: 16px; }
+
+/* ============================================================
+   HERO NO MOBILE: copy em cima, palco reservado pro Faro embaixo
+   (nada se sobrepoe: botao, caixa de vidro e modelo tem cada um o seu lugar)
+   ============================================================ */
+@media (max-width: 720px) {
+  .hero { min-height: 0; display: block; }
+  .hero-inner { padding: 94px 22px 0; max-width: 100%; }
+  /* palco do Faro: altura em vw pra escalar junto com a imagem */
+  .hero-inner::after { content: ""; display: block; height: 68vw; }
+  .hero-sub { max-width: 100%; font-size: 15px; margin-bottom: 26px; }
+  .hero-actions { gap: 14px; }
+  .hero-actions .btn-lg { width: 100%; justify-content: center; white-space: normal; text-align: center; line-height: 1.3; padding: 15px 18px; font-size: 11.5px; }
+  .faro { width: 76%; height: 62vw; right: -5%; bottom: 0; }
+  .faro-shadow { width: 62vw; right: 2%; bottom: 1%; }
+  .hero-glow { width: 90vw; height: 62vw; right: -10%; bottom: 0; }
+  .badge-person { top: auto; bottom: 24vw; left: 18px; right: auto; padding: 11px 15px; }
+  .badge-person .av { width: 34px; height: 34px; }
+  .badge-person b { font-size: 14px; }
+  .badge-person span { font-size: 10.5px; }
+  /* onda vai pro palco, nao cruza mais o texto */
+  .hero-wave { top: auto; bottom: 26vw; transform: none; width: 130%; right: -18%; opacity: .42; }
+  .hero-trust { width: 64px; height: 64px; top: 18px; right: 18px; padding: 7px;
+    box-shadow: 0 0 0 3px var(--night), 0 0 0 6px #FFF, 5px 7px 0 rgba(18,22,42,0.30), 0 10px 24px rgba(12,20,32,0.30); }
+  .hero::before {
+    background:
+      linear-gradient(180deg, rgba(23,27,45,.72) 0%, rgba(23,27,45,.58) 40%, rgba(23,27,45,.30) 62%, rgba(23,27,45,.85) 100%);
+  }
+
+  /* --- barra flutuante compacta (selo + botao curto, sem sobreposicao) --- */
+  .sticky-bar { bottom: 10px; width: calc(100% - 20px); }
+  .sticky-inner { padding: 7px 7px 7px 12px; gap: 10px; }
+  .sticky-left { gap: 0; flex-shrink: 0; }
+  .sticky-badge { font-size: 15px; padding: 10px 12px; }
+  .sticky-inner .btn { flex: 1 1 auto; min-width: 0; justify-content: center; padding: 12px 12px; font-size: 11px; letter-spacing: 0.08em; }
+  .sticky-inner .btn .cta-full { display: none; }
+  .sticky-inner .btn .cta-short { display: inline; }
+  .sticky-inner .btn .arrow { display: inline; }
+}
+@media (max-width: 380px) {
+  .sticky-badge { font-size: 14px; padding: 9px 10px; }
+  .sticky-inner .btn { font-size: 10.5px; letter-spacing: 0.06em; padding: 11px 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .rv { opacity: 1 !important; transform: none !important; }
+}
+</style>
 </head>
 <body>
 
@@ -2117,6 +2211,7 @@ img { max-width: 100%; display: block; }
         <div><strong>1.210</strong><span>Unidades</span></div>
         <div><strong>#1</strong><span>Maior de Alagoas</span></div>
       </div>
+      <div class="mme-cta"><a href="#form" class="btn btn-primary">Quero conhecer as condições</a></div>
     </div>
   </div>
 </section>
@@ -2210,6 +2305,7 @@ img { max-width: 100%; display: block; }
         <div class="feature-media"><img src="assets/fotos/hero-fachada.jpg" alt="Serviço de resort do Ipioca Beach Residence"></div>
       </div>
     </div>
+    <div class="feature-cta"><a href="#form" class="btn btn-azul">Quero meu apê no resort</a></div>
   </div>
 </section>
 
@@ -2598,7 +2694,7 @@ img { max-width: 100%; display: block; }
       <span class="sticky-sub">+ entrada reduzida</span>
     </div>
     <span class="sticky-slogan">SEU APÊ pé na areia <span class="hl">pra vida toda!</span></span>
-    <a href="#form" class="btn btn-cyan">Quero conhecer as condições <span class="arrow">→</span></a>
+    <a href="#form" class="btn btn-cyan"><span class="cta-full">Quero conhecer as condições</span><span class="cta-short">Quero as condições</span> <span class="arrow">→</span></a>
   </div>
 </div>
 
@@ -2726,6 +2822,70 @@ telInput.addEventListener('input', (e) => {
   if (!('IntersectionObserver' in window)) { c.classList.add('is-in'); return; }
   var io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) { c.classList.add('is-in'); io.disconnect(); } }); }, { threshold: 0.25 });
   io.observe(c);
+})();
+</script>
+
+<script>
+/* reveal on scroll + comportamento da barra flutuante */
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO = 'IntersectionObserver' in window;
+  if (hasIO && !reduce) {
+    document.documentElement.classList.add('js');
+    var sel = [
+      '.lp .section-eyebrow', '.lp .section-title', '.lp .section-lead',
+      '.lp .chapter-coords', '.lp .chapter-title', '.lp .chapter-lead', '.lp .benefit-pills', '.lp .chapter-media', '.lp .chapter-caption',
+      '.strip-item',
+      '.lp .mme-credit-logo', '.lp .mme-credit-body > *',
+      '.lp .feature', '.lp .feature-cta',
+      '.lp .step', '.lp .steps-cta',
+      '.lp .shorts',
+      '.lp .vale-texto', '.lp .compare-col',
+      '.lp .rci-brand', '.lp .rci-video', '.lp .rci-card',
+      '.lp .owners-top', '.lp .owners-stat',
+      '.lp .socios-col-num', '.lp .socios-sub', '.lp .socios-stats',
+      '.lp .form-txt', '.lp .form',
+      '.lp .faq-item',
+      '.lp .cta-final h2', '.lp .cta-final .btn'
+    ].join(',');
+    var els = Array.prototype.slice.call(document.querySelectorAll(sel));
+    // escalona irmaos dentro do mesmo pai (ate 5 passos de 90ms)
+    var seen = new Map();
+    els.forEach(function (el) {
+      var parent = el.parentElement, n = seen.get(parent) || 0;
+      el.style.setProperty('--rv-delay', Math.min(n, 5) * 90 + 'ms');
+      seen.set(parent, n + 1);
+      el.classList.add('rv');
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -6% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+    // itens que ja estao na tela no carregamento entram sem esperar
+    window.addEventListener('load', function () {
+      els.forEach(function (el) { var r = el.getBoundingClientRect(); if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('is-in'); });
+    });
+  }
+
+  // barra flutuante: esconde enquanto o formulario ou o rodape estao visiveis
+  var bar = document.getElementById('stickyBar');
+  var form = document.getElementById('form');
+  var footer = document.querySelector('footer');
+  if (bar && hasIO && (form || footer)) {
+    var vis = { form: false, footer: false };
+    var apply = function () { bar.classList.toggle('is-hidden', vis.form || vis.footer); };
+    var io2 = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.target === form) vis.form = en.isIntersecting;
+        if (en.target === footer) vis.footer = en.isIntersecting;
+      });
+      apply();
+    }, { threshold: 0.18 });
+    if (form) io2.observe(form);
+    if (footer) io2.observe(footer);
+  }
 })();
 </script>
 </body>
