@@ -301,16 +301,22 @@ img { max-width: 100%; display: block; }
   top: clamp(92px, 13vh, 132px);
   right: clamp(24px, 3vw, 50px);
   z-index: 5;
-  width: 94px; height: 94px;
+  width: 104px; height: 104px;
   background: #FFF;
   border-radius: 50%;
   display: grid; place-items: center;
-  padding: 11px;
-  border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 16px 40px rgba(12,20,32,0.34);
+  padding: 12px;
+  border: none;
+  /* estilo sticker: anel navy grosso + borda branca de adesivo + sombra DURA deslocada */
+  box-shadow:
+    0 0 0 4px var(--night),
+    0 0 0 10px #FFF,
+    10px 14px 0 rgba(18,22,42,0.30),
+    0 18px 40px rgba(12,20,32,0.30);
   animation: chipIn .6s cubic-bezier(.2,.7,.2,1) .85s both, bob 6.5s ease-in-out 1.7s infinite;
 }
-.hero-trust img { width: 100%; height: 100%; object-fit: contain; display: block; }
+/* inclinado como adesivo colado (a rotacao vai no logo: o circulo e simetrico e o float controla o transform do selo) */
+.hero-trust img { width: 100%; height: 100%; object-fit: contain; display: block; transform: rotate(-9deg); }
 @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
 
 .hero-inner {
@@ -698,7 +704,8 @@ img { max-width: 100%; display: block; }
   .eyebrow::before { width: 24px; }
   .hero h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
   .hero-sub { max-width: 68%; font-size: 14.5px; }
-  .hero-trust { width: 66px; height: 66px; padding: 8px; top: 18px; right: 16px; }
+  .hero-trust { width: 68px; height: 68px; padding: 8px; top: 22px; right: 22px;
+    box-shadow: 0 0 0 3px var(--night), 0 0 0 7px #FFF, 6px 8px 0 rgba(18,22,42,0.30), 0 12px 28px rgba(12,20,32,0.30); }
   .hero-glow { width: 90vw; height: 46%; right: 0; bottom: 0; }
   /* modelo menor pra nao colidir com CTA e preco */
   .faro { width: 78%; height: 45%; right: -6%; }
