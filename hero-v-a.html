@@ -4,281 +4,738 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Hero A · Faro à direita · Ipioca Beach Residence</title>
+<title>Hero A · Ipioca Beach Residence</title>
 <link rel="icon" type="image/png" href="assets/logos/mme-favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  /* ---- Tokens extraidos do site atual (index.html) ---- */
-  --bg-deep:    #12162A;                    /* base escura do hero */
-  --bg-mid:     #20243C;                    /* mme-night */
-  --cyan:       #21A3C0;                    /* destaque frio */
-  --cyan-soft:  #7ED9D2;                    /* aqua claro */
-  --orange-500: #EA8036;                    /* laranja acao (assinatura IBR) */
-  --orange-600: #D66B22;
-  --text-hi:    #FBF8F4;                    /* mme-creme */
-  --text-mid:   rgba(251,248,244,0.70);
-  --glass:      rgba(255,255,255,0.08);
-  --glass-brd:  rgba(255,255,255,0.14);
-  /* espaçamento base 4px */
-  --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px; --s10:40px;
+  /* ---- Paleta IBR / MME (inalterada) ---- */
+  --aqua:        #62ADA8;
+  --aqua-claro:  #7ED9D2;
+  --aqua-suave:  #EAF4F3;
+  --teal:        #467890;
+  --cyan:        #21A3C0;
+  --cyan-hover:  #1C8CA5;
+  --night:       #20243C;
+  --night-deep:  #171B2D;
+  --creme:       #FBF8F4;
+  /* laranja assinatura do IBR — cor de destaque */
+  --laranja:     #EA8036;
+  --laranja-esc: #D66B22;
+
+  /* ---- Raios tokenizados ---- */
+  --r-xl: 36px;
+  --r-lg: 24px;
+  --r-md: 18px;
+  --r-sm: 12px;
+  --r-pill: 100px;
+
+  /* ---- Espaçamento fluido ---- */
+  --pad-page: clamp(12px, 1.6vw, 22px);
+  --pad-card: clamp(28px, 4.4vw, 76px);
 }
 
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
 body {
-  font-family:'Inter', system-ui, -apple-system, sans-serif;
-  background:var(--bg-deep);
-  color:var(--text-hi);
-  -webkit-font-smoothing:antialiased;
+  background: var(--night-deep);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  padding: var(--pad-page);
+  position: relative;
+  overflow-x: hidden;
 }
-a { text-decoration:none; color:inherit; }
-img { display:block; max-width:100%; }
+/* ambiencia de gradiente (blobs que derivam devagar) */
+body::before, body::after {
+  content: "";
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: -1;
+  pointer-events: none;
+}
+body::before {
+  width: 60vw; height: 60vw;
+  top: -18vw; left: -14vw;
+  background: radial-gradient(circle, rgba(70,120,144,.75), transparent 70%);
+  animation: drift1 20s ease-in-out infinite alternate;
+}
+body::after {
+  width: 48vw; height: 48vw;
+  bottom: -16vw; right: -10vw;
+  background: radial-gradient(circle, rgba(98,173,168,.62), transparent 70%);
+  animation: drift2 26s ease-in-out infinite alternate;
+}
+@keyframes drift1 {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(6vw, 4vw) scale(1.12); }
+}
+@keyframes drift2 {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(-5vw, -4vw) scale(1.15); }
+}
+
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
 
 /* ============================================================
-   HERO full-bleed (sem card, sem moldura)
+   NAV FLUTUANTE (cápsula)
+   ============================================================ */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: rgba(255,255,255,0.055);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+  border-radius: var(--r-pill);
+  padding: 12px 12px 12px clamp(18px, 2.4vw, 30px);
+  margin-bottom: var(--pad-page);
+  animation: fadeDown .7s cubic-bezier(.2,.7,.2,1) both;
+}
+.nav-brand { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+.nav-brand img { height: 44px; width: auto; }
+.nav-brand .sep { width: 1px; height: 26px; background: rgba(255,255,255,0.22); }
+.nav-brand img.mme { height: 26px; }
+
+.nav-links { display: flex; gap: 4px; list-style: none; }
+.nav-links a {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(251,248,244,0.78);
+  padding: 10px 16px;
+  border-radius: var(--r-pill);
+  transition: background .22s ease;
+}
+.nav-links a:hover {
+  background: rgba(255,255,255,0.08);
+  /* gradiente do titulo aplicado ao texto */
+  background-image: linear-gradient(100deg, var(--creme) 0%, var(--aqua-claro) 55%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* botoes sociais no lugar do CTA do menu */
+.nav-social { display: flex; gap: 8px; flex-shrink: 0; }
+.nav-social a {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.16);
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  color: var(--creme);
+  transition: transform .22s cubic-bezier(.2,.7,.2,1), background .22s ease, box-shadow .22s ease, border-color .22s ease;
+}
+.nav-social a svg { width: 20px; height: 20px; fill: currentColor; display: block; }
+.nav-social a:hover { transform: translateY(-2px); border-color: transparent; color: #FFF; }
+.nav-social .wpp:hover {
+  background: #25D366;
+  box-shadow: 0 10px 26px rgba(37,211,102,0.42);
+}
+.nav-social .ig:hover {
+  background: linear-gradient(45deg, #F58529, #DD2A7B 55%, #8134AF 80%, #515BD4);
+  box-shadow: 0 10px 26px rgba(221,42,123,0.42);
+}
+
+/* ============================================================
+   BOTÕES (pill)
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--r-pill);
+  /* mesmo tratamento tipografico do eyebrow: Inter 600, caixa alta, tracking largo */
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 15px 28px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform .22s cubic-bezier(.2,.7,.2,1), background .22s ease, box-shadow .22s ease;
+}
+.btn-cyan {
+  background: var(--cyan);
+  color: var(--night);
+  box-shadow: 0 8px 24px rgba(33,163,192,0.28);
+}
+.btn-cyan:hover {
+  background: var(--cyan-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(33,163,192,0.38);
+}
+/* CTA quente — dourado por-do-sol -> laranja Ipioca (complementar ao azul) */
+.btn-sol {
+  background: linear-gradient(135deg, #F5B04A 0%, #EA8036 100%);
+  color: var(--night);
+  box-shadow: 0 8px 24px rgba(234,128,54,0.32);
+}
+.btn-sol:hover {
+  background: linear-gradient(135deg, #F0A536 0%, #DD7422 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(234,128,54,0.42);
+}
+.btn-nav { padding: 13px 22px; font-size: 11.5px; letter-spacing: 0.13em; }
+.btn-lg { padding: 18px 32px; font-size: 13.5px; }
+.btn .arrow { transition: transform .22s ease; }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* ============================================================
+   HERO CARD
    ============================================================ */
 .hero {
-  position:relative;
-  min-height:100svh;
-  overflow:hidden;
-  isolation:isolate;
+  position: relative;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  isolation: isolate;
+  min-height: clamp(560px, 78vh, 820px);
+  display: flex;
+  align-items: center;
+  background: url('assets/fotos/ipioca-praia-turquesa.jpg') center/cover no-repeat;
+  animation: cardIn .9s cubic-bezier(.2,.7,.2,1) .08s both;
+}
+/* scrim para leitura da copy à esquerda */
+.hero::before {
+  content: "";
+  position: absolute; inset: 0; z-index: 1;
   background:
-    radial-gradient(120% 90% at 78% 30%, #1b2440 0%, var(--bg-deep) 60%, #0d1020 100%);
+    linear-gradient(90deg, rgba(23,27,45,.90) 0%, rgba(23,27,45,.62) 38%, rgba(23,27,45,.06) 66%, rgba(23,27,45,0) 100%),
+    linear-gradient(180deg, rgba(23,27,45,.34) 0%, rgba(23,27,45,0) 30%, rgba(23,27,45,.42) 100%);
 }
 
-/* camada 0 · foto aérea sangrando topo/direita */
-.hero-media { position:absolute; inset:0; z-index:0; }
-.hero-media img {
-  width:100%; height:100%; object-fit:cover; object-position:72% 55%;
+/* onda decorativa (assinatura visual) */
+.hero-wave {
+  position: absolute;
+  right: -4%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(70%, 900px);
+  z-index: 2;
+  pointer-events: none;
+  opacity: .55;
+  animation: fadeIn 1.4s ease .5s both;
 }
-/* máscara: escurece a esquerda (garante contraste do texto SEM text-shadow) e a base;
-   mais transparente à direita p/ a praia turquesa aparecer atrás do Faro */
-.hero-scrim {
-  position:absolute; inset:0; z-index:1; pointer-events:none;
-  background:
-    linear-gradient(90deg, rgba(12,16,30,0.93) 0%, rgba(12,16,30,0.76) 28%, rgba(12,16,30,0.22) 54%, rgba(12,16,30,0) 80%),
-    linear-gradient(180deg, rgba(12,16,30,0.22) 0%, rgba(12,16,30,0) 26%, rgba(12,16,30,0.50) 100%);
-}
-/* símbolo da marca gigante, desfocado, textura de fundo (substitui as ondas clipart) */
-.hero-symbol {
-  position:absolute; z-index:1; pointer-events:none;
-  right:-6%; top:50%; transform:translateY(-50%);
-  width:min(70vw,900px); aspect-ratio:1;
-  background:url('assets/logos/mme-symbol.png') center/contain no-repeat;
-  opacity:0.04; filter:blur(2px) brightness(0) invert(1);
-}
-/* glow radial ciano atrás do sujeito (separa figura/fundo) */
-.hero-glow {
-  position:absolute; z-index:2; pointer-events:none;
-  right:12%; bottom:0; width:min(52vw,720px); height:82%;
-  background:radial-gradient(closest-side, rgba(33,163,192,0.42) 0%, rgba(33,163,192,0.10) 46%, transparent 72%);
-  filter:blur(6px);
+.hero-wave path {
+  fill: none;
+  stroke: var(--aqua-claro);
+  stroke-width: 13;
+  stroke-linecap: round;
 }
 
-/* ---------- NAVBAR sobreposta (blur ao rolar) ---------- */
-.nav {
-  position:fixed; top:0; left:0; right:0; z-index:40;
-  display:flex; align-items:center; justify-content:space-between; gap:var(--s6);
-  padding:18px clamp(20px,5vw,80px);
-  transition:background .3s ease, backdrop-filter .3s ease, border-color .3s ease, padding .3s ease;
-  border-bottom:1px solid transparent;
-}
-.nav.scrolled {
-  background:rgba(18,22,42,0.72);
-  backdrop-filter:blur(18px) saturate(130%); -webkit-backdrop-filter:blur(18px) saturate(130%);
-  border-bottom-color:rgba(255,255,255,0.08);
-  padding-top:12px; padding-bottom:12px;
-}
-.nav-brand { display:flex; align-items:center; gap:16px; }
-.nav-brand img { height:46px; width:auto; }
-.nav-brand .sep { width:1px; height:26px; background:rgba(255,255,255,0.24); }
-.nav-brand img.mme { height:26px; }
-.nav-links { display:flex; gap:var(--s2); list-style:none; }
-.nav-links a {
-  font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.12em;
-  color:rgba(251,248,244,0.78); padding:10px 14px; border-radius:100px;
-  transition:background .2s ease, color .2s ease;
-}
-.nav-links a:hover { background:rgba(255,255,255,0.10); color:var(--text-hi); }
-.nav-social { display:flex; gap:var(--s2); }
-.nav-social a {
-  width:44px; height:44px; border-radius:50%; display:grid; place-items:center;
-  background:var(--glass); border:1px solid var(--glass-brd); color:var(--text-hi);
-  transition:transform .2s, background .2s, border-color .2s;
-}
-.nav-social a svg { width:19px; height:19px; fill:currentColor; }
-.nav-social a:hover { transform:translateY(-2px); border-color:transparent; }
-.nav-social .wpp:hover { background:#25D366; }
-.nav-social .ig:hover { background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF 80%,#515BD4); }
-
-/* ---------- GRID assimétrico ---------- */
-.hero-grid {
-  position:relative; z-index:3;
-  min-height:100svh;
-  max-width:1600px; margin:0 auto;
-  display:grid; grid-template-columns:1.05fr 1.35fr; align-items:center;
-  padding:120px clamp(20px,5vw,80px) 64px;
-}
-.col-text { max-width:560px; }
-.col-visual { position:relative; align-self:stretch; }
-
-/* eyebrow + prova numérica */
-.eyebrow {
-  display:flex; align-items:center; gap:10px;
-  font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.16em;
-  color:var(--cyan-soft); margin-bottom:var(--s4);
-}
-.eyebrow .dot { width:7px; height:7px; border-radius:50%; background:var(--cyan); position:relative; }
-.eyebrow .dot::after { content:""; position:absolute; inset:0; border-radius:50%; background:var(--cyan); animation:pulse 2s ease-out infinite; }
-.proof {
-  display:inline-flex; align-items:baseline; gap:8px;
-  font-size:13px; font-weight:500; color:var(--text-mid); margin-bottom:var(--s6);
-}
-.proof b { font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:22px; color:var(--cyan); letter-spacing:-0.02em; }
-
-/* headline display */
-.headline {
-  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
-  font-size:clamp(2.75rem, 6.2vw, 5.25rem);
-  line-height:1.0; letter-spacing:-0.02em; color:var(--text-hi);
-  margin-bottom:var(--s6);
-}
-.headline .key { color:var(--cyan); }
-
-.sub {
-  font-size:clamp(1rem,1.2vw,1.15rem); line-height:1.55; color:var(--text-mid);
-  max-width:440px; margin-bottom:var(--s8);
-}
-.sub b { color:var(--text-hi); font-weight:600; }
-
-/* CTA */
-.cta-row { display:flex; align-items:center; gap:var(--s6); flex-wrap:wrap; margin-bottom:var(--s8); }
-.btn-primary {
-  display:inline-flex; align-items:center; gap:14px;
-  background:linear-gradient(135deg, var(--orange-500) 0%, var(--orange-600) 100%);
-  color:#fff; font-weight:600; font-size:15px; letter-spacing:0.01em;
-  padding:12px 12px 12px 26px; border-radius:100px; border:none; cursor:pointer;
-  box-shadow:0 10px 30px rgba(234,128,54,0.35);
-  transition:transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s;
-}
-.btn-primary .ico { width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.22); display:grid; place-items:center; transition:transform .22s; }
-.btn-primary .ico svg { width:18px; height:18px; stroke:#fff; fill:none; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
-.btn-primary:hover { transform:translateY(-2px); box-shadow:0 16px 40px rgba(234,128,54,0.45); }
-.btn-primary:hover .ico { transform:translateX(3px); }
-.link-secondary {
-  font-size:14px; font-weight:600; color:var(--text-hi); opacity:0.85;
-  display:inline-flex; align-items:center; gap:7px; border-bottom:1px solid rgba(255,255,255,0.28); padding-bottom:2px;
-  transition:opacity .2s, border-color .2s;
-}
-.link-secondary:hover { opacity:1; border-color:var(--cyan); }
-
-/* trust bar — chips claros discretos p/ os selos ficarem legiveis sobre fundo escuro */
-.trust { display:flex; align-items:center; gap:var(--s4); flex-wrap:wrap; opacity:0.72; transition:opacity .3s; }
-.trust:hover { opacity:1; }
-.trust .chip {
-  display:inline-flex; align-items:center; justify-content:center;
-  background:rgba(255,255,255,0.92); border-radius:10px; padding:7px 12px; height:44px;
-}
-.trust .chip img { height:100%; width:auto; }
-.trust .chip.tri img { height:118%; }
-
-/* ---------- SUJEITO + BADGES ---------- */
-.faro {
-  position:absolute; z-index:3;
-  /* flush à borda direita e inferior da viewport (sangra), como na referência */
-  right:0; bottom:0;
-  height:94%; width:min(48vw,700px);
-  background:url('assets/fotos/apresentador.png') right bottom/contain no-repeat;
-  background-image:image-set(url('assets/fotos/apresentador.webp') 1x);
-  /* integracao: grade de cor + rim light + sombra de contato empilhados */
-  filter:
-    contrast(1.05) saturate(1.06)
-    drop-shadow(-2px 0 0 rgba(33,163,192,0.18))     /* rim light frio no contorno */
-    drop-shadow(0 24px 30px rgba(8,12,24,0.55));    /* sombra de contato na base */
-  pointer-events:none;
-}
-/* sombra de contato elíptica no chão, reforça o "pertencer à cena" */
+/* ---- modelo: tratamento da Variacao A, integrado a cena ---- */
+/* sombra de contato eliptica no chao (ele "pertence" a cena) */
 .faro-shadow {
-  position:absolute; z-index:2; pointer-events:none;
-  right:clamp(0px,4vw,110px); bottom:2%;
-  width:min(38vw,520px); height:60px;
-  background:radial-gradient(ellipse, rgba(8,12,24,0.55) 0%, transparent 70%);
-  filter:blur(8px);
+  position: absolute; z-index: 2; pointer-events: none;
+  right: clamp(0px, 4vw, 110px); bottom: 2%;
+  width: min(38vw, 520px); height: 60px;
+  background: radial-gradient(ellipse, rgba(8,12,24,0.55) 0%, transparent 70%);
+  filter: blur(8px);
+  animation: fadeIn 1.2s ease .25s both;
 }
+.faro {
+  position: absolute; z-index: 3;
+  right: 0; bottom: 0;                 /* sangra na borda direita/inferior do card */
+  height: 94%; width: min(50%, 700px);
+  pointer-events: none;
+  background: url('assets/fotos/apresentador.png') right bottom/contain no-repeat;
+  background-image: image-set(url('assets/fotos/apresentador.webp') 1x);
+  /* grade de cor + rim light frio no contorno + sombra de contato, empilhados */
+  filter: contrast(1.05) saturate(1.06)
+    drop-shadow(-2px 0 0 rgba(33,163,192,0.18))
+    drop-shadow(0 24px 30px rgba(8,12,24,0.55));
+  animation: fadeIn 1.2s ease .25s both;   /* so opacity: nao briga com posicionamento */
+}
+/* glow radial ciano atras do Faro (separa figura e fundo) */
+.hero-glow {
+  position: absolute; z-index: 2; pointer-events: none;
+  right: 8%; bottom: 0;
+  width: min(48vw, 680px); height: 82%;
+  background: radial-gradient(closest-side, rgba(33,163,192,0.42) 0%, rgba(33,163,192,0.10) 46%, transparent 72%);
+  filter: blur(6px);
+  animation: fadeIn 1.6s ease .35s both;
+}
+/* as duas caixas de vidro (Variacao A) */
 .badge {
-  position:absolute; z-index:5;
-  display:flex; align-items:center; gap:12px;
-  background:var(--glass); border:1px solid var(--glass-brd);
-  backdrop-filter:blur(14px) saturate(130%); -webkit-backdrop-filter:blur(14px) saturate(130%);
-  border-radius:16px; padding:12px 16px;
-  box-shadow:0 12px 34px rgba(8,12,24,0.32);
+  position: absolute; z-index: 5;
+  display: flex; align-items: center; gap: 12px;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border-radius: 16px; padding: 12px 16px;
+  box-shadow: 0 12px 34px rgba(8,12,24,0.32);
 }
-.badge-person { top:26%; right:clamp(30px,26vw,360px); }
-.badge-person .av { width:38px; height:38px; border-radius:50%; background:var(--cyan); display:grid; place-items:center; flex-shrink:0; }
-.badge-person .av svg { width:20px; height:20px; stroke:var(--bg-deep); fill:none; stroke-width:2; }
-.badge-person b { display:block; font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15px; letter-spacing:-0.01em; }
-.badge-person span { display:block; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-mid); margin-top:2px; }
-.badge-product { bottom:16%; right:clamp(20px,2vw,40px); max-width:260px; }
-.badge-product svg { width:22px; height:22px; stroke:var(--cyan-soft); fill:none; stroke-width:1.8; flex-shrink:0; }
-.badge-product span { font-size:12.5px; line-height:1.35; color:var(--text-hi); }
+.badge-person { top: 24%; right: clamp(30px, 26vw, 360px); animation: chipIn .5s cubic-bezier(.2,.7,.2,1) .8s both; }
+.badge-person .av { width: 38px; height: 38px; border-radius: 50%; background: var(--cyan); display: grid; place-items: center; flex-shrink: 0; }
+.badge-person .av svg { width: 20px; height: 20px; stroke: var(--night); fill: none; stroke-width: 2; }
+.badge-person b { display: block; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; color: var(--creme); }
+.badge-person span { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(251,248,244,0.70); margin-top: 2px; }
+.badge-product { bottom: 16%; right: clamp(20px, 2vw, 40px); max-width: 260px; animation: chipIn .5s cubic-bezier(.2,.7,.2,1) .92s both; }
+.badge-product svg { width: 22px; height: 22px; stroke: var(--aqua-claro); fill: none; stroke-width: 1.8; flex-shrink: 0; }
+.badge-product span { font-size: 12.5px; line-height: 1.35; color: var(--creme); }
+/* selo Tripadvisor flutuante */
+.hero-trust {
+  position: absolute;
+  top: clamp(92px, 13vh, 132px);
+  right: clamp(24px, 3vw, 50px);
+  z-index: 5;
+  width: 94px; height: 94px;
+  background: #FFF;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  padding: 11px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 16px 40px rgba(12,20,32,0.34);
+  animation: chipIn .6s cubic-bezier(.2,.7,.2,1) .85s both, bob 6.5s ease-in-out 1.7s infinite;
+}
+.hero-trust img { width: 100%; height: 100%; object-fit: contain; display: block; }
+@keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+
+.hero-inner {
+  position: relative;
+  z-index: 4;
+  padding: var(--pad-card);
+  max-width: 640px;
+  color: var(--creme);
+}
+
+/* eyebrow */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--aqua-claro);
+  margin-bottom: 22px;
+  animation: up .7s cubic-bezier(.2,.7,.2,1) .34s both;
+}
+.eyebrow::before {
+  content: "";
+  width: 34px; height: 2px;
+  background: var(--aqua-claro);
+  border-radius: 2px;
+}
+
+/* headline */
+.hero h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 500;
+  font-size: clamp(2.6rem, 5.4vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin-bottom: 26px;
+  animation: up .8s cubic-bezier(.2,.7,.2,1) .44s both;
+}
+.hero h1 .accent {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--aqua-claro);
+}
+/* linha em gradiente (ref. Human Academy) */
+.hero h1 .grad {
+  background: linear-gradient(100deg, var(--creme) 0%, var(--aqua-claro) 55%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.hero-sub {
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.6;
+  color: rgba(251,248,244,0.82);
+  max-width: 500px;
+  margin-bottom: 36px;
+  animation: up .7s cubic-bezier(.2,.7,.2,1) .56s both;
+}
+.hero-sub b { color: var(--creme); font-weight: 600; }
+.hero-sub em { font-style: italic; color: var(--aqua-claro); }
+
+/* CTA + preço */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  flex-wrap: wrap;
+  animation: up .7s cubic-bezier(.2,.7,.2,1) .68s both;
+}
+.price small {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: rgba(251,248,244,0.68);
+  margin-bottom: 9px;
+  padding-left: 6px;
+}
+/* pill de preco com badge laranja em destaque */
+.price-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(23,27,45,0.72);
+  border: 1px solid rgba(255,255,255,0.13);
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  border-radius: var(--r-pill);
+  padding: 7px 24px 7px 7px;
+  box-shadow: 0 14px 36px rgba(8,12,24,0.42);
+}
+.price-pill strong {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 23px;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--night);
+  background: var(--laranja);
+  border-radius: var(--r-pill);
+  padding: 12px 20px;
+  white-space: nowrap;
+}
+.price-pill span {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(251,248,244,0.86);
+  white-space: nowrap;
+}
 
 /* ============================================================
-   ANIMACOES DE ENTRADA (opacity + transform, <=600ms, staggered)
+   CHIPS / SELOS (canto sup. direito do card)
    ============================================================ */
-@keyframes rise { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:none} }
-@keyframes fade { from{opacity:0} to{opacity:1} }
-@keyframes fadeR { from{opacity:0; transform:translateX(28px)} to{opacity:1; transform:none} }
-@keyframes pop { from{opacity:0; transform:translateY(-8px) scale(.92)} to{opacity:1; transform:none} }
-@keyframes pulse { 0%{transform:scale(1);opacity:.7} 70%{transform:scale(2.6);opacity:0} 100%{opacity:0} }
-
-.eyebrow { animation:rise .5s cubic-bezier(.2,.7,.2,1) .05s both; }
-.proof   { animation:rise .5s cubic-bezier(.2,.7,.2,1) .12s both; }
-.headline{ animation:rise .55s cubic-bezier(.2,.7,.2,1) .18s both; }
-.sub     { animation:rise .55s cubic-bezier(.2,.7,.2,1) .28s both; }
-.cta-row { animation:rise .55s cubic-bezier(.2,.7,.2,1) .36s both; }
-.trust   { animation:rise .55s cubic-bezier(.2,.7,.2,1) .44s both; }
-.faro, .faro-shadow, .hero-glow { animation:fadeR .6s cubic-bezier(.2,.7,.2,1) .2s both; }
-.badge-person { animation:pop .5s cubic-bezier(.2,.7,.2,1) .55s both; }
-.badge-product{ animation:pop .5s cubic-bezier(.2,.7,.2,1) .66s both; }
-
-@media (prefers-reduced-motion: reduce) {
-  *, .eyebrow, .proof, .headline, .sub, .cta-row, .trust, .faro, .faro-shadow, .hero-glow, .badge-person, .badge-product { animation:none !important; }
-  .eyebrow .dot::after { display:none; }
+.hero-chips {
+  position: absolute;
+  top: clamp(20px, 2.4vw, 34px);
+  right: clamp(20px, 2.4vw, 34px);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
 }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--creme);
+  color: var(--night);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  padding: 11px 20px 11px 16px;
+  border-radius: var(--r-pill);
+  box-shadow: 0 10px 30px rgba(12,20,32,0.26);
+  animation: chipIn .6s cubic-bezier(.2,.7,.2,1) .8s both;
+}
+.chip .dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--cyan);
+  flex-shrink: 0;
+  position: relative;
+}
+.chip .dot::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: var(--cyan);
+  animation: pulse 2s ease-out infinite;
+}
+@keyframes pulse {
+  0%   { transform: scale(1);   opacity: .7; }
+  70%  { transform: scale(2.6); opacity: 0; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+.chip-tri {
+  background: #FFF;
+  border-radius: var(--r-md);
+  padding: 10px 14px;
+  box-shadow: 0 10px 30px rgba(12,20,32,0.26);
+  animation: chipIn .6s cubic-bezier(.2,.7,.2,1) .92s both;
+}
+.chip-tri img { height: 54px; width: auto; }
+
+/* ============================================================
+   BARRA FLUTUANTE (acompanha a página)
+   ============================================================ */
+.sticky-bar {
+  position: fixed;
+  left: 50%;
+  bottom: clamp(12px, 1.8vw, 22px);
+  z-index: 60;
+  width: min(1080px, calc(100% - 2 * var(--pad-page)));
+  transform: translateX(-50%) translateY(150%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform .55s cubic-bezier(.2,.7,.2,1), opacity .4s ease;
+}
+.sticky-bar.is-visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.sticky-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  background: rgba(23,27,45,0.88);
+  border: 1px solid rgba(234,128,54,0.30);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border-radius: var(--r-pill);
+  padding: 11px 11px 11px 26px;
+  /* brilho quente como na referencia */
+  box-shadow: 0 22px 60px rgba(8,12,24,0.55), 0 0 70px rgba(234,128,54,0.16);
+}
+.sticky-left { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.sticky-left small {
+  font-size: 10.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(251,248,244,0.60);
+  white-space: nowrap;
+}
+.sticky-badge {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  font-size: 21px;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--night);
+  background: var(--laranja);
+  border-radius: var(--r-pill);
+  padding: 11px 18px;
+  white-space: nowrap;
+}
+.sticky-sub {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(251,248,244,0.82);
+  white-space: nowrap;
+}
+/* chamada de apelo no centro da barra flutuante */
+.sticky-slogan {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  color: var(--creme);
+  white-space: nowrap;
+  padding: 0 12px;
+}
+.sticky-slogan .hl {
+  background: linear-gradient(100deg, #F5B04A 0%, #EA8036 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+@media (max-width: 1024px) { .sticky-slogan { display: none; } }
+
+/* espaco so pra demonstrar o scroll neste preview */
+.demo-spacer { height: 120vh; }
+
+/* ============================================================
+   MARQUEE (linha animada entre seções)
+   ============================================================ */
+.marquee {
+  margin-top: var(--pad-page);
+  background: var(--creme);
+  border-radius: var(--r-pill);
+  overflow: hidden;
+  padding: 15px 0;
+  box-shadow: 0 14px 40px rgba(8,12,24,0.28);
+  animation: up .8s cubic-bezier(.2,.7,.2,1) .74s both;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-group { display: flex; align-items: center; flex-shrink: 0; }
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 30px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--night);
+  white-space: nowrap;
+}
+.marquee-item .dot-live {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  position: relative;
+  flex-shrink: 0;
+}
+.marquee-item .dot-live::after {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: var(--cyan);
+  animation: pulse 2s ease-out infinite;
+}
+.marquee-item img { height: 40px; width: auto; }
+.marquee-sep {
+  flex-shrink: 0;
+  color: var(--laranja);
+  font-size: 15px;
+  line-height: 1;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ============================================================
+   FAIXA DE ATRIBUTOS (card creme)
+   ============================================================ */
+.strip {
+  margin-top: var(--pad-page);
+  background: var(--creme);
+  border-radius: var(--r-lg);
+  padding: clamp(24px, 2.6vw, 38px) clamp(24px, 3vw, 46px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(20px, 2.2vw, 38px);
+  animation: up .8s cubic-bezier(.2,.7,.2,1) .8s both;
+}
+.strip-item { display: flex; align-items: center; gap: 15px; }
+.strip-item + .strip-item { border-left: 1px solid rgba(32,36,60,0.10); padding-left: clamp(20px, 2.2vw, 38px); }
+.icon-circle {
+  flex-shrink: 0;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--aqua-suave);
+  color: var(--teal);
+  display: grid;
+  place-items: center;
+}
+.icon-circle svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.icon-circle.rci { background: #FFF; box-shadow: inset 0 0 0 1px rgba(32,36,60,0.09); padding: 9px; }
+.icon-circle.rci img { width: 100%; height: 100%; object-fit: contain; }
+.strip-txt strong {
+  display: block;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+  color: var(--night);
+  line-height: 1.15;
+}
+.strip-txt small {
+  display: block;
+  font-size: 12.5px;
+  color: rgba(32,36,60,0.58);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   ANIMAÇÕES
+   ============================================================ */
+@keyframes up      { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeDown{ from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+@keyframes cardIn  { from { opacity: 0; transform: scale(.985) translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes chipIn  { from { opacity: 0; transform: translateY(-10px) scale(.9); } to { opacity: 1; transform: none; } }
 
 /* ============================================================
    RESPONSIVO
    ============================================================ */
-@media (max-width:900px){
-  .nav-links { display:none; }
-  .hero-grid { grid-template-columns:1fr; padding:104px clamp(20px,6vw,40px) 0; align-items:start; }
-  .col-text { max-width:100%; }
-  .headline { font-size:clamp(2.4rem,10vw,3.4rem); }
-  .sub { max-width:100%; }
-  .col-visual { min-height:56svh; margin-top:var(--s6); }
-  /* Faro empilhado embaixo, cortado na base. Centralizado via left/right:0 + margin:auto
-     (NAO via transform: a animacao de entrada termina em transform:none e anularia o translate) */
-  .faro { left:0; right:0; margin:0 auto; width:min(92vw,460px); height:54svh; background-position:center bottom; }
-  .faro-shadow { left:0; right:0; margin:0 auto; width:min(70vw,360px); }
-  .hero-glow { left:0; right:0; margin:0 auto; width:min(90vw,460px); }
-  .hero-symbol { top:60%; }
-  .badge-person { top:auto; bottom:34%; right:auto; left:16px; }
-  .badge-product { display:none; }         /* mobile: um único badge */
-  .cta-row .btn-primary { width:100%; justify-content:space-between; }
-  .trust { gap:var(--s4); }
+@media (max-width: 1080px) {
+  .nav-links { display: none; }
+  .faro { width: 62%; height: 78%; }
+  .hero-inner { max-width: 100%; }
+  .hero-sub { max-width: 58%; }
+  .strip { grid-template-columns: 1fr 1fr; }
+  .strip-item:nth-child(3) { border-left: none; padding-left: 0; }
 }
-@media (max-width:400px){
-  .trust { row-gap:var(--s3); }
-  .trust .sep { display:none; }
+@media (max-width: 720px) {
+  .hero { min-height: 760px; align-items: flex-start; }
+  /* empurra a copy pra baixo dos chips e reforca o scrim */
+  .hero-inner { padding-top: 94px; max-width: 100%; }
+  .hero::before {
+    background:
+      linear-gradient(180deg, rgba(23,27,45,.62) 0%, rgba(23,27,45,.28) 26%, rgba(23,27,45,.55) 62%, rgba(23,27,45,.88) 100%);
+  }
+  .eyebrow { font-size: 10.5px; letter-spacing: 0.07em; gap: 9px; margin-bottom: 18px; }
+  .eyebrow::before { width: 24px; }
+  .hero h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
+  .hero-sub { max-width: 68%; font-size: 14.5px; }
+  .hero-trust { width: 66px; height: 66px; padding: 8px; top: 18px; right: 16px; }
+  .hero-glow { width: 90vw; height: 46%; right: 0; bottom: 0; }
+  /* modelo menor pra nao colidir com CTA e preco */
+  .faro { width: 78%; height: 45%; right: -6%; }
+  .faro-shadow { width: 60vw; right: 4%; }
+  .badge-product { display: none; }                                  /* mobile: uma unica caixa */
+  .badge-person { top: auto; bottom: 30%; right: auto; left: 14px; }
+  .hero-actions { flex-direction: column; align-items: flex-start; gap: 16px; max-width: 100%; }
+  /* caixa alta + tracking exigem corpo menor no mobile */
+  .btn-lg { padding: 14px 20px; font-size: 11px; letter-spacing: 0.10em; }
+  .nav-social a { width: 42px; height: 42px; }
+  .nav-social a svg { width: 18px; height: 18px; }
+  /* pill opaco pra ler limpo sobre o modelo */
+  .price-pill { background: rgba(23,27,45,0.93); padding-right: 20px; }
+  .price-pill strong { font-size: 20px; padding: 11px 16px; }
+  .price-pill span { font-size: 13px; }
+  .marquee-item { font-size: 12px; padding: 0 20px; letter-spacing: 0.10em; }
+  .marquee-item img { height: 32px; }
+  /* barra flutuante compacta no mobile */
+  .sticky-inner { padding: 9px 9px 9px 16px; gap: 12px; }
+  .sticky-left small, .sticky-sub { display: none; }
+  .sticky-badge { font-size: 17px; padding: 10px 14px; }
+  .sticky-inner .btn { padding: 12px 18px; font-size: 13px; }
+  .sticky-inner .btn .arrow { display: none; }
+  .hero-chips { flex-direction: row; align-items: center; gap: 8px; top: 16px; right: 16px; }
+  .chip { font-size: 11.5px; padding: 8px 14px 8px 11px; letter-spacing: -0.01em; }
+  .chip .dot { width: 7px; height: 7px; }
+  .chip-tri { padding: 6px 9px; }
+  .chip-tri img { height: 34px; }
+  .nav-brand img { height: 34px; }
+  .nav-brand img.mme { height: 20px; }
+  .strip { grid-template-columns: 1fr; gap: 18px; }
+  .strip-item + .strip-item {
+    border-left: none; padding-left: 0;
+    border-top: 1px solid rgba(32,36,60,0.10); padding-top: 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
 }
 </style>
 </head>
 <body>
 
-<nav class="nav" id="nav">
+<!-- ============ NAV FLUTUANTE ============ -->
+<nav class="nav">
   <a href="#topo" class="nav-brand">
     <img src="assets/logos/logo-branco.png" alt="Ipioca Beach Residence">
     <span class="sep" aria-hidden="true"></span>
@@ -291,66 +748,151 @@ img { display:block; max-width:100%; }
     <li><a href="#faq">Dúvidas</a></li>
   </ul>
   <div class="nav-social">
-    <a class="wpp" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
-    <a class="ig" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+    <a class="wpp" href="#" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+    <a class="ig" href="#" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </a>
   </div>
 </nav>
 
+<!-- ============ HERO CARD ============ -->
 <section class="hero" id="topo">
-  <!-- camada 0: aérea (LCP) -->
-  <picture class="hero-media">
-    <source type="image/webp" srcset="assets/fotos/hero-aerea-900.webp 900w, assets/fotos/hero-aerea-1400.webp 1400w, assets/fotos/hero-aerea-2000.webp 2000w" sizes="100vw">
-    <img src="assets/fotos/hero-aerea-1400.webp" alt="Vista aérea da praia de Ipioca, em Maceió" fetchpriority="high" decoding="async">
-  </picture>
-  <div class="hero-scrim" aria-hidden="true"></div>
-  <div class="hero-symbol" aria-hidden="true"></div>
+
+  <svg class="hero-wave" viewBox="0 0 900 520" aria-hidden="true">
+    <path d="M-40 300 C 120 130, 250 470, 420 300 S 700 90, 900 250"/>
+    <path d="M120 430 C 260 320, 380 520, 540 400 S 780 250, 950 360" opacity=".45"/>
+  </svg>
+
   <div class="hero-glow" aria-hidden="true"></div>
-  <!-- Faro ancorado ao hero (full-bleed), não à coluna, para sangrar até a borda direita -->
   <div class="faro-shadow" aria-hidden="true"></div>
   <div class="faro" role="img" aria-label="Rodrigo Faro, apresentador do Ipioca Beach Residence"></div>
 
-  <div class="hero-grid">
-    <div class="col-text">
-      <p class="eyebrow"><span class="dot"></span> Praia de Ipioca · Maceió · Alagoas</p>
-      <p class="proof"><b>+100</b> países de uso via rede RCI</p>
-      <h1 class="headline">Sua casa de férias no <span class="key">Caribe</span> brasileiro.</h1>
-      <p class="sub">Apartamento mobiliado à beira-mar, em Ipioca (Maceió). <b>Registrado em cartório no seu nome.</b></p>
-      <div class="cta-row">
-        <a href="#form" class="btn-primary">
-          Quero conhecer as condições
-          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-        </a>
-        <a href="#empreendimento" class="link-secondary">Ver o apartamento</a>
-      </div>
-      <div class="trust" aria-label="Selos de confiança">
-        <span class="chip tri"><img src="assets/logos/tripadvisor-travelers-choice-2025.png" alt="Tripadvisor Travelers' Choice 2025"></span>
-        <span class="chip"><img src="assets/logos/rci-logo.png" alt="Rede RCI"></span>
-        <span class="chip"><img src="assets/logos/mme-horizontal.png" alt="MME Vacation Club"></span>
-      </div>
-    </div>
+  <div class="badge badge-person">
+    <span class="av" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+    <div><b>Rodrigo Faro</b><span>Apresentador</span></div>
+  </div>
+  <div class="badge badge-product">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+    <span>Apartamento mobiliado, pé na areia, registrado no seu nome.</span>
+  </div>
 
-    <div class="col-visual">
-      <div class="badge badge-person">
-        <span class="av" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
-        <div><b>Rodrigo Faro</b><span>Apresentador</span></div>
-      </div>
+  <div class="hero-trust">
+    <img src="assets/logos/tripadvisor-travelers-choice-2025.png" alt="Tripadvisor Travelers' Choice Awards 2025">
+  </div>
 
-      <div class="badge badge-product">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
-        <span>Apartamento mobiliado, pé na areia, registrado no seu nome.</span>
-      </div>
+  <div class="hero-inner">
+    <p class="eyebrow">Praia de Ipioca · Maceió · Alagoas</p>
+    <h1>Sua casa de férias <span class="accent">no</span> <span class="grad">Caribe brasileiro.</span></h1>
+    <p class="hero-sub">
+      Apartamento mobiliado, pé na areia, na praia de Ipioca, em <b>Maceió, Alagoas</b>. Registrado em cartório no seu nome, com acesso à rede <em>RCI</em> para usar em mais de 100 países.
+    </p>
+    <div class="hero-actions">
+      <a href="#form" class="btn btn-sol btn-lg">Quero conhecer as condições <span class="arrow">→</span></a>
     </div>
   </div>
 </section>
 
+<!-- ============ FAIXA DE ATRIBUTOS ============ -->
+<section class="strip">
+  <div class="strip-item">
+    <span class="icon-circle">
+      <svg viewBox="0 0 48 48">
+        <path d="M4 34c4-2 8-2 12 0s8 2 12 0 8-2 12 0"/>
+        <path d="M4 40c4-2 8-2 12 0s8 2 12 0 8-2 12 0"/>
+        <path d="M24 22c-4-6-10-8-14-6 2 6 6 10 12 12"/>
+        <path d="M24 22c4-6 10-8 14-6-2 6-6 10-12 12"/>
+        <circle cx="24" cy="10" r="3"/>
+      </svg>
+    </span>
+    <div class="strip-txt"><strong>Pé na areia</strong><small>Praia de Ipioca · Maceió/AL</small></div>
+  </div>
+
+  <div class="strip-item">
+    <span class="icon-circle">
+      <svg viewBox="0 0 48 48">
+        <path d="M6 34h36v6H6z"/>
+        <path d="M10 34v-8a6 6 0 016-6h16a6 6 0 016 6v8"/>
+        <path d="M14 24v-4a3 3 0 013-3h14a3 3 0 013 3v4"/>
+      </svg>
+    </span>
+    <div class="strip-txt"><strong>Pronto pra usar</strong><small>Chega, abre a porta, aproveita</small></div>
+  </div>
+
+  <div class="strip-item">
+    <span class="icon-circle rci"><img src="assets/logos/rci-logo.png" alt="RCI"></span>
+    <div class="strip-txt"><strong>Rede RCI</strong><small>4.000+ hotéis e resorts · 100 países</small></div>
+  </div>
+
+  <div class="strip-item">
+    <span class="icon-circle">
+      <svg viewBox="0 0 48 48">
+        <path d="M10 8h22l6 6v26H10z"/>
+        <path d="M32 8v6h6"/>
+        <path d="M16 22h16M16 28h16M16 34h10"/>
+      </svg>
+    </span>
+    <div class="strip-txt"><strong>Vitalício</strong><small>Registrado no seu nome · hereditário</small></div>
+  </div>
+</section>
+
+<!-- ============ LINHA ANIMADA (MARQUEE) ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+    </div>
+    <div class="marquee-group">
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+    </div>
+  </div>
+</div>
+
+<div class="demo-spacer" aria-hidden="true"></div>
+
+<!-- ============ BARRA FLUTUANTE (acompanha a pagina) ============ -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-inner">
+    <div class="sticky-left">
+      <small>A partir de</small>
+      <span class="sticky-badge">66x R$ 620</span>
+      <span class="sticky-sub">+ entrada reduzida</span>
+    </div>
+    <span class="sticky-slogan">SEU APÊ pé na areia <span class="hl">pra vida toda!</span></span>
+    <a href="#form" class="btn btn-cyan">Quero conhecer as condições <span class="arrow">→</span></a>
+  </div>
+</div>
+
 <script>
-/* navbar ganha blur ao rolar */
-(function(){
-  var nav = document.getElementById('nav');
-  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 10); }
-  window.addEventListener('scroll', onScroll, { passive:true });
-  onScroll();
+(function () {
+  var bar = document.getElementById('stickyBar');
+  var heroCta = document.querySelector('.hero-actions');
+  if (!bar || !heroCta) return;
+
+  // a barra aparece quando o CTA do hero sai da tela por cima
+  function update() {
+    bar.classList.toggle('is-visible', heroCta.getBoundingClientRect().bottom < 0);
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 })();
 </script>
+
 </body>
 </html>
