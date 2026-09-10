@@ -1988,27 +1988,50 @@ section[id] { scroll-margin-top: 16px; }
    (nada se sobrepoe: botao, caixa de vidro e modelo tem cada um o seu lugar)
    ============================================================ */
 @media (max-width: 720px) {
+  /* HERO MOBILE (editorial): titulo -> Faro emerge -> texto sobre o corpo dele
+     (com fade da barriga pra baixo) -> botao. Etiqueta ao lado da cabeca,
+     do lado pra onde ele se inclina. */
   .hero { min-height: 0; display: block; }
-  .hero-inner { padding: 94px 22px 0; max-width: 100%; }
-  /* palco do Faro: altura em vw pra escalar junto com a imagem */
-  .hero-inner::after { content: ""; display: block; height: 68vw; }
-  .hero-sub { max-width: 100%; font-size: 15px; margin-bottom: 26px; }
-  .hero-actions { gap: 14px; }
-  .hero-actions .btn-lg { width: 100%; justify-content: center; white-space: normal; text-align: center; line-height: 1.3; padding: 15px 18px; font-size: 11.5px; }
-  .faro { width: 76%; height: 62vw; right: -5%; bottom: 0; }
-  .faro-shadow { width: 62vw; right: 2%; bottom: 1%; }
-  .hero-glow { width: 90vw; height: 62vw; right: -10%; bottom: 0; }
-  .badge-person { top: auto; bottom: 24vw; left: 18px; right: auto; padding: 11px 15px; }
-  .badge-person .av { width: 34px; height: 34px; }
-  .badge-person b { font-size: 14px; }
-  .badge-person span { font-size: 10.5px; }
-  /* onda vai pro palco, nao cruza mais o texto */
-  .hero-wave { top: auto; bottom: 26vw; transform: none; width: 130%; right: -18%; opacity: .42; }
-  .hero-trust { width: 64px; height: 64px; top: 18px; right: 18px; padding: 7px;
-    box-shadow: 0 0 0 3px var(--night), 0 0 0 6px #FFF, 5px 7px 0 rgba(18,22,42,0.30), 0 10px 24px rgba(12,20,32,0.30); }
+  /* foto da praia de volta: degrade escurece topo (titulo nitido), abre a agua
+     atras da cabeca do Faro e escurece embaixo (texto legivel) */
   .hero::before {
     background:
-      linear-gradient(180deg, rgba(23,27,45,.72) 0%, rgba(23,27,45,.58) 40%, rgba(23,27,45,.30) 62%, rgba(23,27,45,.85) 100%);
+      linear-gradient(180deg,
+        rgba(23,27,45,.96) 0%,
+        rgba(23,27,45,.90) 22%,
+        rgba(23,27,45,.50) 36%,
+        rgba(23,27,45,.26) 50%,
+        rgba(23,27,45,.42) 60%,
+        rgba(23,27,45,.72) 72%,
+        rgba(23,27,45,.93) 86%,
+        rgba(23,27,45,.97) 100%);
+  }
+  .hero-inner { position: relative; z-index: 4; padding: 80px 22px 30px; max-width: 100%; }
+  .hero .eyebrow { position: relative; z-index: 6; }
+  /* reserva o espaco da cabeca + peito entre o titulo e o texto */
+  .hero h1 { position: relative; z-index: 6; font-size: clamp(2.05rem, 8.2vw, 2.75rem); margin-bottom: 40vw; }
+  /* texto e botao passam por cima do corpo (ja esmaecido); sombra garante leitura */
+  .hero-sub { position: relative; z-index: 6; max-width: 100%; font-size: 14.5px; line-height: 1.6;
+    margin-bottom: 22px; text-shadow: 0 2px 18px rgba(18,22,38,.92), 0 1px 4px rgba(18,22,38,.9); }
+  .hero-actions { position: relative; z-index: 6; gap: 14px; }
+  .hero-actions .btn-lg { width: 100%; justify-content: center; white-space: normal; text-align: center; line-height: 1.3; padding: 15px 18px; font-size: 11.5px; }
+  /* Faro no meio do fluxo: cabeca logo abaixo do titulo, corpo desce pro texto */
+  .faro { top: 50vw; bottom: auto; right: 0; left: auto; width: 96%; height: 96vw;
+    background-position: right top; background-size: contain;
+    z-index: 2;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 24%, rgba(0,0,0,.30) 42%, rgba(0,0,0,.10) 60%, rgba(0,0,0,0) 80%);
+            mask-image: linear-gradient(180deg, #000 0%, #000 24%, rgba(0,0,0,.30) 42%, rgba(0,0,0,.10) 60%, rgba(0,0,0,0) 80%); }
+  .faro-shadow { display: none; }
+  /* halo ciano atras da cabeca dele */
+  .hero-glow { top: 50vw; bottom: auto; right: -8%; width: 98vw; height: 64vw; opacity: .68; z-index: 1; }
+  .hero-wave { display: none; }
+  /* etiqueta ao lado da cabeca, no lado pra onde ele se inclina (esquerda) */
+  .badge-person { top: 60vw; bottom: auto; left: 12px; right: auto; z-index: 6; padding: 10px 14px; }
+  .badge-person .av { width: 32px; height: 32px; }
+  .badge-person b { font-size: 13.5px; }
+  .badge-person span { font-size: 10px; }
+  .hero-trust { width: 58px; height: 58px; top: 14px; right: 14px; padding: 6px;
+    box-shadow: 0 0 0 3px var(--night), 0 0 0 5px #FFF, 4px 6px 0 rgba(18,22,42,0.30), 0 10px 24px rgba(12,20,32,0.30); }
   }
 
   /* --- barra flutuante compacta (selo + botao curto, sem sobreposicao) --- */
