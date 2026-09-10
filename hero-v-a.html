@@ -1737,6 +1737,83 @@ img { max-width: 100%; display: block; }
 /* banda da faixa de atributos: full-bleed creme, FORA do escopo .lp (regras mobile do site nao a alcancam) */
 .band { background: #FBF8F4; margin: 0 calc(-1 * var(--pad-page)); padding: 0 clamp(20px, 5vw, 56px) 64px; }
 .band .strip { margin-top: 0; background: #FFF; border: 1px solid rgba(32,36,60,0.07); box-shadow: 0 10px 40px rgba(15,18,32,0.08); }
+/* vaos menores ao redor da faixa: so nas bordas do capitulo Ipioca, da banda e do topo da MME (ids vencem as regras globais) */
+.lp #ipioca.chapter { padding-bottom: 40px; }
+.band { padding-bottom: 20px; }
+.lp #mme.mme-credit { padding-top: 44px; }
+/* logo MME no lockup horizontal (442x175): dimensiona por largura, nao por altura */
+.lp .mme-credit-logo img { height: auto; width: min(340px, 100%); }
+/* dobra Empreendimento: descricoes na mesma letra do corpo (sem italico serifado), enfase por peso */
+.lp #empreendimento .feature-txt em, .lp #empreendimento .section-lead em { font-family: inherit; font-style: normal; font-weight: 600; }
+/* comparativo: verde -> azul (teal da paleta), marcadores em cyan; frase 'O dinheiro...' em Open Sans */
+.lp .compare-note { font-family: 'Open Sans', sans-serif; font-style: normal; font-weight: 600; font-size: 20px; line-height: 1.5; letter-spacing: 0; }
+/* headline da RCI em 2 linhas: 1a linha nao quebra no desktop + corpo um pouco menor (no mobile quebra livre) */
+.lp .rci-title { font-size: clamp(2.2rem, 4.4vw, 60px); }
+@media (min-width: 900px) { .lp .rci-title .linha-inteira { white-space: nowrap; } }
+/* 'Quem ja e dono': so os textos verde-agua ganham cor legivel sobre a foto */
+.lp #donos .owners-eyebrow { color: #FBF8F4; }
+.lp #donos h2 .poetic, .lp #donos .owners-stat strong { color: #7ED9D2; }
+/* credito no rodape */
+.lp .credito-trilha { opacity: 0.55; font-size: 12px; margin-top: 6px; }
+/* dobra RCI na estetica da referencia: gradiente do hero (navy + brilho ciano) e grid com linhas finas */
+.lp .rci-dark { background: radial-gradient(90% 70% at 18% 8%, rgba(70,120,144,0.55) 0%, transparent 60%), radial-gradient(80% 60% at 85% 92%, rgba(33,163,192,0.32) 0%, transparent 60%), linear-gradient(180deg, #20243C 0%, #12162A 100%); color: #FBF8F4; }
+.lp .rci-dark .rci-brand { background: #FFF; padding: 8px 14px; border-radius: 10px; }
+.lp .rci-dark .chapter-coords { display: inline-flex; gap: 10px; color: #FBF8F4; border: 1px solid rgba(255,255,255,0.28); border-radius: 100px; padding: 9px 18px; }
+.lp .rci-dark .chapter-title { color: #FBF8F4; }
+.lp .rci-dark .chapter-title .poetic { color: #7ED9D2; }
+.lp .rci-dark .chapter-lead { color: rgba(251,248,244,0.78); }
+.lp .rci-dark .chapter-lead b { color: #FBF8F4; }
+.lp .rci-video { max-width: 360px; margin: 44px auto 56px; aspect-ratio: 9 / 16; border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.12); box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
+.lp .rci-video iframe { width: 100%; height: 100%; border: 0; display: block; }
+.lp .rci-dark .rci-grid { gap: 0; border: 1px solid rgba(255,255,255,0.14); border-radius: 24px; overflow: hidden; margin-top: 0; }
+.lp .rci-dark .rci-card { background: transparent; box-shadow: none; border-radius: 0; border: 0; border-bottom: 1px solid rgba(255,255,255,0.14); padding: 32px 28px; }
+.lp .rci-dark .rci-card h4 { color: #FBF8F4; }
+.lp .rci-dark .rci-card p { color: rgba(251,248,244,0.68); }
+@media (min-width: 901px) {
+  .lp .rci-dark .rci-grid { grid-template-columns: repeat(3, 1fr); }
+  .lp .rci-dark .rci-card { border-right: 1px solid rgba(255,255,255,0.14); }
+  .lp .rci-dark .rci-card:nth-child(3n) { border-right: 0; }
+  .lp .rci-dark .rci-card:nth-last-child(-n+3) { border-bottom: 0; }
+}
+@media (max-width: 900px) { .lp .rci-dark .rci-card:last-child { border-bottom: 0; } }
+/* comparativo no layout da referencia: texto a esquerda, opcoes empilhadas a direita, vencedora em destaque */
+.lp .vale { background: #FBF8F4; color: #20243C; }
+.lp .vale .vale-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.lp .vale .section-eyebrow { display: inline-flex; color: #21A3C0; background: rgba(33,163,192,0.08); border: 1px solid rgba(33,163,192,0.45); border-radius: 100px; padding: 8px 16px; margin-bottom: 22px; text-align: left; }
+.lp .vale .section-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500; text-transform: none; letter-spacing: -0.035em; font-size: clamp(2.4rem, 4.8vw, 4.4rem); line-height: 1.02; color: #20243C; text-align: left; margin-left: 0; }
+.lp .vale .section-lead { color: rgba(32,36,60,0.72); text-align: left; margin-left: 0; }
+.lp .vale .section-lead b { color: #20243C; }
+.lp .vale .compare-note { color: #20243C; margin: 26px 0 28px; text-align: left; font-size: 18px; }
+.lp .vale .compare-cta { text-align: left; margin-top: 0; }
+.lp .vale .compare { display: flex; flex-direction: column; gap: 14px; margin-top: 0; }
+.lp .vale .compare-col { background: #F3F1EC; border: 1px solid rgba(32,36,60,0.08); border-radius: 18px; padding: 26px 28px; color: #20243C; box-shadow: none; transition: transform .3s ease; }
+.lp .vale .compare-col.negative .compare-tag, .lp .vale .compare-col.negative .compare-h, .lp .vale .compare-col.negative .compare-list li { color: #6B7080; }
+.lp .vale .compare-col.negative .compare-list li b { color: #4A4F63; }
+.lp .vale .compare-col.positive { background: #E3F4F8; border: 1px solid #21A3C0; box-shadow: 0 18px 50px rgba(33,163,192,0.28); transform: scale(1.02); }
+.lp .vale .compare-col.positive .compare-tag { color: #21A3C0; }
+.lp .vale .compare-col.positive .compare-h, .lp .vale .compare-col.positive .compare-list li, .lp .vale .compare-col.positive .compare-list li b { color: #20243C; }
+.lp .vale .compare-h { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; text-transform: none; letter-spacing: -0.02em; font-size: 1.5rem; }
+.lp .vale .compare-list li::before { color: #21A3C0; }
+@media (max-width: 900px) { .lp .vale .vale-grid { grid-template-columns: 1fr; } .lp .vale .compare-col.positive { transform: none; } }
+/* dobra 'socios': gradiente quente da marca, numero gigante com contador */
+.lp .socios { background: radial-gradient(90% 70% at 50% 0%, #F5B04A 0%, #EA8036 48%, #C95F1C 100%); color: #FFF; text-align: center; padding: clamp(80px, 10vw, 130px) 22px; }
+.lp .socios-inner { max-width: 900px; margin: 0 auto; }
+.lp .socios-logo { height: 34px; width: auto; margin: 0 auto 36px; opacity: 0.92; }
+.lp .socios-num { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(5rem, 15vw, 12.5rem); line-height: 0.9; letter-spacing: -0.045em; margin: 0 0 22px; font-variant-numeric: tabular-nums; }
+.lp .socios-sub { font-family: 'Inter', sans-serif; font-size: clamp(1.15rem, 2vw, 1.6rem); font-weight: 500; color: rgba(255,255,255,0.92); margin-bottom: 56px; }
+.lp .socios-stats { display: flex; justify-content: center; gap: clamp(28px, 6vw, 80px); flex-wrap: wrap; }
+.lp .socios-stats strong { display: block; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(1.8rem, 3vw, 2.6rem); letter-spacing: -0.03em; }
+.lp .socios-stats span { display: block; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.8); margin-top: 6px; }
+/* FAQ em duas colunas com card lateral de contato */
+.lp .faq-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 32px; align-items: start; }
+.lp .faq-card { position: sticky; top: 110px; background: #F7F5F1; border: 1px solid rgba(32,36,60,0.08); border-radius: 20px; padding: 34px 30px; }
+.lp .faq-card .ico { width: 52px; height: 52px; border-radius: 14px; background: rgba(33,163,192,0.12); color: #21A3C0; display: grid; place-items: center; margin-bottom: 22px; }
+.lp .faq-card .ico svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.lp .faq-card h3 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 1.45rem; letter-spacing: -0.02em; line-height: 1.2; color: #20243C; margin-bottom: 12px; text-transform: none; }
+.lp .faq-card p { color: rgba(32,36,60,0.68); font-size: 15px; line-height: 1.55; margin-bottom: 24px; }
+.lp .faq-card .btn-wpp { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #F5B04A, #EA8036); color: #20243C; font-weight: 600; font-size: 14px; padding: 14px 22px; border-radius: 100px; box-shadow: 0 10px 26px rgba(234,128,54,0.32); }
+.lp .faq-card .btn-wpp svg { width: 18px; height: 18px; fill: currentColor; }
+@media (max-width: 900px) { .lp .faq-grid { grid-template-columns: 1fr; } .lp .faq-card { position: static; } }
 
 
 </style>
@@ -1911,7 +1988,7 @@ img { max-width: 100%; display: block; }
   <div class="mme-credit-inner">
     <picture class="mme-credit-logo">
       <source media="(max-width: 900px)" srcset="assets/logos/mme-horizontal.png">
-      <img src="assets/logos/mme-vertical.png" alt="MME Vacation Club">
+      <img src="assets/logos/mme-horizontal.png" alt="MME Vacation Club">
     </picture>
     <div class="mme-credit-body">
       <p class="mme-credit-eyebrow">Uma realização MME Vacation Club</p>
@@ -2078,12 +2155,15 @@ img { max-width: 100%; display: block; }
 </section>
 
 <!-- ============ VALE A PENA (COMPARATIVO) ============ -->
-<section class="section-dark">
-  <div class="section-inner">
-    <p class="section-eyebrow">Faz as contas</p>
-    <h2 class="section-title">Quanto você já gasta<br>em férias <span class="poetic">sem ficar</span><br>com nada?</h2>
-    <p class="section-lead" style="color: rgba(255,255,255,0.75);">Uma família gasta entre <b style="color:#FFF;">R$ 5 mil e R$ 10 mil por ano</b> em hospedagem. E sobe todo ano com a inflação do turismo.</p>
-
+<section class="section-light vale" id="vale">
+  <div class="section-inner vale-grid">
+    <div class="vale-texto">
+      <p class="section-eyebrow">Faz as contas</p>
+      <h2 class="section-title">Quanto você já gasta<br>em férias?</h2>
+      <p class="section-lead">Uma família gasta entre <b>R$ 5 mil e R$ 10 mil por ano</b> em hospedagem. E sobe todo ano com a inflação do turismo.</p>
+      <p class="compare-note">O dinheiro é praticamente o mesmo.<br>O que muda é o patrimônio e as experiências que construiu.</p>
+      <div class="compare-cta"><a href="#form" class="btn btn-primary">Quero simular a minha cota</a></div>
+    </div>
     <div class="compare">
       <div class="compare-col negative">
         <p class="compare-tag">Do jeito de sempre</p>
@@ -2106,22 +2186,19 @@ img { max-width: 100%; display: block; }
         </ul>
       </div>
     </div>
-
-    <p class="compare-note" style="color: #FFF;">O dinheiro é praticamente o mesmo.<br>O que muda é o patrimônio e as experiências que construiu.</p>
-
-    <div class="compare-cta">
-      <a href="#form" class="btn btn-primary">Quero simular a minha cota</a>
-    </div>
   </div>
 </section>
 
 <!-- ============ REDE RCI ============ -->
-<section class="chapter section-bege">
+<section class="chapter section-bege rci-dark" id="rci">
   <div class="chapter-narrow">
     <img class="rci-brand" src="assets/logos/rci-logo.png" alt="RCI">
     <p class="chapter-coords"><span>Rede RCI</span><span>Inclusa</span></p>
-    <h2 class="chapter-title">Se um ano você não vier,<br>o mundo vem <span class="poetic">até você.</span></h2>
+    <h2 class="chapter-title rci-title"><span class="linha-inteira">Se um ano você não vier,</span><br>o mundo vem <span class="poetic">até você.</span></h2>
     <p class="chapter-lead">Deposite sua semana na RCI e tenha acesso a <b>mais de 4.000 hotéis e resorts em mais de 100 países.</b></p>
+  </div>
+  <div class="rci-video">
+    <iframe src="https://www.youtube.com/embed/O_NUHJkEpfQ" title="Rede RCI" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
   <div class="section-inner" style="max-width: 1080px; margin: 0 auto;">
     <div class="rci-grid">
@@ -2151,57 +2228,16 @@ img { max-width: 100%; display: block; }
 </section>
 
 
-<!-- ============ FAQ ============ -->
-<section class="section-white" id="faq">
-  <div class="section-inner">
-    <p class="section-eyebrow" style="text-align: center;">Perguntas frequentes</p>
-    <h2 class="section-title" style="text-align: center; margin-left: auto; margin-right: auto;">Tudo que você <span class="poetic">precisa</span><br>saber antes.</h2>
-
-    <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-q">Multipropriedade é a mesma coisa que timeshare?</button>
-        <div class="faq-a"><div class="faq-a-inner">Não. Timeshare é direito de uso por tempo determinado. Quando o prazo acaba, acabou. Multipropriedade é <b>fração de imóvel de verdade</b>: você é dono de uma fração ideal do apartamento, registrada em cartório, com prazo indeterminado. É seu, para sempre, e passa como herança.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Meu apartamento é sempre o mesmo?</button>
-        <div class="faq-a"><div class="faq-a-inner">Sim. Você adquire um apartamento específico do Ipioca Beach Residence. Nas semanas contratadas, aquele apartamento é seu.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Quantas semanas por ano eu tenho direito?</button>
-        <div class="faq-a"><div class="faq-a-inner">Depende da cota que você escolhe: 1 semana, 2 semanas ou 4 semanas por ano. Semanas de alta e média temporada podem ter valores diferentes. O consultor te explica na ligação.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Se eu não quiser vir em algum ano, o que acontece?</button>
-        <div class="faq-a"><div class="faq-a-inner">Você pode depositar sua semana na rede RCI e trocar por outro destino, alugar a semana para terceiros através da administração do resort, ou emprestar para familiares e amigos. A cota é sua. Você decide.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Existe taxa mensal ou anual?</button>
-        <div class="faq-a"><div class="faq-a-inner">Sim, existe uma taxa condominial anual que cobre manutenção, limpeza, funcionários e áreas comuns do resort. O valor é diluído entre todos os proprietários. O consultor apresenta os números exatos na conversa.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Posso vender ou passar como herança depois?</button>
-        <div class="faq-a"><div class="faq-a-inner">Pode. É um imóvel registrado em seu nome, com escritura, então segue as regras normais de compra e venda de imóvel. Também pode transferir para herdeiros.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Como é o pagamento?</button>
-        <div class="faq-a"><div class="faq-a-inner">Entrada reduzida + 66 parcelas no boleto a partir de R$ 620,00. Há outras condições ainda mais exclusivas direto com o consultor.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Preciso viajar até Maceió pra fechar?</button>
-        <div class="faq-a"><div class="faq-a-inner">Não. Toda a apresentação é feita por videochamada, com o objetivo de tirar todas as dúvidas e mostrar cada detalhe. Se quiserem conhecer o empreendimento, fazemos um tour virtual ao vivo com nosso concierge, de dentro do próprio resort. E toda a documentação é feita de forma online, com segurança e agilidade.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Isso é um bom investimento financeiro?</button>
-        <div class="faq-a"><div class="faq-a-inner">Depende do que você espera. Não é um produto financeiro que rende juros. É um <b>imóvel</b> à beira-mar em Alagoas, que você usa nas suas semanas todos os anos e que pode alugar, transferir ou vender depois. Se o objetivo é viver as férias bem sem gastar mais do que já gasta, faz muito sentido. Se o objetivo é rentabilidade financeira, existem outros produtos mais indicados.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">E se algo acontecer com a incorporadora? O apartamento continua meu?</button>
-        <div class="faq-a"><div class="faq-a-inner">Sim. A fração está registrada no seu nome em cartório, com escritura. É patrimônio seu, protegido pela legislação de multipropriedade (Lei 13.777/2018). O empreendimento já está pronto e em operação, o que reduz qualquer risco de obra ou entrega.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">Já tenho outro produto de férias (RCI, timeshare, plano de férias). Vale a pena mesmo assim?</button>
-        <div class="faq-a"><div class="faq-a-inner">Vale sim. E vale muito. Diferente do timeshare, de clubes ou planos de férias, em que você precisa renovar quando a pontuação ou o contrato acaba, na multipropriedade o pagamento tem início e fim. A partir da quitação, o imóvel é seu de forma vitalícia. E a rede RCI já vem incluída, então seu produto atual pode até virar um complemento.</div></div>
-      </div>
+<!-- ============ SOCIOS (contador animado) ============ -->
+<section class="socios" id="socios">
+  <div class="socios-inner">
+    <img class="socios-logo" src="assets/logos/mme-home-white.png" alt="MME Vacation Club">
+    <p class="socios-num"><span class="contador" data-alvo="5000">0</span>+</p>
+    <p class="socios-sub">sócios espalhados por todo o Brasil</p>
+    <div class="socios-stats">
+      <div><strong>40+</strong><span>anos de mercado</span></div>
+      <div><strong>1.210</strong><span>unidades</span></div>
+      <div><strong>#1</strong><span>maior de Alagoas</span></div>
     </div>
   </div>
 </section>
@@ -2253,10 +2289,72 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
+<!-- ============ FAQ ============ -->
+<section class="section-white" id="faq">
+  <div class="section-inner">
+    <p class="section-eyebrow" style="text-align: center;">Perguntas frequentes</p>
+    <h2 class="section-title" style="text-align: center; margin-left: auto; margin-right: auto;">Tudo que você <span class="poetic">precisa</span><br>saber antes.</h2>
+
+    <div class="faq-grid">
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">Multipropriedade é a mesma coisa que timeshare?</button>
+        <div class="faq-a"><div class="faq-a-inner">Não. Timeshare é direito de uso por tempo determinado. Quando o prazo acaba, acabou. Multipropriedade é <b>fração de imóvel de verdade</b>: você é dono de uma fração ideal do apartamento, registrada em cartório, com prazo indeterminado. É seu, para sempre, e passa como herança.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Meu apartamento é sempre o mesmo?</button>
+        <div class="faq-a"><div class="faq-a-inner">Sim. Você adquire um apartamento específico do Ipioca Beach Residence. Nas semanas contratadas, aquele apartamento é seu.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Quantas semanas por ano eu tenho direito?</button>
+        <div class="faq-a"><div class="faq-a-inner">Depende da cota que você escolhe: 1 semana, 2 semanas ou 4 semanas por ano. Semanas de alta e média temporada podem ter valores diferentes. O consultor te explica na ligação.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Se eu não quiser vir em algum ano, o que acontece?</button>
+        <div class="faq-a"><div class="faq-a-inner">Você pode depositar sua semana na rede RCI e trocar por outro destino, alugar a semana para terceiros através da administração do resort, ou emprestar para familiares e amigos. A cota é sua. Você decide.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Existe taxa mensal ou anual?</button>
+        <div class="faq-a"><div class="faq-a-inner">Sim, existe uma taxa condominial anual que cobre manutenção, limpeza, funcionários e áreas comuns do resort. O valor é diluído entre todos os proprietários. O consultor apresenta os números exatos na conversa.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Posso vender ou passar como herança depois?</button>
+        <div class="faq-a"><div class="faq-a-inner">Pode. É um imóvel registrado em seu nome, com escritura, então segue as regras normais de compra e venda de imóvel. Também pode transferir para herdeiros.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Como é o pagamento?</button>
+        <div class="faq-a"><div class="faq-a-inner">Entrada reduzida + 66 parcelas no boleto a partir de R$ 620,00. Há outras condições ainda mais exclusivas direto com o consultor.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Preciso viajar até Maceió pra fechar?</button>
+        <div class="faq-a"><div class="faq-a-inner">Não. Toda a apresentação é feita por videochamada, com o objetivo de tirar todas as dúvidas e mostrar cada detalhe. Se quiserem conhecer o empreendimento, fazemos um tour virtual ao vivo com nosso concierge, de dentro do próprio resort. E toda a documentação é feita de forma online, com segurança e agilidade.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Isso é um bom investimento financeiro?</button>
+        <div class="faq-a"><div class="faq-a-inner">Depende do que você espera. Não é um produto financeiro que rende juros. É um <b>imóvel</b> à beira-mar em Alagoas, que você usa nas suas semanas todos os anos e que pode alugar, transferir ou vender depois. Se o objetivo é viver as férias bem sem gastar mais do que já gasta, faz muito sentido. Se o objetivo é rentabilidade financeira, existem outros produtos mais indicados.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">E se algo acontecer com a incorporadora? O apartamento continua meu?</button>
+        <div class="faq-a"><div class="faq-a-inner">Sim. A fração está registrada no seu nome em cartório, com escritura. É patrimônio seu, protegido pela legislação de multipropriedade (Lei 13.777/2018). O empreendimento já está pronto e em operação, o que reduz qualquer risco de obra ou entrega.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Já tenho outro produto de férias (RCI, timeshare, plano de férias). Vale a pena mesmo assim?</button>
+        <div class="faq-a"><div class="faq-a-inner">Vale sim. E vale muito. Diferente do timeshare, de clubes ou planos de férias, em que você precisa renovar quando a pontuação ou o contrato acaba, na multipropriedade o pagamento tem início e fim. A partir da quitação, o imóvel é seu de forma vitalícia. E a rede RCI já vem incluída, então seu produto atual pode até virar um complemento.</div></div>
+      </div>
+    </div>
+    <aside class="faq-card">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span>
+      <h3>Entre em contato com nossa equipe e tire suas dúvidas!</h3>
+      <p>Se ainda estiver com dúvidas, nossa equipe está à disposição.</p>
+      <a class="btn-wpp" href="#"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> Falar com um consultor</a>
+    </aside>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CTA FINAL ============ -->
 <section class="cta-final">
   <h2>Sua próxima<br><span class="poetic">temporada</span><br>já começou.</h2>
-  <p>40 minutos por vídeo. Sem pressão, sem letra miúda. Se fizer sentido, você segue.</p>
   <a href="#form" class="btn btn-white-outline">Quero conhecer as condições</a>
 </section>
 
@@ -2304,6 +2402,7 @@ img { max-width: 100%; display: block; }
   <div class="footer-bottom">
     <p>© 2026 Ipioca Beach Residence · Todos os direitos reservados</p>
     <p>Feito com carinho no litoral norte de Alagoas</p>
+    <p class="credito-trilha">Feito por <b>Trilha Performance Digital</b></p>
   </div>
 </footer>
 
@@ -2415,6 +2514,27 @@ telInput.addEventListener('input', (e) => {
   e.target.value = v;
 });
 
+})();
+</script>
+
+<script>
+/* contador animado da dobra 'socios' */
+(function () {
+  var els = document.querySelectorAll('.contador'); if (!els.length) return;
+  var fmt = function (n) { return n.toLocaleString('pt-BR'); };
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function run(el) {
+    var alvo = parseInt(el.getAttribute('data-alvo'), 10) || 0;
+    if (reduce) { el.textContent = fmt(alvo); return; }
+    var t0 = null, dur = 1800;
+    function step(t) { if (!t0) t0 = t; var p = Math.min((t - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(Math.round(alvo * e)); if (p < 1) requestAnimationFrame(step); }
+    requestAnimationFrame(step);
+  }
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (en) { en.forEach(function (x) { if (x.isIntersecting) { run(x.target); io.unobserve(x.target); } }); }, { threshold: 0.4 });
+    els.forEach(function (e) { io.observe(e); });
+  } else { els.forEach(run); }
 })();
 </script>
 </body>
