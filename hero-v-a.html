@@ -274,19 +274,27 @@ img { max-width: 100%; display: block; }
 .badge {
   position: absolute; z-index: 5;
   display: flex; align-items: center; gap: 12px;
-  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
-  backdrop-filter: blur(14px) saturate(130%); -webkit-backdrop-filter: blur(14px) saturate(130%);
-  border-radius: 16px; padding: 12px 16px;
-  box-shadow: 0 12px 34px rgba(8,12,24,0.32);
+  /* vidro ESCURO (navy) p/ legibilidade sobre a foto clara; borda mais presente */
+  background: rgba(23,27,45,0.78); border: 1px solid rgba(255,255,255,0.20);
+  backdrop-filter: blur(16px) saturate(140%); -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border-radius: 16px; padding: 13px 18px;
+  box-shadow: 0 14px 38px rgba(8,12,24,0.45), inset 0 1px 0 rgba(255,255,255,0.10);
 }
-.badge-person { top: 24%; right: clamp(30px, 26vw, 360px); animation: chipIn .5s cubic-bezier(.2,.7,.2,1) .8s both; }
+/* flutuar continuo e suave das caixas (depois da entrada) */
+@keyframes badgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+.badge-person { top: 24%; right: clamp(30px, 26vw, 360px);
+  animation: chipIn .5s cubic-bezier(.2,.7,.2,1) .8s both, badgeFloat 6s ease-in-out 1.6s infinite; }
 .badge-person .av { width: 38px; height: 38px; border-radius: 50%; background: var(--cyan); display: grid; place-items: center; flex-shrink: 0; }
 .badge-person .av svg { width: 20px; height: 20px; stroke: var(--night); fill: none; stroke-width: 2; }
 .badge-person b { display: block; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; color: var(--creme); }
-.badge-person span { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(251,248,244,0.70); margin-top: 2px; }
-.badge-product { bottom: 16%; right: clamp(20px, 2vw, 40px); max-width: 260px; animation: chipIn .5s cubic-bezier(.2,.7,.2,1) .92s both; }
+.badge-person span { display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(251,248,244,0.86); margin-top: 2px; }
+.badge-product { bottom: 16%; right: clamp(20px, 2vw, 40px); max-width: 270px;
+  animation: chipIn .5s cubic-bezier(.2,.7,.2,1) .92s both, badgeFloat 7s ease-in-out 2.2s infinite; }
 .badge-product svg { width: 22px; height: 22px; stroke: var(--aqua-claro); fill: none; stroke-width: 1.8; flex-shrink: 0; }
-.badge-product span { font-size: 12.5px; line-height: 1.35; color: var(--creme); }
+.badge-product span { font-size: 13.5px; line-height: 1.4; color: var(--creme); }
 /* selo Tripadvisor flutuante */
 .hero-trust {
   position: absolute;
