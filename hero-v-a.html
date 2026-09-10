@@ -1838,6 +1838,10 @@ img { max-width: 100%; display: block; }
 .marquee.marquee--dark { background: #20243C; }
 .marquee.marquee--dark .marquee-item { color: #FBF8F4; }
 .marquee.marquee--dark .marquee-sep { color: #F5B04A; }
+/* tickers dentro do .lp: o reset '.lp *' zerava o padding; restaura o mesmo padrao do ticker do hero */
+.lp .marquee { padding: 15px 0; }
+.lp .marquee-item { padding: 0 30px; line-height: normal; }
+@media (max-width: 720px) { .lp .marquee-item { padding: 0 20px; } }
 /* 'Quem ja e dono': titulo em 2 linhas (1a linha sem quebra no desktop, corpo um pouco menor) */
 .lp #donos h2 { font-size: clamp(2.4rem, 4vw, 3.6rem); }
 @media (min-width: 900px) { .lp #donos h2 .linha-inteira { white-space: nowrap; } }
