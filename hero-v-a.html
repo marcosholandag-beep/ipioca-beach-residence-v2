@@ -1842,6 +1842,11 @@ img { max-width: 100%; display: block; }
 .lp .marquee { padding: 15px 0; }
 .lp .marquee-item { padding: 0 30px; line-height: normal; }
 @media (max-width: 720px) { .lp .marquee-item { padding: 0 20px; } }
+/* banda navy: sem mascara (esmaecia para o creme do fundo = 'gradiente branco'); esmaecer do texto via sombras navy nas bordas */
+.marquee.marquee--dark { -webkit-mask-image: none; mask-image: none; position: relative; }
+.marquee.marquee--dark::before, .marquee.marquee--dark::after { content: ""; position: absolute; top: 0; bottom: 0; width: 6%; z-index: 1; pointer-events: none; }
+.marquee.marquee--dark::before { left: 0; background: linear-gradient(90deg, #20243C 0%, rgba(32,36,60,0) 100%); }
+.marquee.marquee--dark::after { right: 0; background: linear-gradient(270deg, #20243C 0%, rgba(32,36,60,0) 100%); }
 /* 'Quem ja e dono': titulo em 2 linhas (1a linha sem quebra no desktop, corpo um pouco menor) */
 .lp #donos h2 { font-size: clamp(2.4rem, 4vw, 3.6rem); }
 @media (min-width: 900px) { .lp #donos h2 .linha-inteira { white-space: nowrap; } }
