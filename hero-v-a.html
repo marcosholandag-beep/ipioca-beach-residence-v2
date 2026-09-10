@@ -259,10 +259,11 @@ img { display:block; max-width:100%; }
   .headline { font-size:clamp(2.4rem,10vw,3.4rem); }
   .sub { max-width:100%; }
   .col-visual { min-height:56svh; margin-top:var(--s6); }
-  /* Faro empilhado embaixo, cortado na base (agora relativo ao hero: altura limitada à área visual) */
-  .faro { right:50%; transform:translateX(50%); width:min(92vw,460px); height:54svh; background-position:center bottom; }
-  .faro-shadow { right:50%; transform:translateX(50%); width:min(70vw,360px); }
-  .hero-glow { right:50%; transform:translateX(50%); width:min(90vw,460px); }
+  /* Faro empilhado embaixo, cortado na base. Centralizado via left/right:0 + margin:auto
+     (NAO via transform: a animacao de entrada termina em transform:none e anularia o translate) */
+  .faro { left:0; right:0; margin:0 auto; width:min(92vw,460px); height:54svh; background-position:center bottom; }
+  .faro-shadow { left:0; right:0; margin:0 auto; width:min(70vw,360px); }
+  .hero-glow { left:0; right:0; margin:0 auto; width:min(90vw,460px); }
   .hero-symbol { top:60%; }
   .badge-person { top:auto; bottom:34%; right:auto; left:16px; }
   .badge-product { display:none; }         /* mobile: um único badge */
