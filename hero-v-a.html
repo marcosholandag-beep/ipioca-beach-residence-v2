@@ -201,7 +201,7 @@ img { max-width: 100%; display: block; }
    ============================================================ */
 .hero {
   position: relative;
-  border-radius: var(--r-xl);
+  border-radius: var(--r-xl) var(--r-xl) 0 0;   /* base reta: o ticker encosta e funde */
   overflow: hidden;
   isolation: isolate;
   min-height: clamp(560px, 78vh, 820px);
@@ -558,9 +558,9 @@ img { max-width: 100%; display: block; }
    MARQUEE (linha animada entre seções)
    ============================================================ */
 .marquee {
-  margin-top: var(--pad-page);
+  margin-top: 0;                                /* sem espacamento: encosta no hero */
   background: var(--creme);
-  border-radius: var(--r-pill);
+  border-radius: 0 0 var(--r-xl) var(--r-xl);   /* topo reto p/ fundir com a base do card */
   overflow: hidden;
   padding: 15px 0;
   box-shadow: 0 14px 40px rgba(8,12,24,0.28);
