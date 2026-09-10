@@ -1776,6 +1776,10 @@ img { max-width: 100%; display: block; }
 .lp footer .footer-dev-label { display: block; margin: 18px 0 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: rgba(255,255,255,0.55); }
 .lp footer .footer-trilha-chip { background: #FFF; }
 .lp footer .footer-trilha-chip img { height: 34px; }
+/* rodape sem fundos brancos: logos monocromaticas brancas direto sobre o fundo escuro */
+.lp footer .footer-mme-chip, .lp footer .footer-trilha-chip { background: transparent; padding: 0; border-radius: 0; }
+.lp footer .footer-mme-chip img { filter: brightness(0) invert(1); height: 34px; }
+.lp footer .footer-trilha-chip img { filter: brightness(0) invert(1); height: 28px; }
 /* dobra RCI na estetica da referencia: gradiente do hero (navy + brilho ciano) e grid com linhas finas */
 .lp .rci-dark { background: radial-gradient(90% 70% at 18% 8%, rgba(70,120,144,0.55) 0%, transparent 60%), radial-gradient(80% 60% at 85% 92%, rgba(33,163,192,0.32) 0%, transparent 60%), linear-gradient(180deg, #20243C 0%, #12162A 100%); color: #FBF8F4; }
 .lp .rci-dark .rci-brand { background: #FFF; padding: 8px 14px; border-radius: 10px; }
@@ -1821,6 +1825,30 @@ img { max-width: 100%; display: block; }
 .lp #funciona .step-highlight-line { background: #21A3C0; color: #FFF; }
 .lp #funciona .step:nth-child(2) .step-tag { background: rgba(234,128,54,0.14); color: #B9541A; }
 .lp #funciona .step:nth-child(3) .step-tag { background: rgba(70,120,144,0.14); color: #2F5A70; }
+/* botao 'Falar com um consultor' (Como funciona): azul escuro fechado, base e hover */
+.lp #funciona .steps-cta .btn { background: #20243C; color: #FBF8F4; border: 2px solid #20243C; box-shadow: 0 10px 28px rgba(32,36,60,0.28); }
+.lp #funciona .steps-cta .btn:hover { background: #2A2F45; border-color: #2A2F45; color: #FFF; }
+/* 'Faz as contas': fundo com contraste (aqua suave da paleta), cards ajustados ao novo fundo; vao menor com a dobra anterior */
+.lp #depoimentos { padding-bottom: 72px; }
+.lp #vale.vale { background: #EAF4F3; padding-top: 80px; }
+.lp #vale .compare-col { background: #FFFFFF; }
+.lp #vale .compare-col.positive { background: #D9EFF6; }
+/* ticker repetido entre dobras: banda full-width sem raio; variante navy p/ contraste */
+.marquee.marquee--band { margin: 0; border-radius: 0; box-shadow: none; }
+.marquee.marquee--dark { background: #20243C; }
+.marquee.marquee--dark .marquee-item { color: #FBF8F4; }
+.marquee.marquee--dark .marquee-sep { color: #F5B04A; }
+/* 'Quem ja e dono': titulo em 2 linhas (1a linha sem quebra no desktop, corpo um pouco menor) */
+.lp #donos h2 { font-size: clamp(2.4rem, 4vw, 3.6rem); }
+@media (min-width: 900px) { .lp #donos h2 .linha-inteira { white-space: nowrap; } }
+/* linhas dos numeros com leitura: painel de vidro escuro sobre a foto, rotulos maiores e mais pesados */
+.lp #donos .owners-rows { background: rgba(18,22,42,0.58); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.14); border-top: 1px solid rgba(255,255,255,0.14); border-radius: 20px; padding: 6px 28px; }
+.lp #donos .owners-stat { border-bottom: 1px solid rgba(255,255,255,0.16); padding: 26px 0; }
+.lp #donos .owners-stat:last-child { border-bottom: 0; }
+.lp #donos .owners-stat i { color: rgba(251,248,244,0.62); font-size: 13px; }
+.lp #donos .owners-stat strong { font-size: clamp(2.4rem, 3.8vw, 3.4rem); }
+.lp #donos .owners-stat span { font-size: 16px; font-weight: 600; letter-spacing: 0.08em; color: rgba(251,248,244,0.94); }
+@media (max-width: 900px) { .lp #donos .owners-rows { padding: 4px 18px; } .lp #donos .owners-stat span { font-size: 14px; } }
 /* comparativo no layout da referencia: texto a esquerda, opcoes empilhadas a direita, vencedora em destaque */
 .lp .vale { background: #FBF8F4; color: #20243C; }
 .lp .vale .vale-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
@@ -1857,6 +1885,18 @@ img { max-width: 100%; display: block; }
 .lp .socios-compacta .socios-sub { margin: 0; font-size: clamp(1.15rem, 1.8vw, 1.6rem); line-height: 1.25; }
 .lp .socios-compacta .socios-stats { justify-content: flex-end; gap: clamp(20px, 3vw, 48px); text-align: center; }
 .lp .socios-compacta .socios-stats strong { font-size: clamp(1.5rem, 2.4vw, 2rem); }
+/* disposicao corrigida: 3 colunas fixas, numeros em linha unica, logo do Ipioca em tamanho legivel */
+.lp .socios-compacta { grid-template-columns: 1.1fr 1fr 1.25fr; align-items: center; }
+.lp .socios-compacta .socios-logo { height: 54px; margin: 0 0 18px; }
+.lp .socios-compacta .socios-num { font-size: clamp(3.2rem, 6vw, 5.6rem); line-height: 0.95; }
+.lp .socios-compacta .socios-sub { font-size: clamp(1.1rem, 1.6vw, 1.4rem); max-width: 18ch; }
+.lp .socios-compacta .socios-stats { display: grid; grid-template-columns: repeat(3, auto); justify-content: end; column-gap: clamp(20px, 3vw, 44px); flex-wrap: nowrap; }
+.lp .socios-compacta .socios-stats > div { text-align: center; white-space: nowrap; }
+@media (max-width: 900px) {
+  .lp .socios-compacta .socios-sub { max-width: none; margin: 0 auto; }
+  .lp .socios-compacta .socios-stats { justify-content: center; grid-template-columns: repeat(3, auto); }
+  .lp .socios-compacta .socios-stats > div { white-space: normal; }
+}
 @media (max-width: 900px) {
   .lp .socios { text-align: center; }
   .lp .socios-compacta { grid-template-columns: 1fr; gap: 24px; }
@@ -2164,6 +2204,31 @@ img { max-width: 100%; display: block; }
   </div>
 </section>
 
+<div class="marquee marquee--band" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+    </div>
+    <div class="marquee-group">
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+    </div>
+  </div>
+</div>
+
 <!-- ============ COMO FUNCIONA ============ -->
 <section class="section-white" id="funciona">
   <div class="section-inner">
@@ -2288,7 +2353,7 @@ img { max-width: 100%; display: block; }
     <div class="owners-top">
       <div class="owners-left">
         <p class="owners-eyebrow">Quem já é dono</p>
-        <h2>Chegam, olham o mar<br>e viram <span class="poetic">donos.</span></h2>
+        <h2><span class="linha-inteira">Chegam, olham o mar</span><br>e viram <span class="poetic">donos.</span></h2>
       </div>
       <div class="owners-right">
         <p>Famílias, casais e aposentados de todo o Brasil, cansados de gastar todo ano com hotel sem ter nada que ficasse pra eles.</p>
@@ -2308,7 +2373,7 @@ img { max-width: 100%; display: block; }
 <section class="socios" id="socios">
   <div class="socios-inner socios-compacta">
     <div class="socios-col-num">
-      <img class="socios-logo" src="assets/logos/mme-home-white.png" alt="MME Vacation Club">
+      <img class="socios-logo" src="assets/logos/logo-branco.png" alt="Ipioca Beach Residence">
       <p class="socios-num"><span class="contador" data-alvo="5000">0</span>+</p>
     </div>
     <p class="socios-sub">sócios espalhados por todo o Brasil</p>
@@ -2319,6 +2384,31 @@ img { max-width: 100%; display: block; }
     </div>
   </div>
 </section>
+
+<div class="marquee marquee--band marquee--dark" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+    </div>
+    <div class="marquee-group">
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+    </div>
+  </div>
+</div>
 
 <!-- ============ FORMULÁRIO ============ -->
 <section class="form-section" id="form">
@@ -2433,7 +2523,7 @@ img { max-width: 100%; display: block; }
 <!-- ============ CTA FINAL ============ -->
 <section class="cta-final">
   <h2>Sua próxima<br><span class="poetic">temporada</span><br>já começou.</h2>
-  <a href="#form" class="btn btn-white-outline">Quero conhecer as condições</a>
+  <a href="#form" class="btn btn-white-outline">Garantir meu apartamento de férias</a>
 </section>
 
 <!-- ============ RODAPÉ ============ -->
