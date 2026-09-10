@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Hero A · Faro à direita · Ipioca Beach Residence</title>
+<link rel="icon" type="image/png" href="assets/logos/mme-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* ---- Tokens extraidos do site atual (index.html) ---- */
+  --bg-deep:    #12162A;                    /* base escura do hero */
+  --bg-mid:     #20243C;                    /* mme-night */
+  --cyan:       #21A3C0;                    /* destaque frio */
+  --cyan-soft:  #7ED9D2;                    /* aqua claro */
+  --orange-500: #EA8036;                    /* laranja acao (assinatura IBR) */
+  --orange-600: #D66B22;
+  --text-hi:    #FBF8F4;                    /* mme-creme */
+  --text-mid:   rgba(251,248,244,0.70);
+  --glass:      rgba(255,255,255,0.08);
+  --glass-brd:  rgba(255,255,255,0.14);
+  /* espaçamento base 4px */
+  --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s8:32px; --s10:40px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family:'Inter', system-ui, -apple-system, sans-serif;
+  background:var(--bg-deep);
+  color:var(--text-hi);
+  -webkit-font-smoothing:antialiased;
+}
+a { text-decoration:none; color:inherit; }
+img { display:block; max-width:100%; }
+
+/* ============================================================
+   HERO full-bleed (sem card, sem moldura)
+   ============================================================ */
+.hero {
+  position:relative;
+  min-height:100svh;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(120% 90% at 78% 30%, #1b2440 0%, var(--bg-deep) 60%, #0d1020 100%);
+}
+
+/* camada 0 · foto aérea sangrando topo/direita */
+.hero-media { position:absolute; inset:0; z-index:0; }
+.hero-media img {
+  width:100%; height:100%; object-fit:cover; object-position:72% 55%;
+}
+/* máscara: escurece a esquerda (garante contraste do texto SEM text-shadow) e a base;
+   mais transparente à direita p/ a praia turquesa aparecer atrás do Faro */
+.hero-scrim {
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    linear-gradient(90deg, rgba(12,16,30,0.93) 0%, rgba(12,16,30,0.76) 28%, rgba(12,16,30,0.22) 54%, rgba(12,16,30,0) 80%),
+    linear-gradient(180deg, rgba(12,16,30,0.22) 0%, rgba(12,16,30,0) 26%, rgba(12,16,30,0.50) 100%);
+}
+/* símbolo da marca gigante, desfocado, textura de fundo (substitui as ondas clipart) */
+.hero-symbol {
+  position:absolute; z-index:1; pointer-events:none;
+  right:-6%; top:50%; transform:translateY(-50%);
+  width:min(70vw,900px); aspect-ratio:1;
+  background:url('assets/logos/mme-symbol.png') center/contain no-repeat;
+  opacity:0.04; filter:blur(2px) brightness(0) invert(1);
+}
+/* glow radial ciano atrás do sujeito (separa figura/fundo) */
+.hero-glow {
+  position:absolute; z-index:2; pointer-events:none;
+  right:12%; bottom:0; width:min(52vw,720px); height:82%;
+  background:radial-gradient(closest-side, rgba(33,163,192,0.42) 0%, rgba(33,163,192,0.10) 46%, transparent 72%);
+  filter:blur(6px);
+}
+
+/* ---------- NAVBAR sobreposta (blur ao rolar) ---------- */
+.nav {
+  position:fixed; top:0; left:0; right:0; z-index:40;
+  display:flex; align-items:center; justify-content:space-between; gap:var(--s6);
+  padding:18px clamp(20px,5vw,80px);
+  transition:background .3s ease, backdrop-filter .3s ease, border-color .3s ease, padding .3s ease;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled {
+  background:rgba(18,22,42,0.72);
+  backdrop-filter:blur(18px) saturate(130%); -webkit-backdrop-filter:blur(18px) saturate(130%);
+  border-bottom-color:rgba(255,255,255,0.08);
+  padding-top:12px; padding-bottom:12px;
+}
+.nav-brand { display:flex; align-items:center; gap:16px; }
+.nav-brand img { height:46px; width:auto; }
+.nav-brand .sep { width:1px; height:26px; background:rgba(255,255,255,0.24); }
+.nav-brand img.mme { height:26px; }
+.nav-links { display:flex; gap:var(--s2); list-style:none; }
+.nav-links a {
+  font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.12em;
+  color:rgba(251,248,244,0.78); padding:10px 14px; border-radius:100px;
+  transition:background .2s ease, color .2s ease;
+}
+.nav-links a:hover { background:rgba(255,255,255,0.10); color:var(--text-hi); }
+.nav-social { display:flex; gap:var(--s2); }
+.nav-social a {
+  width:44px; height:44px; border-radius:50%; display:grid; place-items:center;
+  background:var(--glass); border:1px solid var(--glass-brd); color:var(--text-hi);
+  transition:transform .2s, background .2s, border-color .2s;
+}
+.nav-social a svg { width:19px; height:19px; fill:currentColor; }
+.nav-social a:hover { transform:translateY(-2px); border-color:transparent; }
+.nav-social .wpp:hover { background:#25D366; }
+.nav-social .ig:hover { background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF 80%,#515BD4); }
+
+/* ---------- GRID assimétrico ---------- */
+.hero-grid {
+  position:relative; z-index:3;
+  min-height:100svh;
+  max-width:1600px; margin:0 auto;
+  display:grid; grid-template-columns:1.05fr 1.35fr; align-items:center;
+  padding:120px clamp(20px,5vw,80px) 64px;
+}
+.col-text { max-width:560px; }
+.col-visual { position:relative; align-self:stretch; }
+
+/* eyebrow + prova numérica */
+.eyebrow {
+  display:flex; align-items:center; gap:10px;
+  font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.16em;
+  color:var(--cyan-soft); margin-bottom:var(--s4);
+}
+.eyebrow .dot { width:7px; height:7px; border-radius:50%; background:var(--cyan); position:relative; }
+.eyebrow .dot::after { content:""; position:absolute; inset:0; border-radius:50%; background:var(--cyan); animation:pulse 2s ease-out infinite; }
+.proof {
+  display:inline-flex; align-items:baseline; gap:8px;
+  font-size:13px; font-weight:500; color:var(--text-mid); margin-bottom:var(--s6);
+}
+.proof b { font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:22px; color:var(--cyan); letter-spacing:-0.02em; }
+
+/* headline display */
+.headline {
+  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
+  font-size:clamp(2.75rem, 6.2vw, 5.25rem);
+  line-height:1.0; letter-spacing:-0.02em; color:var(--text-hi);
+  margin-bottom:var(--s6);
+}
+.headline .key { color:var(--cyan); }
+
+.sub {
+  font-size:clamp(1rem,1.2vw,1.15rem); line-height:1.55; color:var(--text-mid);
+  max-width:440px; margin-bottom:var(--s8);
+}
+.sub b { color:var(--text-hi); font-weight:600; }
+
+/* CTA */
+.cta-row { display:flex; align-items:center; gap:var(--s6); flex-wrap:wrap; margin-bottom:var(--s8); }
+.btn-primary {
+  display:inline-flex; align-items:center; gap:14px;
+  background:linear-gradient(135deg, var(--orange-500) 0%, var(--orange-600) 100%);
+  color:#fff; font-weight:600; font-size:15px; letter-spacing:0.01em;
+  padding:12px 12px 12px 26px; border-radius:100px; border:none; cursor:pointer;
+  box-shadow:0 10px 30px rgba(234,128,54,0.35);
+  transition:transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s;
+}
+.btn-primary .ico { width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.22); display:grid; place-items:center; transition:transform .22s; }
+.btn-primary .ico svg { width:18px; height:18px; stroke:#fff; fill:none; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 16px 40px rgba(234,128,54,0.45); }
+.btn-primary:hover .ico { transform:translateX(3px); }
+.link-secondary {
+  font-size:14px; font-weight:600; color:var(--text-hi); opacity:0.85;
+  display:inline-flex; align-items:center; gap:7px; border-bottom:1px solid rgba(255,255,255,0.28); padding-bottom:2px;
+  transition:opacity .2s, border-color .2s;
+}
+.link-secondary:hover { opacity:1; border-color:var(--cyan); }
+
+/* trust bar — chips claros discretos p/ os selos ficarem legiveis sobre fundo escuro */
+.trust { display:flex; align-items:center; gap:var(--s4); flex-wrap:wrap; opacity:0.72; transition:opacity .3s; }
+.trust:hover { opacity:1; }
+.trust .chip {
+  display:inline-flex; align-items:center; justify-content:center;
+  background:rgba(255,255,255,0.92); border-radius:10px; padding:7px 12px; height:44px;
+}
+.trust .chip img { height:100%; width:auto; }
+.trust .chip.tri img { height:118%; }
+
+/* ---------- SUJEITO + BADGES ---------- */
+.faro {
+  position:absolute; z-index:3;
+  right:clamp(-30px,2vw,60px); bottom:0;
+  height:94%; width:min(50vw,700px);
+  background:url('assets/fotos/apresentador.png') right bottom/contain no-repeat;
+  background-image:image-set(url('assets/fotos/apresentador.webp') 1x);
+  /* integracao: grade de cor + rim light + sombra de contato empilhados */
+  filter:
+    contrast(1.05) saturate(1.06)
+    drop-shadow(-2px 0 0 rgba(33,163,192,0.18))     /* rim light frio no contorno */
+    drop-shadow(0 24px 30px rgba(8,12,24,0.55));    /* sombra de contato na base */
+  pointer-events:none;
+}
+/* sombra de contato elíptica no chão, reforça o "pertencer à cena" */
+.faro-shadow {
+  position:absolute; z-index:2; pointer-events:none;
+  right:clamp(0px,4vw,110px); bottom:2%;
+  width:min(38vw,520px); height:60px;
+  background:radial-gradient(ellipse, rgba(8,12,24,0.55) 0%, transparent 70%);
+  filter:blur(8px);
+}
+.badge {
+  position:absolute; z-index:5;
+  display:flex; align-items:center; gap:12px;
+  background:var(--glass); border:1px solid var(--glass-brd);
+  backdrop-filter:blur(14px) saturate(130%); -webkit-backdrop-filter:blur(14px) saturate(130%);
+  border-radius:16px; padding:12px 16px;
+  box-shadow:0 12px 34px rgba(8,12,24,0.32);
+}
+.badge-person { top:26%; right:clamp(30px,26vw,360px); }
+.badge-person .av { width:38px; height:38px; border-radius:50%; background:var(--cyan); display:grid; place-items:center; flex-shrink:0; }
+.badge-person .av svg { width:20px; height:20px; stroke:var(--bg-deep); fill:none; stroke-width:2; }
+.badge-person b { display:block; font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:15px; letter-spacing:-0.01em; }
+.badge-person span { display:block; font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-mid); margin-top:2px; }
+.badge-product { bottom:16%; right:clamp(20px,2vw,40px); max-width:260px; }
+.badge-product svg { width:22px; height:22px; stroke:var(--cyan-soft); fill:none; stroke-width:1.8; flex-shrink:0; }
+.badge-product span { font-size:12.5px; line-height:1.35; color:var(--text-hi); }
+
+/* ============================================================
+   ANIMACOES DE ENTRADA (opacity + transform, <=600ms, staggered)
+   ============================================================ */
+@keyframes rise { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:none} }
+@keyframes fade { from{opacity:0} to{opacity:1} }
+@keyframes fadeR { from{opacity:0; transform:translateX(28px)} to{opacity:1; transform:none} }
+@keyframes pop { from{opacity:0; transform:translateY(-8px) scale(.92)} to{opacity:1; transform:none} }
+@keyframes pulse { 0%{transform:scale(1);opacity:.7} 70%{transform:scale(2.6);opacity:0} 100%{opacity:0} }
+
+.eyebrow { animation:rise .5s cubic-bezier(.2,.7,.2,1) .05s both; }
+.proof   { animation:rise .5s cubic-bezier(.2,.7,.2,1) .12s both; }
+.headline{ animation:rise .55s cubic-bezier(.2,.7,.2,1) .18s both; }
+.sub     { animation:rise .55s cubic-bezier(.2,.7,.2,1) .28s both; }
+.cta-row { animation:rise .55s cubic-bezier(.2,.7,.2,1) .36s both; }
+.trust   { animation:rise .55s cubic-bezier(.2,.7,.2,1) .44s both; }
+.faro, .faro-shadow, .hero-glow { animation:fadeR .6s cubic-bezier(.2,.7,.2,1) .2s both; }
+.badge-person { animation:pop .5s cubic-bezier(.2,.7,.2,1) .55s both; }
+.badge-product{ animation:pop .5s cubic-bezier(.2,.7,.2,1) .66s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, .eyebrow, .proof, .headline, .sub, .cta-row, .trust, .faro, .faro-shadow, .hero-glow, .badge-person, .badge-product { animation:none !important; }
+  .eyebrow .dot::after { display:none; }
+}
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+@media (max-width:900px){
+  .nav-links { display:none; }
+  .hero-grid { grid-template-columns:1fr; padding:104px clamp(20px,6vw,40px) 0; align-items:start; }
+  .col-text { max-width:100%; }
+  .headline { font-size:clamp(2.4rem,10vw,3.4rem); }
+  .sub { max-width:100%; }
+  .col-visual { min-height:56svh; margin-top:var(--s6); }
+  /* Faro empilhado embaixo, cortado na base */
+  .faro { right:50%; transform:translateX(50%); width:min(92vw,460px); height:100%; background-position:center bottom; }
+  .faro-shadow { right:50%; transform:translateX(50%); width:min(70vw,360px); }
+  .hero-glow { right:50%; transform:translateX(50%); width:min(90vw,460px); }
+  .hero-symbol { top:60%; }
+  .badge-person { top:auto; bottom:34%; right:auto; left:16px; }
+  .badge-product { display:none; }         /* mobile: um único badge */
+  .cta-row .btn-primary { width:100%; justify-content:space-between; }
+  .trust { gap:var(--s4); }
+}
+@media (max-width:400px){
+  .trust { row-gap:var(--s3); }
+  .trust .sep { display:none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#topo" class="nav-brand">
+    <img src="assets/logos/logo-branco.png" alt="Ipioca Beach Residence">
+    <span class="sep" aria-hidden="true"></span>
+    <img class="mme" src="assets/logos/mme-symbol.png" alt="MME Vacation Club">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#ipioca">Ipioca</a></li>
+    <li><a href="#empreendimento">Empreendimento</a></li>
+    <li><a href="#funciona">Como funciona</a></li>
+    <li><a href="#faq">Dúvidas</a></li>
+  </ul>
+  <div class="nav-social">
+    <a class="wpp" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+    <a class="ig" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+  </div>
+</nav>
+
+<section class="hero" id="topo">
+  <!-- camada 0: aérea (LCP) -->
+  <picture class="hero-media">
+    <source type="image/webp" srcset="assets/fotos/hero-aerea-900.webp 900w, assets/fotos/hero-aerea-1400.webp 1400w, assets/fotos/hero-aerea-2000.webp 2000w" sizes="100vw">
+    <img src="assets/fotos/hero-aerea-1400.webp" alt="Vista aérea da praia de Ipioca, em Maceió" fetchpriority="high" decoding="async">
+  </picture>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-symbol" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="hero-grid">
+    <div class="col-text">
+      <p class="eyebrow"><span class="dot"></span> Praia de Ipioca · Maceió · Alagoas</p>
+      <p class="proof"><b>+100</b> países de uso via rede RCI</p>
+      <h1 class="headline">Sua casa de férias no <span class="key">Caribe</span> brasileiro.</h1>
+      <p class="sub">Apartamento mobiliado à beira-mar, em Ipioca (Maceió). <b>Registrado em cartório no seu nome.</b></p>
+      <div class="cta-row">
+        <a href="#form" class="btn-primary">
+          Quero conhecer as condições
+          <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a href="#empreendimento" class="link-secondary">Ver o apartamento</a>
+      </div>
+      <div class="trust" aria-label="Selos de confiança">
+        <span class="chip tri"><img src="assets/logos/tripadvisor-travelers-choice-2025.png" alt="Tripadvisor Travelers' Choice 2025"></span>
+        <span class="chip"><img src="assets/logos/rci-logo.png" alt="Rede RCI"></span>
+        <span class="chip"><img src="assets/logos/mme-horizontal.png" alt="MME Vacation Club"></span>
+      </div>
+    </div>
+
+    <div class="col-visual">
+      <div class="faro-shadow" aria-hidden="true"></div>
+      <div class="faro" role="img" aria-label="Rodrigo Faro, apresentador do Ipioca Beach Residence"></div>
+
+      <div class="badge badge-person">
+        <span class="av" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <div><b>Rodrigo Faro</b><span>Apresentador</span></div>
+      </div>
+
+      <div class="badge badge-product">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+        <span>Apartamento mobiliado, pé na areia, registrado no seu nome.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* navbar ganha blur ao rolar */
+(function(){
+  var nav = document.getElementById('nav');
+  function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 10); }
+  window.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+})();
+</script>
+</body>
+</html>

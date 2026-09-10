@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Hero B · Faro central · Ipioca Beach Residence</title>
+<link rel="icon" type="image/png" href="assets/logos/mme-favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep:#12162A; --bg-mid:#20243C;
+  --cyan:#21A3C0; --cyan-soft:#7ED9D2;
+  --orange-500:#EA8036; --orange-600:#D66B22;
+  --text-hi:#FBF8F4; --text-mid:rgba(251,248,244,0.70);
+  --glass:rgba(255,255,255,0.08); --glass-brd:rgba(255,255,255,0.14);
+  --s2:8px; --s3:12px; --s4:16px; --s6:24px; --s8:32px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Inter',system-ui,sans-serif; background:var(--bg-deep); color:var(--text-hi); -webkit-font-smoothing:antialiased; }
+a { text-decoration:none; color:inherit; }
+img { display:block; max-width:100%; }
+
+.hero {
+  position:relative; min-height:100svh; overflow:hidden; isolation:isolate;
+  background:radial-gradient(120% 100% at 50% 8%, #1b2440 0%, var(--bg-deep) 62%, #0d1020 100%);
+  display:flex; flex-direction:column;
+}
+.hero-media { position:absolute; inset:0; z-index:0; }
+.hero-media img { width:100%; height:100%; object-fit:cover; object-position:center 50%; }
+.hero-scrim {
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    radial-gradient(90% 70% at 50% 42%, rgba(12,16,30,0) 30%, rgba(12,16,30,0.55) 100%),
+    linear-gradient(180deg, rgba(12,16,30,0.55) 0%, rgba(12,16,30,0.10) 22%, rgba(12,16,30,0.10) 52%, rgba(12,16,30,0.92) 100%);
+}
+.hero-symbol {
+  position:absolute; z-index:1; pointer-events:none; left:50%; top:52%; transform:translate(-50%,-50%);
+  width:min(90vw,1100px); aspect-ratio:1;
+  background:url('assets/logos/mme-symbol.png') center/contain no-repeat;
+  opacity:0.04; filter:blur(2px) brightness(0) invert(1);
+}
+.hero-glow {
+  position:absolute; z-index:2; pointer-events:none; left:50%; bottom:0; transform:translateX(-50%);
+  width:min(70vw,820px); height:80%;
+  background:radial-gradient(closest-side, rgba(33,163,192,0.40) 0%, rgba(33,163,192,0.10) 48%, transparent 72%);
+  filter:blur(6px);
+}
+
+/* NAV */
+.nav {
+  position:fixed; top:0; left:0; right:0; z-index:40;
+  display:flex; align-items:center; justify-content:space-between; gap:var(--s6);
+  padding:18px clamp(20px,5vw,80px);
+  transition:background .3s, backdrop-filter .3s, border-color .3s, padding .3s; border-bottom:1px solid transparent;
+}
+.nav.scrolled { background:rgba(18,22,42,0.72); backdrop-filter:blur(18px) saturate(130%); -webkit-backdrop-filter:blur(18px) saturate(130%); border-bottom-color:rgba(255,255,255,0.08); padding-top:12px; padding-bottom:12px; }
+.nav-brand { display:flex; align-items:center; gap:16px; }
+.nav-brand img { height:46px; width:auto; }
+.nav-brand .sep { width:1px; height:26px; background:rgba(255,255,255,0.24); }
+.nav-brand img.mme { height:26px; }
+.nav-links { display:flex; gap:var(--s2); list-style:none; }
+.nav-links a { font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.12em; color:rgba(251,248,244,0.78); padding:10px 14px; border-radius:100px; transition:background .2s,color .2s; }
+.nav-links a:hover { background:rgba(255,255,255,0.10); color:var(--text-hi); }
+.nav-social { display:flex; gap:var(--s2); }
+.nav-social a { width:44px; height:44px; border-radius:50%; display:grid; place-items:center; background:var(--glass); border:1px solid var(--glass-brd); color:var(--text-hi); transition:transform .2s,background .2s,border-color .2s; }
+.nav-social a svg { width:19px; height:19px; fill:currentColor; }
+.nav-social a:hover { transform:translateY(-2px); border-color:transparent; }
+.nav-social .wpp:hover { background:#25D366; }
+.nav-social .ig:hover { background:linear-gradient(45deg,#F58529,#DD2A7B 55%,#8134AF 80%,#515BD4); }
+
+/* STAGE central */
+.stage { position:relative; z-index:3; flex:1; display:flex; flex-direction:column; align-items:center; text-align:center; padding:118px clamp(20px,5vw,40px) 0; }
+.eyebrow { display:inline-flex; align-items:center; gap:10px; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.16em; color:var(--cyan-soft); margin-bottom:var(--s4); }
+.eyebrow .dot { width:7px; height:7px; border-radius:50%; background:var(--cyan); position:relative; }
+.eyebrow .dot::after { content:""; position:absolute; inset:0; border-radius:50%; background:var(--cyan); animation:pulse 2s ease-out infinite; }
+
+/* sujeito central */
+.faro-wrap { position:relative; flex:1; min-height:0; width:100%; max-width:1100px; display:flex; align-items:flex-end; justify-content:center; }
+.faro-shadow { position:absolute; z-index:1; bottom:1%; left:50%; transform:translateX(-50%); width:min(46vw,460px); height:56px; background:radial-gradient(ellipse, rgba(8,12,24,0.55) 0%, transparent 70%); filter:blur(8px); }
+.faro {
+  position:relative; z-index:2; height:min(76vh,720px); width:min(88vw,600px);
+  background:url('assets/fotos/apresentador.png') center bottom/contain no-repeat;
+  background-image:image-set(url('assets/fotos/apresentador.webp') 1x);
+  filter:contrast(1.05) saturate(1.06) drop-shadow(-2px 0 0 rgba(33,163,192,0.18)) drop-shadow(0 22px 30px rgba(8,12,24,0.55));
+}
+/* headline SOBREPOSTA em camada superior (z acima do Faro) */
+.headline {
+  position:absolute; z-index:4; left:50%; top:52%; transform:translate(-50%,-50%);
+  width:min(92vw,1100px);
+  font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
+  font-size:clamp(2.75rem,8.5vw,6.5rem); line-height:0.98; letter-spacing:-0.03em;
+  color:var(--text-hi); pointer-events:none; text-wrap:balance;
+}
+.headline .key { color:var(--cyan); }
+.headline .mix { color:var(--cyan-soft); }
+
+/* rodapé central: sub + CTA + trust — sobrepoe a base da imagem (nao empurra o layout) */
+.foot { position:absolute; z-index:5; bottom:0; left:0; right:0; display:flex; flex-direction:column; align-items:center; gap:var(--s4); padding:60px clamp(20px,5vw,40px) 36px; text-align:center;
+  background:linear-gradient(180deg, transparent 0%, rgba(12,16,30,0.78) 55%, rgba(12,16,30,0.95) 100%); }
+.sub { font-size:clamp(1rem,1.2vw,1.15rem); line-height:1.5; color:var(--text-mid); max-width:520px; }
+.sub b { color:var(--text-hi); font-weight:600; }
+.cta-row { display:flex; align-items:center; gap:var(--s6); flex-wrap:wrap; justify-content:center; }
+.btn-primary { display:inline-flex; align-items:center; gap:14px; background:linear-gradient(135deg,var(--orange-500),var(--orange-600)); color:#fff; font-weight:600; font-size:15px; padding:12px 12px 12px 26px; border-radius:100px; border:none; cursor:pointer; box-shadow:0 10px 30px rgba(234,128,54,0.35); transition:transform .22s cubic-bezier(.2,.7,.2,1),box-shadow .22s; }
+.btn-primary .ico { width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,0.22); display:grid; place-items:center; transition:transform .22s; }
+.btn-primary .ico svg { width:18px; height:18px; stroke:#fff; fill:none; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 16px 40px rgba(234,128,54,0.45); }
+.btn-primary:hover .ico { transform:translateX(3px); }
+.link-secondary { font-size:14px; font-weight:600; opacity:0.85; display:inline-flex; align-items:center; gap:7px; border-bottom:1px solid rgba(255,255,255,0.28); padding-bottom:2px; transition:opacity .2s,border-color .2s; }
+.link-secondary:hover { opacity:1; border-color:var(--cyan); }
+.trust { display:flex; align-items:center; gap:var(--s4); flex-wrap:wrap; justify-content:center; opacity:0.72; transition:opacity .3s; }
+.trust:hover { opacity:1; }
+.trust .chip { display:inline-flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.92); border-radius:10px; padding:7px 12px; height:44px; }
+.trust .chip img { height:100%; width:auto; }
+.trust .chip.tri img { height:118%; }
+
+/* badge unico de produto flutuante */
+.badge {
+  position:absolute; z-index:5; bottom:20%; right:clamp(16px,8vw,120px);
+  display:flex; align-items:center; gap:12px; max-width:240px;
+  background:var(--glass); border:1px solid var(--glass-brd);
+  backdrop-filter:blur(14px) saturate(130%); -webkit-backdrop-filter:blur(14px) saturate(130%);
+  border-radius:16px; padding:12px 16px; box-shadow:0 12px 34px rgba(8,12,24,0.32); text-align:left;
+}
+.badge svg { width:22px; height:22px; stroke:var(--cyan-soft); fill:none; stroke-width:1.8; flex-shrink:0; }
+.badge span { font-size:12.5px; line-height:1.35; }
+
+@keyframes rise { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+@keyframes riseH { from{opacity:0;transform:translate(-50%,-46%)} to{opacity:1;transform:translate(-50%,-50%)} }
+@keyframes fade { from{opacity:0} to{opacity:1} }
+@keyframes pop { from{opacity:0;transform:translateY(-8px) scale(.92)} to{opacity:1;transform:none} }
+@keyframes pulse { 0%{transform:scale(1);opacity:.7} 70%{transform:scale(2.6);opacity:0} 100%{opacity:0} }
+.eyebrow { animation:rise .5s cubic-bezier(.2,.7,.2,1) .05s both; }
+.faro, .faro-shadow, .hero-glow { animation:fade .6s ease .2s both; }
+.headline { animation:riseH .6s cubic-bezier(.2,.7,.2,1) .3s both; }
+.sub { animation:rise .55s cubic-bezier(.2,.7,.2,1) .42s both; }
+.cta-row { animation:rise .55s cubic-bezier(.2,.7,.2,1) .5s both; }
+.trust { animation:rise .55s cubic-bezier(.2,.7,.2,1) .58s both; }
+.badge { animation:pop .5s cubic-bezier(.2,.7,.2,1) .6s both; }
+@media (prefers-reduced-motion:reduce){ *{animation:none!important} .headline{transform:translate(-50%,-50%)} .eyebrow .dot::after{display:none} }
+
+@media (max-width:900px){
+  .nav-links { display:none; }
+  .faro { height:52vh; width:min(94vw,420px); }
+  .headline { font-size:clamp(2.4rem,12vw,3.6rem); top:34%; }
+  .badge { display:none; }
+  .btn-primary { width:100%; justify-content:space-between; }
+  .foot { gap:var(--s4); }
+}
+@media (max-width:400px){ .trust .chip { height:38px; padding:6px 9px; } }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#topo" class="nav-brand">
+    <img src="assets/logos/logo-branco.png" alt="Ipioca Beach Residence">
+    <span class="sep" aria-hidden="true"></span>
+    <img class="mme" src="assets/logos/mme-symbol.png" alt="MME Vacation Club">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#ipioca">Ipioca</a></li>
+    <li><a href="#empreendimento">Empreendimento</a></li>
+    <li><a href="#funciona">Como funciona</a></li>
+    <li><a href="#faq">Dúvidas</a></li>
+  </ul>
+  <div class="nav-social">
+    <a class="wpp" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+    <a class="ig" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+  </div>
+</nav>
+
+<section class="hero" id="topo">
+  <picture class="hero-media">
+    <source type="image/webp" srcset="assets/fotos/hero-aerea-900.webp 900w, assets/fotos/hero-aerea-1400.webp 1400w, assets/fotos/hero-aerea-2000.webp 2000w" sizes="100vw">
+    <img src="assets/fotos/hero-aerea-1400.webp" alt="Vista aérea da praia de Ipioca, em Maceió" fetchpriority="high" decoding="async">
+  </picture>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-symbol" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+
+  <div class="stage">
+    <p class="eyebrow"><span class="dot"></span> Praia de Ipioca · Maceió · Alagoas · <b style="color:var(--cyan);font-weight:700">+100 países via RCI</b></p>
+    <div class="faro-wrap">
+      <div class="faro-shadow" aria-hidden="true"></div>
+      <h1 class="headline">Sua casa de férias<br>no <span class="key">Caribe</span> brasileiro.</h1>
+      <div class="faro" role="img" aria-label="Rodrigo Faro, apresentador do Ipioca Beach Residence"></div>
+      <div class="badge">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg>
+        <span>Apartamento mobiliado, pé na areia, registrado no seu nome.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <p class="sub">Apartamento mobiliado à beira-mar, em Ipioca (Maceió). <b>Registrado em cartório no seu nome.</b></p>
+    <div class="cta-row">
+      <a href="#form" class="btn-primary">Quero conhecer as condições <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a href="#empreendimento" class="link-secondary">Ver o apartamento</a>
+    </div>
+    <div class="trust" aria-label="Selos de confiança">
+      <span class="chip tri"><img src="assets/logos/tripadvisor-travelers-choice-2025.png" alt="Tripadvisor Travelers' Choice 2025"></span>
+      <span class="chip"><img src="assets/logos/rci-logo.png" alt="Rede RCI"></span>
+      <span class="chip"><img src="assets/logos/mme-horizontal.png" alt="MME Vacation Club"></span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  function s(){ nav.classList.toggle('scrolled', window.scrollY>10); }
+  window.addEventListener('scroll', s, {passive:true}); s();
+})();
+</script>
+</body>
+</html>
