@@ -1732,7 +1732,12 @@ img { max-width: 100%; display: block; }
 }@media (max-width: 560px) {.lp .hero-nav { padding: 16px 16px; }.lp .hero-nav-brand { gap: 9px; }.lp .hero-nav-brand img { height: 40px; }.lp .hero-nav-sep { height: 24px; }.lp .hero-nav-brand img.hero-nav-mme { height: 26px; }.lp .hero-nav .btn-primary { padding: 10px 14px !important; font-size: 11px; letter-spacing: 0.06em; }.lp .hero-nav .btn-primary::after { display: none; }.lp .footer-grid { grid-template-columns: 1fr; }.lp .hero-title { font-size: 42px; }.lp .chapter-title { font-size: 44px; }.lp .compare-note { font-size: 18px; }
 }
 
-.lp { margin: 0 calc(-1 * var(--pad-page)) calc(-1 * var(--pad-page)); }
+.lp { margin: 0 calc(-1 * var(--pad-page)); }
+.lp-end { margin-bottom: calc(-1 * var(--pad-page)); }
+/* banda da faixa de atributos: full-bleed creme, FORA do escopo .lp (regras mobile do site nao a alcancam) */
+.band { background: #FBF8F4; margin: 0 calc(-1 * var(--pad-page)); padding: 0 clamp(20px, 5vw, 56px) 64px; }
+.band .strip { margin-top: 0; background: #FFF; border: 1px solid rgba(32,36,60,0.07); box-shadow: 0 10px 40px rgba(15,18,32,0.08); }
+
 
 </style>
 </head>
@@ -1824,7 +1829,39 @@ img { max-width: 100%; display: block; }
   </div>
 </div>
 
-<!-- ============ FAIXA DE ATRIBUTOS ============ -->
+
+<div class="lp">
+<!-- ============ CAPÍTULO IPIOCA ============ -->
+<section class="chapter" id="ipioca">
+  <div class="chapter-narrow">
+    <p class="chapter-coords">
+      <span>Praia de Ipioca</span>
+      <span>Maceió</span>
+      <span>Alagoas</span>
+    </p>
+    <h2 class="chapter-title">
+      Onde Maceió<br>
+      ainda tem silêncio.
+    </h2>
+    <p class="chapter-lead">
+      No litoral norte de <b>Maceió (AL)</b>, a 30 minutos do aeroporto. Coqueiral denso, mar turquesa e piscinas naturais na maré baixa: é o <em class="poetic-dark">Caribe Brasileiro</em>, à beira da 2ª maior barreira de corais do mundo.
+    </p>
+    <div class="benefit-pills">
+      <span class="benefit-pill">Caribe Brasileiro</span>
+      <span class="benefit-pill">2ª maior barreira de corais do mundo</span>
+      <span class="benefit-pill">Piscinas naturais na maré baixa</span>
+    </div>
+  </div>
+  <div class="chapter-media">
+    <iframe src="https://www.youtube.com/embed/uTfoBSTAIUY" title="Ipioca Beach Residence" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  <p class="chapter-caption">Praia de Ipioca · Litoral Norte de Alagoas · 30 min do Aeroporto Zumbi dos Palmares</p>
+</section>
+
+</div>
+
+<!-- ============ FAIXA DE ATRIBUTOS (abaixo do capitulo Ipioca) ============ -->
+<div class="band">
 <section class="strip">
   <div class="strip-item">
     <span class="icon-circle">
@@ -1866,35 +1903,9 @@ img { max-width: 100%; display: block; }
     <div class="strip-txt"><strong>Vitalício</strong><small>Registrado no seu nome · hereditário</small></div>
   </div>
 </section>
+</div>
 
-<div class="lp">
-<!-- ============ CAPÍTULO IPIOCA ============ -->
-<section class="chapter" id="ipioca">
-  <div class="chapter-narrow">
-    <p class="chapter-coords">
-      <span>Praia de Ipioca</span>
-      <span>Maceió</span>
-      <span>Alagoas</span>
-    </p>
-    <h2 class="chapter-title">
-      Onde Maceió<br>
-      ainda tem silêncio.
-    </h2>
-    <p class="chapter-lead">
-      No litoral norte de <b>Maceió (AL)</b>, a 30 minutos do aeroporto. Coqueiral denso, mar turquesa e piscinas naturais na maré baixa: é o <em class="poetic-dark">Caribe Brasileiro</em>, à beira da 2ª maior barreira de corais do mundo.
-    </p>
-    <div class="benefit-pills">
-      <span class="benefit-pill">Caribe Brasileiro</span>
-      <span class="benefit-pill">2ª maior barreira de corais do mundo</span>
-      <span class="benefit-pill">Piscinas naturais na maré baixa</span>
-    </div>
-  </div>
-  <div class="chapter-media">
-    <iframe src="https://www.youtube.com/embed/uTfoBSTAIUY" title="Ipioca Beach Residence" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </div>
-  <p class="chapter-caption">Praia de Ipioca · Litoral Norte de Alagoas · 30 min do Aeroporto Zumbi dos Palmares</p>
-</section>
-
+<div class="lp lp-end">
 <!-- ============ CREDIBILIDADE MME VACATION CLUB ============ -->
 <section class="mme-credit" id="mme">
   <div class="mme-credit-inner">
