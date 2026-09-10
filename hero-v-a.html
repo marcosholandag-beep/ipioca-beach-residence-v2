@@ -188,8 +188,9 @@ img { display:block; max-width:100%; }
 /* ---------- SUJEITO + BADGES ---------- */
 .faro {
   position:absolute; z-index:3;
-  right:clamp(-30px,2vw,60px); bottom:0;
-  height:94%; width:min(50vw,700px);
+  /* flush à borda direita e inferior da viewport (sangra), como na referência */
+  right:0; bottom:0;
+  height:94%; width:min(48vw,700px);
   background:url('assets/fotos/apresentador.png') right bottom/contain no-repeat;
   background-image:image-set(url('assets/fotos/apresentador.webp') 1x);
   /* integracao: grade de cor + rim light + sombra de contato empilhados */
@@ -258,8 +259,8 @@ img { display:block; max-width:100%; }
   .headline { font-size:clamp(2.4rem,10vw,3.4rem); }
   .sub { max-width:100%; }
   .col-visual { min-height:56svh; margin-top:var(--s6); }
-  /* Faro empilhado embaixo, cortado na base */
-  .faro { right:50%; transform:translateX(50%); width:min(92vw,460px); height:100%; background-position:center bottom; }
+  /* Faro empilhado embaixo, cortado na base (agora relativo ao hero: altura limitada à área visual) */
+  .faro { right:50%; transform:translateX(50%); width:min(92vw,460px); height:54svh; background-position:center bottom; }
   .faro-shadow { right:50%; transform:translateX(50%); width:min(70vw,360px); }
   .hero-glow { right:50%; transform:translateX(50%); width:min(90vw,460px); }
   .hero-symbol { top:60%; }
@@ -303,6 +304,9 @@ img { display:block; max-width:100%; }
   <div class="hero-scrim" aria-hidden="true"></div>
   <div class="hero-symbol" aria-hidden="true"></div>
   <div class="hero-glow" aria-hidden="true"></div>
+  <!-- Faro ancorado ao hero (full-bleed), não à coluna, para sangrar até a borda direita -->
+  <div class="faro-shadow" aria-hidden="true"></div>
+  <div class="faro" role="img" aria-label="Rodrigo Faro, apresentador do Ipioca Beach Residence"></div>
 
   <div class="hero-grid">
     <div class="col-text">
@@ -325,9 +329,6 @@ img { display:block; max-width:100%; }
     </div>
 
     <div class="col-visual">
-      <div class="faro-shadow" aria-hidden="true"></div>
-      <div class="faro" role="img" aria-label="Rodrigo Faro, apresentador do Ipioca Beach Residence"></div>
-
       <div class="badge badge-person">
         <span class="av" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
         <div><b>Rodrigo Faro</b><span>Apresentador</span></div>
