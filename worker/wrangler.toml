@@ -1,0 +1,21 @@
+name = "ibr-lead-relay"
+main = "lead-relay.js"
+compatibility_date = "2026-09-01"
+
+# A rota só funciona se a zona ipiocabeachresidence.com.br estiver
+# no mesmo Cloudflare que já faz proxy do subdomínio (confirmado: server: cloudflare).
+[[routes]]
+pattern = "lp.ipiocabeachresidence.com.br/api/*"
+zone_name = "ipiocabeachresidence.com.br"
+
+[vars]
+ALLOWED_ORIGINS = "https://lp.ipiocabeachresidence.com.br"
+
+# Secrets — NUNCA neste arquivo. Defina com:
+#   npx wrangler secret put MAKE_WEBHOOK_URL
+#   npx wrangler secret put TURNSTILE_SECRET   (opcional)
+#
+# Para rodar local (npx wrangler dev), use o arquivo .dev.vars, que está no .gitignore.
+
+[observability]
+enabled = true

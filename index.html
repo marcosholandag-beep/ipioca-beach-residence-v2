@@ -3,6 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NL6VZ5HQ');</script>
+<!-- End Google Tag Manager -->
 <title>Ipioca Beach Residence · Sua casa de férias no litoral norte de Maceió</title>
 <meta name="description" content="Multipropriedade à beira-mar em Ipioca, Maceió/AL. Apartamento mobiliado, no seu nome, com estrutura de resort completa e rede RCI. Vitalício e hereditário. A partir de 66x R$ 620 + entrada reduzida.">
 <meta property="og:title" content="Ipioca Beach Residence · Sua casa de férias no Caribe brasileiro">
@@ -1691,9 +1698,58 @@ footer {
   .chapter-title { font-size: 44px; }
   .compare-note { font-size: 18px; }
 }
+/* --- Traqueamento: mensagens de validacao + honeypot --------------------- */
+.campo-erro {
+  display: none;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.form-check + .campo-erro { margin-top: -12px; }
+.form-aviso {
+  display: none;
+  margin-top: 4px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: #FDECEA;
+  color: #8E2A21;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.form-field input[aria-invalid="true"] { border-color: #C0392B; }
+.form button[type="submit"][disabled] { opacity: .6; cursor: progress; }
+.hp-campo {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+}
 </style>
+
+<!-- Meta Pixel — Ipioca Beach Residence — 586420452079899 -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '586420452079899');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=586420452079899&ev=PageView&noscript=1"></noscript>
+
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NL6VZ5HQ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="topo">
@@ -2185,6 +2241,10 @@ footer {
         <input type="checkbox" name="consentimento" required>
         Aceito receber contato do time comercial do Ipioca Beach Residence.
       </label>
+      <div class="hp-campo" aria-hidden="true">
+        <label for="f-campo-extra">Nao preencha este campo</label>
+        <input id="f-campo-extra" name="campo_extra" type="text" tabindex="-1" autocomplete="off">
+      </div>
       <button type="submit" class="btn btn-primary form-cta">Quero receber a apresentação</button>
       <p class="form-note">🔒 Seus dados vão só para o time comercial. Nada de spam.</p>
     </form>
@@ -2265,24 +2325,7 @@ document.querySelectorAll('.faq-q').forEach(q => {
   });
 });
 
-// Formulário
-// TODO: substituir por endpoint real (Formspree, Kommo webhook, n8n etc.)
-// Formspree exemplo: form.action = 'https://formspree.io/f/SEU_ID';
-const form = document.getElementById('lp-form');
-const success = document.getElementById('form-success');
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const data = Object.fromEntries(new FormData(form).entries());
-
-  // Simulação local — o endpoint real deve ser plugado aqui:
-  // await fetch('https://formspree.io/f/SEU_ID', { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
-
-  console.log('Lead capturado:', data);
-
-  form.style.display = 'none';
-  success.classList.add('show');
-  setTimeout(() => { success.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 100);
-});
+// O envio do formulario agora vive em assets/js/traqueamento.js
 
 // Carrossel de shorts (prova social)
 document.querySelectorAll('[data-shorts]').forEach(track => {
@@ -2339,6 +2382,8 @@ telInput.addEventListener('input', (e) => {
   e.target.value = v;
 });
 </script>
+
+<script src="assets/js/traqueamento.js" defer></script>
 
 </body>
 </html>

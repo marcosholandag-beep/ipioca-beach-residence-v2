@@ -3,3 +3,9 @@ node_modules/
 *.log
 .vscode/
 .idea/
+
+# Segredos do Worker — nunca versionar
+.dev.vars
+worker/.dev.vars
+.wrangler/
+worker/.wrangler/
