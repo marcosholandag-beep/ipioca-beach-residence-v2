@@ -2052,6 +2052,43 @@ section[id] { scroll-margin-top: 16px; }
   .js .rv { opacity: 1 !important; transform: none !important; }
 }
 </style>
+
+<style id="cta-faro-style">
+/* Rodrigo Faro na dobra final: texto a esquerda, ele entra pela direita */
+.lp .cta-final { position: relative; overflow: hidden; text-align: left; }
+.lp .cta-final .cta-final-copy { position: relative; z-index: 3; max-width: 600px; }
+.lp .cta-faro {
+  position: absolute; z-index: 2; right: max(0px, calc(50% - 660px)); bottom: 0;
+  width: min(44%, 500px); height: 90%;
+  background: url('assets/fotos/apresentador.png') right bottom / contain no-repeat;
+  background-image: image-set(url('assets/fotos/apresentador.webp') 1x);
+  filter: drop-shadow(-2px 0 0 rgba(33,163,192,0.16)) drop-shadow(0 22px 34px rgba(8,12,24,0.5));
+  pointer-events: none;
+}
+/* halo suave separando ele do fundo */
+.lp .cta-final::after {
+  content: ""; position: absolute; z-index: 1; right: 2%; bottom: 0;
+  width: min(42%, 520px); height: 72%;
+  background: radial-gradient(closest-side, rgba(33,163,192,0.30) 0%, rgba(33,163,192,0.08) 48%, transparent 72%);
+  filter: blur(6px); pointer-events: none;
+}
+@media (max-width: 900px) {
+  .lp .cta-faro { width: min(52%, 360px); height: 82%; }
+  .lp .cta-final .cta-final-copy { max-width: 60%; }
+}
+@media (max-width: 720px) {
+  .lp .cta-final { text-align: center; overflow: hidden; }
+  .lp .cta-final .cta-final-copy { max-width: 100%; }
+  .lp .cta-final::after { display: none; }
+  /* no mobile ele entra abaixo do botao, sangrando na base, com leve fade no topo */
+  .lp .cta-faro {
+    position: relative; right: auto; bottom: auto;
+    width: 82%; height: 62vw; margin: 26px auto -80px; display: block;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 26%, #000 100%);
+            mask-image: linear-gradient(180deg, transparent 0%, #000 26%, #000 100%);
+  }
+}
+</style>
 </head>
 <body>
 
@@ -2650,8 +2687,11 @@ section[id] { scroll-margin-top: 16px; }
 
 <!-- ============ CTA FINAL ============ -->
 <section class="cta-final">
-  <h2>Sua próxima<br><span class="poetic">temporada</span><br>já começou.</h2>
-  <a href="#form" class="btn btn-white-outline">Garantir meu apartamento de férias</a>
+  <div class="cta-final-copy">
+    <h2>Sua próxima<br><span class="poetic">temporada</span><br>já começou.</h2>
+    <a href="#form" class="btn btn-white-outline">Garantir meu apartamento de férias</a>
+  </div>
+  <div class="cta-faro" role="img" aria-label="Rodrigo Faro, apresentador do Ipioca Beach Residence"></div>
 </section>
 
 <!-- ============ RODAPÉ ============ -->
