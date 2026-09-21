@@ -2140,6 +2140,27 @@ fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none" alt=""
 src="https://www.facebook.com/tr?id=586420452079899&ev=PageView&noscript=1"></noscript>
+
+<style id="apresentador-style">
+.lp .apresentador { background: var(--mme-aqua-suave, #EAF4F3); padding: 110px 56px; }
+.lp .apresentador-inner { max-width: 1080px; margin: 0 auto; display: grid;
+  grid-template-columns: auto 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.lp .apresentador-foto { position: relative; }
+.lp .apresentador-foto img { display: block; width: clamp(168px, 22vw, 240px); height: clamp(168px, 22vw, 240px);
+  border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px rgba(33,163,192,0.5), 0 18px 44px rgba(8,12,24,0.22); }
+.lp .apresentador-selo { position: absolute; left: 50%; bottom: -14px; transform: translateX(-50%);
+  background: var(--mme-night, #20243C); color: #fff; font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+  font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 16px; border-radius: 100px;
+  white-space: nowrap; box-shadow: 0 8px 20px rgba(8,12,24,0.28); }
+.lp .apresentador .section-eyebrow { color: var(--acento-texto, #467890); }
+.lp .apresentador-txt .section-title { color: var(--preto, #0F1220); margin-bottom: 18px; }
+.lp .apresentador-txt .section-lead { color: var(--cinza-texto, #5B6078); max-width: 560px; }
+@media (max-width: 720px) {
+  .lp .apresentador { padding: 72px 22px; }
+  .lp .apresentador-inner { grid-template-columns: 1fr; gap: 36px; text-align: center; justify-items: center; }
+  .lp .apresentador-txt .section-lead { margin-left: auto; margin-right: auto; }
+}
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -2631,6 +2652,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ============ FORMULÁRIO ============ -->
+<!-- ============ O APRESENTADOR ============ -->
+<section class="apresentador" id="apresentador">
+  <div class="apresentador-inner">
+    <div class="apresentador-foto">
+      <img src="assets/fotos/faro-rosto.png" alt="Rodrigo Faro, apresentador oficial da campanha" loading="lazy">
+      <span class="apresentador-selo">Apresentador oficial</span>
+    </div>
+    <div class="apresentador-txt">
+      <p class="section-eyebrow">O apresentador</p>
+      <h2 class="section-title">Rodrigo Faro apresenta<br>o Ipioca Beach Residence.</h2>
+      <p class="section-lead">Ele é o apresentador oficial da campanha. Um rosto que o Brasil inteiro conhece, apresentando o empreendimento pé na areia, na praia de Ipioca, em Maceió.</p>
+    </div>
+  </div>
+</section>
+
 <section class="form-section" id="form">
   <div class="form-inner">
     <div class="form-txt">
