@@ -1843,9 +1843,13 @@ img { max-width: 100%; display: block; }
 /* Rodrigo à esquerda apresentando os passos (imagem só desktop/tablet) */
 #funciona .funciona-top { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: clamp(24px, 4vw, 72px); align-items: end; margin-bottom: 8px; }
 #funciona .funciona-faro { align-self: end; margin: 0; line-height: 0; }
-#funciona .funciona-faro img { display: block; width: 100%; max-width: 400px; height: auto; margin: 0 auto; filter: drop-shadow(0 24px 34px rgba(8,12,24,0.20)); }
+#funciona .funciona-faro img { display: block; width: auto; height: clamp(360px, 32vw, 460px); max-width: 100%; margin: 0 auto; filter: drop-shadow(0 6px 10px rgba(8,12,24,0.10)); }
 #funciona .funciona-head { align-self: center; }
 #funciona .funciona-head .section-title, #funciona .funciona-head .section-lead { max-width: none; }
+/* faixa "Já em funcionamento" como chão do Rodrigo (cobre o corte da figura) */
+#funciona .marquee--chao { position: relative; z-index: 3; margin: -18px 0 8px; border-radius: 16px; background: #DDF3F8; box-shadow: 0 12px 34px rgba(8,12,24,0.10); overflow: hidden; }
+#funciona .marquee--chao .marquee-item { color: #20243C; }
+@media (max-width: 900px) { #funciona .marquee--chao { margin: 8px 0; } }
 @media (max-width: 900px) {
   #funciona .funciona-top { grid-template-columns: 1fr; gap: 8px; }
   #funciona .funciona-faro { display: none; }
@@ -2512,6 +2516,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p class="section-lead">Não é timeshare. Não é aluguel. <b>É imóvel de verdade, no seu CPF, registrado em cartório.</b> Para sempre.</p>
       </div>
     </div>
+
+<div class="marquee marquee--chao" aria-hidden="true">
+    <div class="marquee-track">
+    <div class="marquee-group">
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      </div>
+    <div class="marquee-group">
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      <span class="marquee-item"><span class="dot-live"></span> Já em funcionamento</span>
+      <span class="marquee-sep">✦</span>
+      </div>
+    </div>
+  </div>
 
     <div class="steps">
       <div class="step step-highlight">
