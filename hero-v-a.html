@@ -1840,6 +1840,17 @@ img { max-width: 100%; display: block; }
 /* botao 'Falar com um consultor' (Como funciona): azul escuro fechado, base e hover */
 .lp #funciona .steps-cta .btn { background: #20243C; color: #FBF8F4; border: 2px solid #20243C; box-shadow: 0 10px 28px rgba(32,36,60,0.28); }
 .lp #funciona .steps-cta .btn:hover { background: #2A2F45; border-color: #2A2F45; color: #FFF; }
+/* Rodrigo à esquerda apresentando os passos (imagem só desktop/tablet) */
+#funciona .funciona-top { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: clamp(24px, 4vw, 72px); align-items: end; margin-bottom: 8px; }
+#funciona .funciona-faro { align-self: end; margin: 0; line-height: 0; }
+#funciona .funciona-faro img { display: block; width: 100%; max-width: 400px; height: auto; margin: 0 auto; filter: drop-shadow(0 24px 34px rgba(8,12,24,0.20)); }
+#funciona .funciona-head { align-self: center; }
+#funciona .funciona-head .section-title, #funciona .funciona-head .section-lead { max-width: none; }
+@media (max-width: 900px) {
+  #funciona .funciona-top { grid-template-columns: 1fr; gap: 8px; }
+  #funciona .funciona-faro { max-width: 260px; margin: 8px auto 0; order: 2; }
+  #funciona .funciona-head { order: 1; }
+}
 /* 'Faz as contas': fundo com contraste (aqua suave da paleta), cards ajustados ao novo fundo; vao menor com a dobra anterior */
 .lp #depoimentos { padding-bottom: 72px; }
 .lp #vale.vale { background: #EAF4F3; padding-top: 80px; }
@@ -2484,9 +2495,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- ============ COMO FUNCIONA ============ -->
 <section class="section-white" id="funciona">
   <div class="section-inner">
-    <p class="section-eyebrow">Como funciona</p>
-    <h2 class="section-title">Uma <span class="poetic">fração de imóvel</span><br>com semanas garantidas<br>todos os anos.</h2>
-    <p class="section-lead">Não é timeshare. Não é aluguel. <b>É imóvel de verdade, no seu CPF, registrado em cartório.</b> Para sempre.</p>
+    <div class="funciona-top">
+      <figure class="funciona-faro" aria-hidden="true">
+        <picture>
+          <source srcset="assets/fotos/faro-funciona.webp" type="image/webp">
+          <img src="assets/fotos/faro-funciona.png" alt="" loading="lazy">
+        </picture>
+      </figure>
+      <div class="funciona-head">
+        <p class="section-eyebrow">Como funciona</p>
+        <h2 class="section-title">Uma <span class="poetic">fração de imóvel</span><br>com semanas garantidas<br>todos os anos.</h2>
+        <p class="section-lead">Não é timeshare. Não é aluguel. <b>É imóvel de verdade, no seu CPF, registrado em cartório.</b> Para sempre.</p>
+      </div>
+    </div>
 
     <div class="steps">
       <div class="step step-highlight">
