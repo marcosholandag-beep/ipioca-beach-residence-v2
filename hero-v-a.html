@@ -1848,7 +1848,7 @@ img { max-width: 100%; display: block; }
 #funciona .funciona-head .section-title, #funciona .funciona-head .section-lead { max-width: none; }
 @media (max-width: 900px) {
   #funciona .funciona-top { grid-template-columns: 1fr; gap: 8px; }
-  #funciona .funciona-faro { max-width: 260px; margin: 8px auto 0; order: 2; }
+  #funciona .funciona-faro { display: none; }
   #funciona .funciona-head { order: 1; }
 }
 /* 'Faz as contas': fundo com contraste (aqua suave da paleta), cards ajustados ao novo fundo; vao menor com a dobra anterior */
@@ -1883,6 +1883,10 @@ img { max-width: 100%; display: block; }
 @media (max-width: 900px) { .lp #donos .owners-rows { padding: 4px 18px; } .lp #donos .owners-stat span { font-size: 14px; } }
 /* comparativo no layout da referencia: texto a esquerda, opcoes empilhadas a direita, vencedora em destaque */
 .lp .vale { background: #FBF8F4; color: #20243C; }
+/* opção discreta: retrato pequeno do Rodrigo junto do selo "Faz as contas" */
+#vale .vale-host { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+#vale .vale-host .section-eyebrow { margin-bottom: 0; }
+#vale .vale-host img { width: 46px; height: 46px; border-radius: 50%; object-fit: cover; object-position: top center; flex-shrink: 0; box-shadow: 0 0 0 2px rgba(33,163,192,0.55), 0 6px 16px rgba(8,12,24,0.18); }
 .lp .vale .vale-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .lp .vale .section-eyebrow { display: inline-flex; color: #21A3C0; background: rgba(33,163,192,0.08); border: 1px solid rgba(33,163,192,0.45); border-radius: 100px; padding: 8px 16px; margin-bottom: 22px; text-align: left; }
 .lp .vale .section-title { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 500; text-transform: none; letter-spacing: -0.035em; font-size: clamp(2.4rem, 4.8vw, 4.4rem); line-height: 1.02; color: #20243C; text-align: left; margin-left: 0; }
@@ -2300,7 +2304,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
   <div class="chapter-media chapter-media--vertical">
-    <video src="assets/video/ferias.mp4" poster="assets/fotos/ferias-poster.jpg" controls playsinline preload="metadata" title="Ipioca Beach Residence — Férias"></video>
+    <video src="assets/video/mme-vacation.mp4" poster="assets/fotos/mme-vacation-poster.jpg" controls playsinline preload="metadata" title="Ipioca Beach Residence — MME Vacation"></video>
   </div>
   <p class="chapter-caption">Praia de Ipioca · Litoral Norte de Alagoas · 30 min do Aeroporto Zumbi dos Palmares</p>
 </section>
@@ -2565,7 +2569,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="section-light vale" id="vale">
   <div class="section-inner vale-grid">
     <div class="vale-texto">
-      <p class="section-eyebrow">Faz as contas</p>
+      <div class="vale-host">
+        <img src="assets/fotos/faro-rosto.png" alt="Rodrigo Faro" loading="lazy">
+        <p class="section-eyebrow">Faz as contas</p>
+      </div>
       <h2 class="section-title">Quanto você já gasta<br>em férias?</h2>
       <p class="section-lead">Uma família gasta entre <b>R$ 5 mil e R$ 10 mil por ano</b> em hospedagem. E sobe todo ano com a inflação do turismo.<br>O dinheiro é praticamente o mesmo. O que muda é o patrimônio e as experiências que construiu.</p>
       <div class="compare-cta"><a href="#form" class="btn btn-primary">Quero simular a minha cota</a></div>
